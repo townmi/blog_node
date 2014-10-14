@@ -15,7 +15,9 @@ fs.readdir('md/fs', function (err, all){
 			myart.push( [eval(strTwo[0]), strTwo[1]] );
 			/* GET home page. */
 			router.get('/' ,function (req,  res, next){
-				res.render('index', { "title" : "Towne's Blog", "art" : markdown.toHTML( myart[0][1] ) });
+				console.log(myart);
+				res.render('index', { "title" : "Towne's Blog", "myart" : myart[0][1] });
+				// next();
 			})
 		})
 	}
