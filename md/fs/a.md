@@ -1,8 +1,8 @@
-[{"title":"what's javascript","kate":"javascript","date":"2014-10-4","tag":"javascript"}]======
+[{"title":"what's javascript","kate":"javascript","date":"2014-10-14","tag":"javascript"}]======
 
 
 ## Example
-## 2014-10-4
+## 2014-10-14
 
 
 ``
