@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title><%= title %></title>
-	<link rel='stylesheet' href='/css/style.css' />
+	<link rel="stylesheet" type="text/css" href="./css/towne.css">
 	<link rel="stylesheet" type="text/css" href="/css/monokai_sublime.css">
 	<script type="text/javascript" src="/js/highlight.pack.js"></script>
 	<script>
@@ -10,14 +10,128 @@
 		hljs.initHighlightingOnLoad();
 	</script>
 </head>
-	<body>
-		<h2><%= title%></h2>
-		<div>
-			<% for(var i=0; i<myart.length; i++) {%>
-			  <%- myart[i][1] %>
-			<% } %>
+<body class="hx_clear">
+	<!-- head -->
+	<div class="head">
+		<div id="head" class="hx_clear">
+			<h2><a href="/"><img src="" alt=""></a></h2>
+			<div class="head_box">
+				<ul>
+					<li><a href="/" class="active">Home</a></li>
+					<li class="out_li">
+						<a href="javascript:;">前端技术</a>
+					</li>
+					<li class="out_li">
+						<a href="javascript:;">后端(NODEJS)</a>
+					</li>
+					<li><a href="/c">C++</a></li>
+					<li><a href="/life">Life</a></li>
+					<li><a href="https://github.com/townmi">Github</a></li>
+				</ul>
+			</div>
+			<ul class="for_li">
+				<li><a href="/html">HTML</a></li>
+				<li><a href="/css">CSS</a></li>
+				<li><a href="/js">Javascript</a></li>
+			</ul>
+			<ul class="for_li next">
+				<li><a href="/node">NODEJS</a></li>
+				<li><a href="/db">MongoDB</a></li>
+			</ul>
 		</div>
-		<div>
+	</div>
+	<!-- head -->
+	<!-- content -->
+	<div class="con">
+		<div id="con" class="hx_clear">
+			<div class="left">
+				<div class="le_part">
+					<h2>Kategorie</h2>
+					<ul>
+						<li><a href="/js">javascript</a></li>
+						<li><a href="/css" class="even">css</a></li>
+						<li><a href="/html">html</a></li>
+						<li><a href="/c" class="even active">c++</a></li>
+						<li><a href="/node">nodejs</a></li>
+						<li><a href="/db" class="even">mongodb</a></li>
+						<li><a href="/life">life</a></li>
+					</ul>
+				</div>
+				<div class="le_part">
+					<h2>Tagi</h2>
+					<div class="le_tag">
+						<a href="/css">css</a>
+						<a href="/c">c++</a>
+						<a href="#">nodejs</a>
+						<a href="#">c++</a>
+						<a href="#">hexo</a>
+						<a href="#">cnnode</a>
+						<a href="#">python</a>
+						<a href="#">c++</a>
+						<a href="#">hexo</a>
+						<a href="#">cnnode</a>
+						<a href="#">python</a>
+						<a href="#">c++</a>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<!-- main 文章集合 -->
+				<div class="main">
+					<!-- 文章一 -->
+					<% for(var i=0; i<myart.length; i++) {%>
+					<div class="article">
+						<a href="#" class="readmore">Read More</a>
+						<div class="art_head">
+							<h2>
+								<strong><a href="#"><%- myart[i][0]["title"] %></a></strong>
+								<p>
+									<span>About:</span><a href="#"><%- myart[i][0]["kate"] %></a>|<span><%- myart[i][0]["date"] %></span>
+								</p>
+							</h2>
+						</div>
+						
+						<div class="art_body hx_clear">						
+							<%- myart[i][1] %>
+						</div>
+					</div>
+					<% } %>
+				</div>
+			</div>
 		</div>
-	</body>
+	</div>
+	<!-- content -->
+	<!-- foot -->
+	<div class="foot">
+		<div id="foot"></div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#head .out_li').each(function(i){
+			var _iTimer = null;
+			$(this).on('mouseover', function(){
+				$('#head .for_li').hide();
+				clearTimeout(_iTimer);
+				showL();
+			});
+			$(this).on('mouseout', function(){
+				_iTimer = setTimeout(hideL,200);
+			});
+			$('#head .for_li').eq(i).on('mouseover', function(){
+				clearTimeout(_iTimer);
+			});
+			$('#head .for_li').eq(i).on('mouseout', function(){
+				_iTimer = setTimeout(hideL,200);
+			})
+			function showL(){
+				$('#head .for_li').eq(i).stop().slideDown();
+			}
+			function hideL(){
+				$('#head .for_li').eq(i).stop().slideUp();
+			}
+		})
+	})
+</script>
 </html>

@@ -1,7 +1,6 @@
 [{"title":"what's javascript","kate":"javascript","date":"2014-10-6","tag":"javascript"}]======
 
 
-## 2014-10-6
 ``
 	alias node='node --harmony'
 ``

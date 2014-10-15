@@ -1,7 +1,6 @@
 [{"title":"what's javascript","kate":"javascript","date":"2014-10-7","tag":"javascript"}]======
 
 
-## 2014-10-7
 ## Running tests
 
 ``

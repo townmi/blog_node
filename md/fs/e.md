@@ -1,6 +1,6 @@
 [{"title":"what's javascript","kate":"javascript","date":"2014-10-8","tag":"javascript"}]======
 
-## 2014-10-8
+
 #### 代码块
 
 

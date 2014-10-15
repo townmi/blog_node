@@ -1,7 +1,6 @@
 [{"title":"what's javascript","kate":"javascript","date":"2014-10-5","tag":"javascript"}]======
 
 
-## 2014-10-5
 ``` 
 	var f = 3;
 	var ihubo = {
