@@ -1,7 +1,29 @@
-[{"title":"what's javascript","tag":"javascript","date":"2014-10-14"}]======
+[{"title":"what's javascript","kate":"javascript","date":"2014-10-4","tag":"javascript"}]======
 
 
-#Blog run by NodeJs
-----
-###Blog
+## Example
+## 2014-10-4
 
+
+``
+
+	var koa = require('koa');
+	var app = koa();
+
+	// logger
+
+	app.use(function *(next){
+		var start = new Date;
+		yield next;
+		var ms = new Date - start;
+		console.log('%s %s - %s', this.method, this.url, ms);
+	});
+
+	// response
+
+	app.use(function *(){
+		this.body = 'Hello World';
+	});
+
+	app.listen(3000);
+``

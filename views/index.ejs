@@ -3,12 +3,21 @@
 <head>
 	<title><%= title %></title>
 	<link rel='stylesheet' href='/css/style.css' />
+	<link rel="stylesheet" type="text/css" href="/css/monokai_sublime.css">
+	<script type="text/javascript" src="/js/highlight.pack.js"></script>
+	<script>
+		hljs.configure({tabReplace: ''});
+		hljs.initHighlightingOnLoad();
+	</script>
 </head>
 	<body>
 		<h2><%= title%></h2>
 		<div>
-			<%= myart %>
-			
+			<% for(var i=0; i<myart.length; i++) {%>
+			  <%- myart[i][1] %>
+			<% } %>
+		</div>
+		<div>
 		</div>
 	</body>
 </html>
