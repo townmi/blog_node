@@ -1,15 +1,16 @@
 var express = require('express');
+// var Read = require("./readfile.js");
+
+var basePath = "md";
 var fs = require('fs');
-var async = require('async');
-var markdown = require('markdown').markdown;
 var router = express.Router();
 var myart = [], art_js = [], art_html = [], art_css = [], art_node = [], art_db = [], art_c = [], art_life = [];
 
-fs.readdir('md/fs', function (err, all){
+fs.readdir(basePath, function (err, all){
 	if (err) throw err;
 	var i_num = 0;
 	all.forEach(function(i){
-		fs.readFile('md/fs/'+i, function (err, data){
+		fs.readFile(basePath+'/'+i, function (err, data){
 			if(err) throw err;
 			i_num++;
 			var strTwo = data.toString().split("======");
