@@ -3,17 +3,26 @@ var fs = require('fs');
 function Read(){
 	this.data = [];
 	this.basePath = "md";
+	this.num = 0;
 }
 
-Read.prototype.init = function() {
-	var _this = this;
-	fs.readdirSync(this.basePath, function (err, data ){
+Read.prototype.seach = function(callback) {
 
-		data.forEach(function (i, k){
+	var _this = this;
+
+	fs.readdirSync(this.basePath, function (err, files){
+
+		files.forEach(function (i, k){
 
 			fs.readFileSync(_this.basePath +"/"+ i, function (err, data){
 
+				_this.num++;
+
 				_this.data.push(data);
+
+				if(_this.num >= files.length){
+					callback();
+				}
 
 			})
 		})
