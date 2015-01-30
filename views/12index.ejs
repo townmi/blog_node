@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="../css/towne.css">
+	<link rel="stylesheet" type="text/css" href="../css/monokai_sublime.css">
+	<script type="text/javascript" src="../js/highlight.pack.js"></script>
+	<script>
+		hljs.configure({tabReplace: ''});
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body class="hx_clear">
+	<!-- content -->
+	<div class="con">
+		<div id="con" class="hx_clear">
+			<div class="left">
+				<div class="le_part">
+					<h2>Kategorie</h2>
+					<ul id="kate">
+						<li><a href="/js">javascript</a></li>
+						<li><a href="/css" class="even">css</a></li>
+						<li><a href="/html">html</a></li>
+						<li><a href="/c" class="even">c++</a></li>
+						<li><a href="/node">nodejs</a></li>
+						<li><a href="/db" class="even">mongodb</a></li>
+						<li><a href="/life">life</a></li>
+					</ul>
+				</div>
+			<!-- <div class="le_part">
+					<h2>Tagi</h2>
+					<div class="le_tag">
+
+						<a href="/css">css</a>
+						<a href="/c">c++</a>
+						<a href="#">nodejs</a>
+						<a href="#">c++</a>
+						<a href="#">hexo</a>
+						<a href="#">cnnode</a>
+						<a href="#">python</a>
+						<a href="#">c++</a>
+						<a href="#">hexo</a>
+						<a href="#">cnnode</a>
+						<a href="#">python</a>
+						<a href="#">c++</a>
+					</div>
+				</div> -->
+			</div>
+			<div class="right">
+				<!-- main 文章集合 -->
+				<div class="main">
+					<!-- 文章一 -->
+					<% for(var i=0; i<myart.length; i++) {%>
+					<div class="article">
+						<a href="javascript:;" class="readmore">Read More</a>
+						<div class="art_head">
+							<h2>
+								<strong><a href="#"><%- myart[i][0]["title"] %></a></strong>
+								<p>
+									<span>About:</span><a href="/<%= myart[i][0]["kate"] %>"><%- myart[i][0]["kate"] %></a>|<span><%- myart[i][0]["date"] %></span>
+								</p>
+							</h2>
+						</div>
+						
+						<div class="art_body hx_clear">						
+							<%- myart[i][1] %>
+						</div>
+					</div>
+					<% } %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- content -->
+	<!-- foot -->
+	<div class="foot">
+		<div id="foot"></div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#head .out_li').each(function(i){
+			var _iTimer = null;
+			$(this).on('mouseover', function(){
+				$('#head .for_li').hide();
+				clearTimeout(_iTimer);
+				showL();
+			});
+			$(this).on('mouseout', function(){
+				_iTimer = setTimeout(hideL,200);
+			});
+			$('#head .for_li').eq(i).on('mouseover', function(){
+				clearTimeout(_iTimer);
+			});
+			$('#head .for_li').eq(i).on('mouseout', function(){
+				_iTimer = setTimeout(hideL,200);
+			})
+			function showL(){
+				$('#head .for_li').eq(i).stop().slideDown();
+			}
+			function hideL(){
+				$('#head .for_li').eq(i).stop().slideUp();
+			}
+		});
+		$('#kate a').each(function(i){
+			// console.log(this.href)
+			// console.log(window.location.href)
+			var reg = new RegExp(this.href);
+			if(reg.test(window.location.href)){
+				$(this).addClass('active');
+			}
+		})
+	})
+</script>
+</html>
