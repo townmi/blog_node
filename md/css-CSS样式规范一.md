@@ -1,16 +1,20 @@
-title: CSS样式规范一
-date: 2014-05-16 11:11:15
-tags: css
-categories: css
----
+{"title": "CSS样式规范一",
+"date": "2014-05-16 11:11:15",
+"categories" : "css"}
+<<====>>
 
-## 元素分类(常规) ##
+## 元素分类(常规) 
+
+------
+
 1. 块级元素：(display: block) [div, h1 ~ h6, p, ul, ol, dl, li, dt, dd]
 2. 内嵌块元素:(display: inline-block) [img, input]
 3. 内嵌元素：(display: inline) [strong, em, a, span]
 4. table元素：(display: inline-table)
 
 **css标签元素的分类就好比javascript里面数据类型的分类，如果你拿到一个变量却不知道这个变量的数据类型，你敢用么。可想而知，CSS里面标签元素分类的重要性.**
+
+<<====>>
 
 一.内嵌元素的特性：
 

@@ -10,38 +10,81 @@ define(function (require, exports, module){
 
 	var $ = jQuery = require("jquery");
 
-	// var mousewheel = require("mousewheel");
-	// var jscrollpane = require("jscrollpane");
+	var showdown = require("src/showdown");
+
+	var prettify       = require("src/extensions/prettify");
+	
+	var highlight       = require("src/highlight");
 
 	module.exports = function(){
 
 
 		$("body").css({"height" : $(window).height()});
 
-		// $("body").jScrollPane();
+		var url = $('body').attr('url');
 
-		console.log(data);
+		var converter = new Showdown.converter({ extensions: ['prettify'] });
+
+		var basePath = "http://10.100.50.139:3000"
+
+		$.ajax({
+			type  	    : "post",
+			url 	    : basePath + url,
+			dataType : "json",
+			success    : function (data){
+
+				$.each(data, function (k,s){
+
+					var arr = s.split("<<====>>");
+
+					var info = $.parseJSON(arr[0]);
+
+					console.log(arr[1]);
+
+					var Li = $("<li>"), Div_head = $("<div>"), Div_body = $('<div>'), Div_foot = $("<div>"), H2 = $("<h2>");
+	
+					H2.addClass("ui_art_title").html("<a href='/ "+ info.categories +"-"+ info.title+" '>"+info.title+"</a>");
+
+					Div_head.addClass("ui_art_head").append(H2);
+
+					$("<p>").addClass("clear").html("<a href='/" +info.categories+"' class='target fl'>"+info.categories+"</a><span class='date fr'>"+ info.date +"</span>").appendTo(Div_head);
+					
+					Div_head.appendTo(Li);
+
+					Div_body.html( converter.makeHtml( arr[1] ) );
+					
+					Div_body.addClass("ui_art_body").appendTo(Li);
+					
+					Div_foot.addClass("ui_art_foot").html("<p class='clear'><span></span><a href='/"+ info.categories +"-"+ info.title+"' class='fr'>>ReadMore</a></p>").appendTo(Li);
+
+					$("#art_list").append(Li);
+
+					Div_body.find("code").each(function (i, block){
+						hljs.highlightBlock(block);
+					})
+
+				})
+
+			}
+		})
 
 		$(window).on('resize', function(){
 
 			$("body").css({"height" : $(window).height()});
 
-			// $("body").jScrollPane();
-
 		});
 
 		$(window).on('scroll', function(){
 
-			///console.log($(window).scrollTop());
-
 			if($(window).scrollTop()>34){
-				// $(".js_side").stop().animate({top: $(window).scrollTop()-34},100)
-				$(".js_side").css({"position" : "fixed"})
-			}else{
-				$(".js_side").css({"position" : "absolute"})
-			}
 
-			//$(".js_side").stop().animate({top: },100)
+				$(".js_side").css({"position" : "fixed"});
+
+			}else{
+
+				$(".js_side").css({"position" : "absolute"});
+
+			}
 
 		})
 

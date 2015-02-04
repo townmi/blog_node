@@ -6,12 +6,11 @@
 	<meta name="keywords" content="汤海祥, towne, townmi" />
 	<meta name="description" content="汤海祥的个人网站"/>
 	<title><%= title %></title>
-<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/monokai.css">
 	
 </head>
-<body>
+<body  url = <%=  post %>>
 	<!-- head -->
 
 	<div class="ui_global_progress_bg">
@@ -19,7 +18,7 @@
 	</div>
 	<div class="ui_head_bg">
 		<div class="ui_head">
-			<a href="/" >登陆</a>
+			<a href="/login" >登陆</a>
 		</div>
 	</div>
 	<!-- head over -->
@@ -28,30 +27,9 @@
 	</div>
 	<div class="ui_center clear js_center">
 		<div class="ui_article fl">
-			<ul class="ui_art_list">
-				<li>
-					<div class="ui_art_head">
-						<h2 class="ui_art_title" title="这是标题"><a href="/">这是标题</a></h2>
-						<p class="clear">
-							<a href="/" class="target fl">javascript</a>
-							<span class="date fr">2014-01-01</span>
-						</p>
-					</div>
-					<div class="ui_art_body"></div>
-					<div class="ui_art_foot">
-						<p>
-							<span></span>
-							<a href="/" class="fr">>ReadMore</a>
-						</p>
-						
-					</div>
-				</li>
+			<ul class="ui_art_list" id="art_list">
+				
 			</ul>
-			<div>
-				<% for(i in s){ %>
-				<li><% s[i] %></li>
-				<% } %>
-			</div>
 		</div>
 		<div class="ui_sidebox fr">
 			<div class="ui_side js_side">
@@ -84,7 +62,7 @@
 	seajs.config({
 
 		// 配置基础路径，内部模块的依赖，不再需要全局去配置路径
-		base: "../js/",
+		base: "/js/",
 
 		// 系统公用模块，直接依赖
 		alias: {
@@ -95,7 +73,7 @@
 
 	});
 
-	seajs.use("../js/app", function(app){
+	seajs.use("/js/app", function(app){
 		app();
 	});
 

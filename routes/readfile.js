@@ -18,9 +18,8 @@ Read.prototype.seach = function(callback) {
 		fs.readFile(_this.basePath +"/"+ _this.name+".md", function (err, data){
 
 
-			_this.data.push(data);
-
-
+			_this.data.push(data.toString("UTF-8"));
+			
 			callback();
 
 		})
@@ -46,7 +45,7 @@ Read.prototype.seach = function(callback) {
 
 						_this.num++;
 
-						_this.data.push(data);
+						_this.data.push(data.toString("UTF-8"));
 
 						if(_this.num >= _this.tag.length){
 							callback();
@@ -64,7 +63,7 @@ Read.prototype.seach = function(callback) {
 
 						_this.num++;
 
-						_this.data.push(data);
+						_this.data.push(data.toString("UTF-8"));
 
 						if(_this.num >= files.length){
 							callback();

@@ -1,9 +1,9 @@
-title: Object
-date: 2014-06-22 14:19:17
-tags: object
-categories: javascript
----
-### JS对象 ###
+{"title": "Object",
+"date": "2014-06-22 14:19:17",
+"categories": "javascript"}
+<<====>>
+
+##JS对象
 
 ----------
 
@@ -12,6 +12,8 @@ categories: javascript
 
 1.Object.create()
 create方法是Object构造函数底下的私有方法。一般我们创建一个对象都是`var o = {"a":1}`;这样就相当与`new Object()`；当然我们还有第三种方法来创建一个对象:
+
+<<====>>
 
 ```
 	<script type="text/javascript">
