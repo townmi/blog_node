@@ -181,6 +181,28 @@ body{
 
 
 
+.ui_art_body{
+	padding: 5px;
+	font: normal normal 14px/22px "PingHei";
+}
+.ui_art_body p, .ui_art_body li, .ui_art_body h2{
+	line-height: 22px;
+	margin-top: 12px;
+}
+.ui_art_body p{
+	text-indent: 2em
+}
+
+
+
+
+.ui_art_foot{
+	line-height: 22px;
+}
+
+
+
+
 
 
 

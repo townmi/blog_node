@@ -148,5 +148,5 @@ pre, code {
 .xml .hljs-cdata,
 .xml .php,
 .php .xml {
-  opacity: 0.5;
+  opacity: 1;
 }

@@ -43,7 +43,7 @@ define(function (require, exports, module){
 
 					var Li = $("<li>"), Div_head = $("<div>"), Div_body = $('<div>'), Div_foot = $("<div>"), H2 = $("<h2>");
 	
-					H2.addClass("ui_art_title").html("<a href='/ "+ info.categories +"-"+ info.title+" '>"+info.title+"</a>");
+					H2.addClass("ui_art_title").html("<a href='/"+ info.categories +"-"+ info.title+" '>"+info.title+"</a>");
 
 					Div_head.addClass("ui_art_head").append(H2);
 
@@ -51,7 +51,7 @@ define(function (require, exports, module){
 					
 					Div_head.appendTo(Li);
 
-					Div_body.html( converter.makeHtml( arr[1] ) );
+					Div_body.html( converter.makeHtml( arr[1] ) + "<hr>" );
 					
 					Div_body.addClass("ui_art_body").appendTo(Li);
 					

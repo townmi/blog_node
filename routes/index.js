@@ -48,7 +48,53 @@ router.post("/css", function (req, res){
 
 	});
 
-})
+});
+router.get("/javascript", function (req, res){
+
+	var send = {
+		"title"  : "index",
+		"post" : "/javascript",
+
+	};
+
+	res.render("index", send);
+
+});
+
+router.post("/javascript", function (req, res){
+	
+	var read = new Read("javascript");
+
+	read.seach(function(){
+
+		res.send(read.data);
+
+	});
+
+});
+router.get("/nodejs", function (req, res){
+
+	var send = {
+		"title"  : "index",
+		"post" : "/nodejs",
+
+	};
+
+	res.render("index", send);
+
+});
+
+router.post("/nodejs", function (req, res){
+	
+	var read = new Read("nodejs");
+
+	read.seach(function(){
+
+		res.send(read.data);
+
+	});
+
+});
 
 
 
