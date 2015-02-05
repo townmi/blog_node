@@ -6,6 +6,7 @@ function Read(name){
 	this.name = name;
 	this.basePath = "md";
 	this.num = 0;
+	this.titles = [];
 }
 
 Read.prototype.seach = function(callback) {
@@ -64,7 +65,11 @@ Read.prototype.seach = function(callback) {
 						_this.data.push(data.toString("UTF-8"));
 
 						if(_this.num >= files.length){
+
+							_this.sort();
+
 							callback();
+
 						}
 
 					})
@@ -75,6 +80,38 @@ Read.prototype.seach = function(callback) {
 		});
 
 	}
+}
+
+
+Read.prototype.sort = function(){
+	
+	var _this = this;
+
+	var __unique = function(data){
+		data.sort();
+
+		var array = [ data[0] ];
+
+		for(var i=0; i<data.length; i++){
+			if( data[i] !== array[array.length-1]){
+				array.push(data[i]);
+			}
+		}
+
+		return array;
+	}
+
+	this.data.sort(function (a,b){
+
+		return  new Date( JSON.parse( b.split("<<====>>")[0] ).date ) - new Date( JSON.parse( a.split("<<====>>")[0] ).date );
+
+	});
+
+	this.data.forEach(function (a){
+		_this.titles.push( JSON.parse( a.split("<<====>>")[0] ).categories );
+	});
+
+	this.titles = __unique( this.titles );
 
 }
 

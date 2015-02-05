@@ -5,20 +5,27 @@ var router = express.Router();
 
 router.get(/^\/{1}[^\_]\S+$/, function (req, res){
 
-	var send = {
-		"title"  : decodeURIComponent(req.url ),
-		"post" :  decodeURIComponent(req.url )
-	};
+	var read = new Read();
 
-	if(/-/g.test( req.url ) ){
+	read.seach(function(){
 
-		res.render("art", send);
+		var send = {
+			"title"  : decodeURIComponent(req.url ),
+			"post" :  decodeURIComponent(req.url ),
+			"categories" : read.titles
+		};
 
-	}else{
+		if(/-/g.test( req.url ) ){
 
-		res.render("index", send);
+			res.render("art", send);
 
-	}
+		}else{
+
+			res.render("index", send);
+
+		}
+
+	});
 
 });
 router.post(/^\/{1}[^\_]\S+$/, function (req, res){
@@ -34,12 +41,19 @@ router.post(/^\/{1}[^\_]\S+$/, function (req, res){
 });
 router.get("/", function (req, res){
 
-	var send = {
-		"title"  : "index",
-		"post" :  "/"
-	};
+	var read = new Read();
 
-	res.render("index", send);
+	read.seach(function(){
+
+		var send = {
+			"title"  : "index",
+			"post" :  "/",
+			"categories" : read.titles
+		};
+
+		res.render("index", send);
+
+	});
 
 });
 
@@ -49,7 +63,9 @@ router.post("/", function (req, res){
 
 	read.seach(function(){
 
+
 		res.send(read.data);
+
 
 	})
 

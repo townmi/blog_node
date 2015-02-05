@@ -261,3 +261,45 @@ body{
 .ui_foot .digitalocean:hover{
 	color: #3686be;
 }
+
+
+/*login*/
+.ui_login{
+	width: 400px;
+	margin: 100px auto;
+}
+.ui_input_line{
+	padding: 15px 0;
+}
+.ui_label{
+	width: 20%;
+	padding-right: 2%;
+	display: inline-block;
+	font: normal normal 16px/30px "PingHei";
+	text-align: right;
+	vertical-align:top;
+}
+.ui_input{
+	width: 70%;
+	height: 20px;
+	padding: 5px;
+	border: 1px solid #333;
+	vertical-align:top;
+}
+.ui_input_error{
+	border-color: red;
+}
+.ui_btn{
+	width: 60%;
+	height: 42px;
+	display: block;
+	margin-left: 23%;
+	font: normal normal 22px/42px "PingHei";
+	text-align: center;
+	border-radius: 5px;
+	background-color: #e7e7e7;
+}
+.ui_btn:hover{
+	background-color: #333333;
+	color: #ffffff;
+}

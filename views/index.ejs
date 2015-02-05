@@ -17,6 +17,13 @@
 		<div class="ui_global_progress"></div>
 	</div>
 	<div class="ui_head_bg">
+		<ul>
+			<% for(var i=0; i<categories.length; i++){ %>
+				<li>
+				<a href=<%- "'/"+categories[i] +"'"%> ><%= categories[i] %></a>
+				</li>
+			<% } %>
+		</ul>
 		<div class="ui_head">
 			<a href="/_login" >登陆</a>
 		</div>
