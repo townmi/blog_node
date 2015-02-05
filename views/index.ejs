@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/monokai.css">
 	
 </head>
-<body  url = <%=  post %>>
+<body  url =<%- "'"+post+"'"%> >
 	<!-- head -->
 
 	<div class="ui_global_progress_bg">
@@ -18,7 +18,7 @@
 	</div>
 	<div class="ui_head_bg">
 		<div class="ui_head">
-			<a href="/login" >登陆</a>
+			<a href="/_login" >登陆</a>
 		</div>
 	</div>
 	<!-- head over -->

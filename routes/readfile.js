@@ -12,11 +12,9 @@ Read.prototype.seach = function(callback) {
 
 	var _this = this;
 
-
 	if(this.name && this.name.split("-").length>1){
 		
-		fs.readFile(_this.basePath +"/"+ _this.name+".md", function (err, data){
-
+		fs.readFile(_this.basePath +"/"+ _this.name +".md", function (err, data){
 
 			_this.data.push(data.toString("UTF-8"));
 			
