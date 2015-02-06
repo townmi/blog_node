@@ -17,6 +17,8 @@ Read.prototype.seach = function(callback) {
 		
 		fs.readFile(_this.basePath +"/"+ _this.name +".md", function (err, data){
 
+			if (err) return callback();
+
 			_this.data.push(data.toString("UTF-8"));
 			
 			callback();
@@ -42,6 +44,8 @@ Read.prototype.seach = function(callback) {
 
 					fs.readFile(_this.basePath +"/"+ i, function (err, data){
 
+						if (err) return callback();
+
 						_this.num++;
 
 						_this.data.push(data.toString("UTF-8"));
@@ -59,6 +63,8 @@ Read.prototype.seach = function(callback) {
 				files.forEach(function (i, k){
 
 					fs.readFile(_this.basePath +"/"+ i, function (err, data){
+
+						if (err) return callback();
 
 						_this.num++;
 
@@ -88,14 +94,24 @@ Read.prototype.sort = function(){
 	var _this = this;
 
 	var __unique = function(data){
+
 		data.sort();
 
-		var array = [ data[0] ];
+		var array = [{
+			"title" : data[0],
+			"num"	: 1
+		}];
 
 		for(var i=0; i<data.length; i++){
+
 			if( data[i] !== array[array.length-1]){
-				array.push(data[i]);
+
+				array.push({"title" : data[i], "num" : 1});
+
 			}
+
+			array[array.length-1].num++;
+
 		}
 
 		return array;
@@ -108,7 +124,9 @@ Read.prototype.sort = function(){
 	});
 
 	this.data.forEach(function (a){
+
 		_this.titles.push( JSON.parse( a.split("<<====>>")[0] ).categories );
+
 	});
 
 	this.titles = __unique( this.titles );
