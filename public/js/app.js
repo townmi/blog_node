@@ -33,6 +33,8 @@ define(function (require, exports, module){
 			dataType :  "json",
 			success    : function (data){
 
+				console.log(data.length);
+
 				$.each(data, function (k,s){
 
 					var arr = s.split("<<====>>");

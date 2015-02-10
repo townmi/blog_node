@@ -104,7 +104,7 @@ Read.prototype.sort = function(){
 
 		for(var i=0; i<data.length; i++){
 
-			if( data[i] !== array[array.length-1]){
+			if( data[i] !== array[array.length-1].title){
 
 				array.push({"title" : data[i], "num" : 1});
 

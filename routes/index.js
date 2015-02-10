@@ -51,6 +51,8 @@ router.get("/", function (req, res){
 			"categories" : read.titles
 		};
 
+		console.log(read.titles);
+
 		res.render("index", send);
 
 	});
