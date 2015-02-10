@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta name="keywords" content="汤海祥, towne, townmi" />
+	<meta name="description" content="汤海祥的个人网站"/>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/monokai.css">
+	
+</head>
+<body  url =<%- "'"+post+"'"%> >
+	<!-- head -->
+
+	<div class="ui_global_progress_bg">
+		<div class="ui_global_progress"></div>
+	</div>
+	<div class="ui_head_bg">
+		<ul>
+			<% for(var i=0; i<categories.length; i++){ %>
+				<li>
+				<a href=<%- "'/"+categories[i].title +"'"%> ><%= categories[i].title %></a>
+				</li>
+			<% } %>
+		</ul>
+		<div class="ui_head">
+			<a href="/_login" >登陆</a>
+		</div>
+	</div>
+	<!-- head over -->
+	<div class="ui_banner">
+		
+	</div>
+	<div class="ui_center clear js_center">
+		<div class="ui_article fl">
+			<ul class="ui_art_list" id="art_list">
+				
+			</ul>
+		</div>
+		<div class="ui_sidebox fr">
+			<div class="ui_side js_side">
+				<div class="ui_audio">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- foot -->
+	<div class="ui_foot_bg">
+		<div class="ui_foot">
+			<span style="color: #80bd01;">Powered by</span>
+			<a href="http://nodejs.org/" target="_blank" class="node_js">NodeJs</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3686be;">Running on</span>
+			<a href="https://www.digitalocean.com/" target="_blank" class="digitalocean">Digitalocean</a>
+			<a href="" class="fr">github</a>
+			<a href="" class="fr">weibo</a>
+		</div>
+	</div>
+	<!-- foot over -->
+
+</body>
+
+<script type="text/javascript" src="../js/seajs/sea.js"></script>
+<script type="text/javascript">
+
+	seajs.config({
+
+		// 配置基础路径，内部模块的依赖，不再需要全局去配置路径
+		base: "/js/",
+
+		// 系统公用模块，直接依赖
+		alias: {
+     		"jquery"		: "src/jquery.js",
+     		"mousewheel"	: "src/mousewheel.js",
+     		"jscrollpane"	: "src/jscrollpane.js"
+    	}
+
+	});
+
+	seajs.use("/js/app", function(app){
+		app();
+	});
+
+</script>
+</html>
