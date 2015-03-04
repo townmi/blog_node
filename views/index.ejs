@@ -5,12 +5,12 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<meta name="keywords" content="汤海祥, towne, townmi" />
 	<meta name="description" content="汤海祥的个人网站"/>
-	<title><%= title %></title>
+	<title>个人</title>
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
 	<link rel="stylesheet" type="text/css" href="../css/monokai.css">
 	
 </head>
-<body  url =<%- "'"+post+"'"%> >
+<body>
 	<!-- head -->
 
 	<div class="ui_global_progress_bg">
@@ -18,11 +18,9 @@
 	</div>
 	<div class="ui_head_bg">
 		<ul>
-			<% for(var i=0; i<categories.length; i++){ %>
-				<li>
-				<a href=<%- "'/"+categories[i].title +"'"%> ><%= categories[i].title %></a>
-				</li>
-			<% } %>
+			<% categories.forEach(function (e){%>
+				<li><a href=<%= e %>><%= e %></a></li>
+			<% })%>
 		</ul>
 		<div class="ui_head">
 			<a href="/_login" >登陆</a>
@@ -33,18 +31,33 @@
 		
 	</div>
 	<div class="ui_center clear js_center">
+			
 		<div class="ui_article fl">
-			<ul class="ui_art_list" id="art_list">
-				
+			<ul class="ui_art_list">
+				<% arts.forEach(function (e){ %>
+				<li>
+					<div class="ui_art_head">
+						<h2 class="ui_art_title"><a href=<%- e.categories+"?"+e.title %>><%= e.title %></a></h2>
+						<p class="clear">
+							<a href=<%= e.categories %> class="ui_target fl"><%= e.categories %></a>
+							<span class="ui_date fr"><%= e.date %></span>
+						</p>
+					</div>
+					<div class="ui_art_body">
+						<%- e.body %>
+					</div>
+				<!-- 	<div class="ui_art_foot">
+						<p>
+							<span></span>
+							<a href="/" class="fr">>ReadMore</a>
+						</p>
+						
+					</div> -->
+				</li>
+				<% })%>
 			</ul>
 		</div>
-		<div class="ui_sidebox fr">
-			<div class="ui_side js_side">
-				<div class="ui_audio">
-					
-				</div>
-			</div>
-		</div>
+
 	</div>
 
 

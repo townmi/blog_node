@@ -1,184 +1,105 @@
 var express = require('express');
-var Read = require("./readfile.js");
+var mysql = require("mysql");
+var markdown = require( "markdown" ).markdown;
 
+var config = require("../config/config.js");
+var app = express();
 var router = express.Router();
-
-router.get(/^\/{1}[^\_]\S+$/, function (req, res){
-
-	var read = new Read();
-
-	read.seach(function(){
-
-		var send = {
-			"title"  : decodeURIComponent(req.url ),
-			"post" :  decodeURIComponent(req.url ),
-			"categories" : read.titles
-		};
-
-		if(/-/g.test( req.url ) ){
-
-			res.render("art", send);
-
-		}else{
-
-			res.render("index", send);
-
-		}
-
-	});
-
-});
-router.post(/^\/{1}[^\_]\S+$/, function (req, res){
-
-	var read = new Read( decodeURIComponent( req.url ).replace(/\//g,""));
-
-	read.seach(function(){
-
-		res.send(read.data);
-
-	})
-
-});
-router.get("/", function (req, res){
-
-	var read = new Read();
-
-	read.seach(function(){
-
-		var send = {
-			"title"  : "index",
-			"post" :  "/",
-			"categories" : read.titles
-		};
-
-		console.log(read.titles);
-
-		res.render("index", send);
-
-	});
-
-});
-
-router.post("/", function (req, res){
-
-	var read = new Read();
-
-	read.seach(function(){
-
-
-		res.send(read.data);
-
-
-	})
-
-});
-
-router.get('/_login', function (req, res) {
-	console.log("get/_login");
-	var send = {
-		"title"  : "login"
-	};
-
-	res.render("login", send);
-
-});
-
-
-
-// router.get("/", function (req, res){
-
-// 	var send = {
-// 		"title"  : "index",
-// 		"post" : "/",
-
-// 	};
-
-// 	res.render("index", send);
-
-// });
-
-// router.post("/", function (req, res){
-
-// 	var read = new Read();
-
-// 	read.seach(function(){
-
-// 		res.send(read.data);
-
-// 	})
-// })
-
-// router.get("/css", function (req, res){
-
-// 	var send = {
-// 		"title"  : "index",
-// 		"post" : "/css",
-
-// 	};
-
-// 	res.render("index", send);
-
-// });
-
-// router.post("/css", function (req, res){
-	
-// 	var read = new Read("css");
-
-// 	read.seach(function(){
-
-// 		res.send(read.data);
-
-// 	});
-
-// });
-// router.get("/javascript", function (req, res){
-
-// 	var send = {
-// 		"title"  : "index",
-// 		"post" : "/javascript",
-
-// 	};
-
-// 	res.render("index", send);
-
-// });
-
-// router.post("/javascript", function (req, res){
-	
-// 	var read = new Read("javascript");
-
-// 	read.seach(function(){
-
-// 		res.send(read.data);
-
-// 	});
-
-// });
-// router.get("/nodejs", function (req, res){
-
-// 	var send = {
-// 		"title"  : "index",
-// 		"post" : "/nodejs",
-
-// 	};
-
-// 	res.render("index", send);
-
-// });
-
-// router.post("/nodejs", function (req, res){
-	
-// 	var read = new Read("nodejs");
-
-// 	read.seach(function(){
-
-// 		res.send(read.data);
-
-// 	});
-
-// });
-
-
 
 module.exports = router;
 
+
+function unique(arr) {
+    var result = [], hash = {};
+    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+        if (!hash[elem]) {
+            result.push(elem);
+            hash[elem] = true;
+        }
+    }
+    return result;
+}
+
+
+var pool = mysql.createPool({
+	connectionLimit : 10,
+	host : config.host,
+	port : config.port,
+	user : config.user,
+	database : 'test',
+	password : config.password
+})
+
+router.get("/", function (req, res){
+
+	pool.getConnection(function (err, connection) {
+
+		// 'SELECT * FROM art'
+
+		connection.query('SELECT * FROM art ORDER BY art.date DESC', function (err, rows){
+
+			var categories = [];
+
+			var arts = [];
+
+			rows.forEach(function (e, i){
+
+				arts[i] = {};
+
+				arts[i].title = e.title;
+				arts[i].categories = e.categories;
+				arts[i].body = markdown.toHTML( e.body );
+				arts[i].id = e.id;
+				arts[i].date = e.date.getFullYear()+"-"+(e.date.getMonth()+1)+"-"+e.date.getDate();
+
+				categories.push(e.categories);
+
+			})
+
+			if(arts.length>4){
+
+				arts = arts.slice(0,5);
+
+			}
+
+			console.log(arts);
+
+			var categories = unique(categories);
+
+			connection.release();
+
+			res.render("index",{"arts" : arts, "categories" : categories});
+
+		});
+
+	});
+
+})
+
+router.get("/edit", function (req, res){
+
+	res.render("edit", {"title" : "编辑"});
+
+})
+
+router.post("/edit", function (req, res){
+
+	var STR = '"'+req.body.title +'","'+ req.body.date +'","'+ req.body.categories +'","'+ req.body.body +'"';
+
+	pool.getConnection(function (err, connection) {
+
+		// 'INSERT INTO test(name, sex) values("hanmeimei", "1"),("lilie", "0")'
+
+		connection.query('INSERT INTO art(title, date, categories, body) values('+STR+')', function (err, rows) {
+
+			connection.release();
+
+			// res.redirect(301,"/");
+
+			res.send({"target" : true});
+
+		});
+
+	});
+
+})
