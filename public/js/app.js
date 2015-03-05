@@ -19,10 +19,11 @@ define(function (require, exports, module){
 
 		// $(window).on("load", function(){
 
-			$("pre code").each(function (i, block){
+			$("code").each(function (i, block){
 
 				console.log(i, block);
-				// hljs.highlightBlock(block);
+
+				hljs.highlightBlock(block);
 			})
 
 		// })
