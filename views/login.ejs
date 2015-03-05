@@ -37,14 +37,21 @@
 					<label for="password" class="ui_label">口令:</label>
 					<input type="text" id="password" class="ui_input ui_input_error">
 				</p>
-				<p class="ui_input_line">
+				<!-- <p class="ui_input_line">
 					<label for="captcha" class="ui_label">验证码:</label>
 					<input type="text" id="captcha" class="ui_input" style="width:40%;">
 					<img src="" alt="">
-				</p>
+				</p> -->
+
+				
 				<p class="ui_input_line" style="margin-top: 30px;">
-					<a href="javascript:;" class="ui_btn">登陆</a>
+					<% if(title === "注册"){ %>
+					<a href="javascript:;" class="ui_btn js_reg"><%= title %></a>
+					<% }else{ %>
+					<a href="javascript:;" class="ui_btn js_login"><%= title %></a>
+					<% } %>
 				</p>
+				
 			</form>
 		</div>
 	</div>

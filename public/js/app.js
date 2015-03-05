@@ -9,57 +9,298 @@ define(function (require, exports, module){
 
 	var $ = jQuery = require("jquery");
 
-	var showdown = require("src/showdown");
+	// var showdown = require("src/showdown");
 
-	var prettify       = require("src/extensions/prettify");
+	// var prettify       = require("src/extensions/prettify");
 	
 	var highlight       = require("src/highlight");
 
 	module.exports = function(){
 
-		// $(window).on("load", function(){
+		$("code").each(function (i, block){
 
-			$("code").each(function (i, block){
+			hljs.highlightBlock(block);
 
-				console.log(i, block);
+		})
 
-				hljs.highlightBlock(block);
-			})
-
-		// })
-
-
-		$("#control p a").on("click", function(){
-
-
-			// alert(1);
+		$("#control .js_edit_update").on("click", function(){
 
 			if(!$("#title").val() || !$("#categories").val() || !$("#body").val()) return;
 
 			$.ajax({
 				type: "post",
-				url: "http://127.0.0.1:3000/edit",
+				url: "/edit",
 				data: {
 					"title" : $("#title").val(),
 					"categories": $("#categories").val(),
-					"body": $("#body").val(),
-					"date" : new Date()
+					"body": $("#body").val()
 				},
 
 				dataType: "json",
-				success: function (data) {
+
+				success: function (data){
 					if(data.target){
 
 						window.location.reload();
 
 					}
 				},
-				error: function (msg) {
+				error: function (msg){
+				   	
+				}
+			})
+
+		});
+
+		// 修改
+		$(".js_change").on("click", function(){
+
+			console.log($(this).attr("key"));
+
+			$.ajax({
+
+				type: "get",
+				url: "/edit",
+				data: {"key" : $(this).attr("key")},
+				dataType: "json",
+
+				success: function (data){
+					// if(data.target){
+
+					// 	window.location.reload();
+
+					// }
+				},
+				error: function (msg){
+				   	
+				}
+
+			})
+
+		});
+
+		// 删除
+		$(".js_delete").on("click", function(){
+
+			var key = $(this).attr("key");
+
+			if( window.confirm('你确定要删除<<'+key+'>>吗？') ){
+
+				$.ajax({
+
+					type: "post",
+					url: "/delete",
+					data: {"key" : key},
+					dataType: "json",
+
+					success: function (data){
+						if(data.target){
+
+							window.location.reload();
+
+						}
+					},
+					error: function (msg){
+					   	
+					}
+
+				})
+
+
+			}else{
+				return
+			}
+
+		});
+
+		$("#control .js_change_update").on("click", function(){
+
+			if(!$("#title").val() || !$("#categories").val() || !$("#body").val()) return;
+
+			var key = $(this).attr("key");
+
+			$.ajax({
+				type: "post",
+				url: "/change",
+				data: {
+					"title" : $("#title").val(),
+					"categories": $("#categories").val(),
+					"body": $("#body").val(),
+					"key": key
+				},
+
+				dataType: "json",
+
+				success: function (data){
+					if(data.target){
+
+						window.location.reload();
+
+					}
+				},
+				error: function (msg){
+				   	
+				}
+			})
+
+		});
+
+		// 注册
+
+		$(".js_reg").on("click", function(){
+
+			if(!$("#name").val() || !$("#password").val()) return;
+
+			$.ajax({
+				type: "post",
+				url: "/reg",
+				data: {
+					"name": $("#name").val(),
+					"password": $("#password").val()
+				},
+
+				dataType: "json",
+
+				success: function (data){
+					if(data.target){
+
+						// window.location.reload();
+
+					}
+				},
+				error: function (msg){
 				   	
 				}
 			})
 
 		})
+
+
+		// 登陆
+
+		$(".js_login").on("click", function(){
+
+			if(!$("#name").val() || !$("#password").val()) return;
+
+			$.ajax({
+				type: "post",
+				url: "/login",
+				data: {
+					"name": $("#name").val(),
+					"password": $("#password").val()
+				},
+
+				dataType: "json",
+
+				success: function (data){
+
+					console.log(data.target);
+
+					if(data.target){
+
+						// window.location.reload();
+
+					}
+				},
+				error: function (msg){
+				   	
+				}
+			})
+
+		})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 		// $(window).on('resize', function(){

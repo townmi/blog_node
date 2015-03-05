@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var routes = require('./routes/index');
 var root = require('./routes/root');
+var session = require('express-session');
+
 
 var app = express();
 
@@ -28,13 +30,21 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// session
+// app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: true,
+	cookie: { secure: true }
+}))
+
 // favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
-app.use('/', routes);
-app.post("/edit", root);
-app.use("/login", root);
-app.use("/edit", root);
+// 路由分发
+app.use(routes);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {

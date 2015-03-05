@@ -29,6 +29,25 @@
 	<div class="ui_center clear js_center">
 		<div class="ui_article fl">
 			<div id="control">
+				<% if(data[0]){ %>
+				<ul>
+					<li>
+						<label for="title">标题:</label>
+						<input type="text" placeholder="请输入标题" id="title" value=<%= data[0].title %>>
+					</li>
+					<li>
+						<label for="categories">分类:</label>
+						<input type="text" placeholder="请输入分类" id="categories" value=<%= data[0].categories %>>
+					</li>
+					<li>
+						<label for="body">内容:</label>
+						<textarea placeholder="请输入内容" id="body" rows="20" cols="50"><%= data[0].body %></textarea>
+					</li>
+				</ul>
+				<p>
+					<a href="javascript:;" class="js_change_update" key=<%= data[0].id %>>提交</a>
+				</p>
+				<% }else{ %>
 				<ul>
 					<li>
 						<label for="title">标题:</label>
@@ -44,8 +63,10 @@
 					</li>
 				</ul>
 				<p>
-					<a href="javascript:;">提交</a>
+					<a href="javascript:;" class="js_edit_update">提交</a>
 				</p>
+				<% } %>
+				
 			</div>
 		</div>
 		<div class="ui_sidebox fr">

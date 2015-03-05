@@ -162,6 +162,7 @@ body{
 .ui_art_title{
 	display: block;
 	padding: 0 3px;
+	background-color: #ff5500;
 	font: normal normal 22px/32px "PingHei";
 }
 .target{
