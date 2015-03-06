@@ -27,18 +27,18 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 
-app.use(cookieParser());
+app.use(cookieParser('likeshan'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session
-// app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
-app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: true,
-	cookie: { secure: true }
-}))
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
+// app.set('trust proxy', 1) // trust first proxy
+// app.use(session({
+// 	secret: 'keyboard cat',
+// 	resave: false,
+// 	saveUninitialized: true,
+// 	cookie: { secure: true }
+// }))
 
 // favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));

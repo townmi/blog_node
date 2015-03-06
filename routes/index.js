@@ -263,7 +263,9 @@ router.post("/reg", function (req, res){
 
 router.get('/login', function (req, res){
 
-	res.render("login",{"title" : "登陆"});
+	console.log(req.session);
+
+	res.render("login", {"title" : "登陆"});
 
 });
 
@@ -285,13 +287,17 @@ router.post('/login', function (req, res){
 
 			connection.release();
 
-			// res.redirect(301,"/");
-
 			if(rows.length){
 
 				if(md5(password) == rows[0].password){
 
-					res.send({"target" : "用户存在，密码正确"});
+					// res.send({"target" : "用户存在，密码正确"});
+
+					// console.log(res.redirect);
+
+					// res.render("login", {"title" : "登陆"});
+
+					return res.redirect("/");
 
 				}else{
 
