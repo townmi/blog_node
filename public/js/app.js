@@ -194,13 +194,12 @@ define(function (require, exports, module){
 
 				success: function (data){
 
-					console.log(data.target);
+					if(data.login){
 
-					if(data.target){
-
-						// window.location.reload();
+						window.location.href = '/';
 
 					}
+
 				},
 				error: function (msg){
 				   	

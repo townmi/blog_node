@@ -291,23 +291,23 @@ router.post('/login', function (req, res){
 
 				if(md5(password) == rows[0].password){
 
-					// res.send({"target" : "用户存在，密码正确"});
+					res.send({"login" : true});
 
 					// console.log(res.redirect);
 
 					// res.render("login", {"title" : "登陆"});
 
-					return res.redirect("/");
+					// return res.redirect("/");
 
 				}else{
 
-					res.send({"target" : "用户存在，但是密码不对"});
+					res.send({"login" : false});
 
 				}
 
 			}else{
 
-				res.send({"target" : "用户不存在"});
+				res.send({"login" : false});
 
 			}
 
