@@ -32,11 +32,11 @@ var pool = mysql.createPool({
 	user : config.user,
 	database : 'test',
 	password : config.password
-})
+});
 
 router.get("/", function (req, res){
 
-	console.log(req.session);
+	// console.log(req.session);
 
 	pool.getConnection(function (err, connection) {
 
@@ -64,11 +64,11 @@ router.get("/", function (req, res){
 
 			})
 
-			if(arts.length>4){
+			// if(arts.length>4){
 
-				arts = arts.slice(0,5);
+			// 	arts = arts.slice(0,5);
 
-			}
+			// }
 
 			// console.log(arts);
 
@@ -147,6 +147,8 @@ router.post("/change", function (req, res){
 	var body = req.body.body.replace(/"/g, "'");
 
 	var SQL = 'UPDATE art SET title="'+req.body.title+'",categories="'+req.body.categories+'",change_date="'+day+'",body="'+body+'" WHERE id="'+req.body.key+'"';
+
+	
 
 	// var SQL = 'UPDATE art SET change_date="'+day+'" WHERE id="4"';
 

@@ -6,8 +6,8 @@
 	<meta name="keywords" content="汤海祥, towne, townmi" />
 	<meta name="description" content="汤海祥的个人网站"/>
 	<title><%= title %></title>
-<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
 	
 </head>
@@ -39,11 +39,11 @@
 						<label for="categories">分类:</label>
 						<input type="text" placeholder="请输入分类" id="categories" value=<%= data[0].categories %>>
 					</li>
-					<li>
-						<label for="body">内容:</label>
-						<textarea placeholder="请输入内容" id="body" rows="20" cols="50"><%= data[0].body %></textarea>
-					</li>
 				</ul>
+				<div>
+					<label for="body">内容:</label>
+					<pre id="body"><%= data[0].body %></pre>
+				</div>
 				<p>
 					<a href="javascript:;" class="js_change_update" key=<%= data[0].id %>>提交</a>
 				</p>
@@ -57,11 +57,12 @@
 						<label for="categories">分类:</label>
 						<input type="text" placeholder="请输入分类" id="categories">
 					</li>
-					<li>
-						<label for="body">内容:</label>
-						<textarea placeholder="请输入内容" id="body" rows="20" cols="50"></textarea>
-					</li>
 				</ul>
+				<div>
+					<label for="body">内容:</label>
+					<!-- <textarea placeholder="请输入内容" id="body" rows="20" cols="50"spellcheck="false" autocomplete="off"></textarea> -->
+					<pre id="body"></pre>
+				</div>
 				<p>
 					<a href="javascript:;" class="js_edit_update">提交</a>
 				</p>
@@ -93,26 +94,254 @@
 	<!-- foot over -->
 
 </body>
-<script type="text/javascript" src="../js/seajs/sea.js"></script>
+<!-- <script type="text/javascript" src="../js/seajs/sea.js"></script> -->
+<script type="text/javascript" src="../js/src/jquery.js"></script>
+<script type="text/javascript" src="../js/src/highlight.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js"></script>
 <script type="text/javascript">
 
-	seajs.config({
 
-		// 配置基础路径，内部模块的依赖，不再需要全局去配置路径
-		base: "/js/",
+	$(function(){
 
-		// 系统公用模块，直接依赖
-		alias: {
-     		"jquery"		: "src/jquery.js",
-     		"mousewheel"	: "src/mousewheel.js",
-     		"jscrollpane"	: "src/jscrollpane.js"
-    	}
+		$("code").each(function (i, block){
 
-	});
+			hljs.highlightBlock(block);
 
-	seajs.use("/js/app", function(app){
-		app();
-	});
+		});
 
-</script>
+		ace.require("ace/ext/chromevox");
+
+		var val = $("#body").html();
+
+	    var editor = ace.edit("body");
+
+	    editor.session.setMode("ace/mode/html");
+
+	    editor.setTheme("ace/theme/monokai");
+
+
+
+	    editor.setValue(val); // or session.setValue
+		
+		editor.setHighlightActiveLine(false);
+
+		editor.getSession().on('change', function(e) {
+	    	// e.type, etc
+	    	console.log(editor.getValue());
+
+		});
+
+		$("#control .js_edit_update").on("click", function(){
+
+			if(!$("#title").val() || !$("#categories").val() || !$("#body").val()) return;
+
+			$.ajax({
+				type: "post",
+				url: "/edit",
+				data: {
+					"title" : $("#title").val(),
+					"categories": $("#categories").val(),
+					"body": editor.getValue()
+				},
+
+				dataType: "json",
+
+				success: function (data){
+					if(data.target){
+
+						window.location.reload();
+
+					}
+				},
+				error: function (msg){
+				   	
+				}
+			})
+
+		});
+
+		// 修改
+		$(".js_change").on("click", function(){
+
+			console.log($(this).attr("key"));
+
+			$.ajax({
+
+				type: "get",
+				url: "/edit",
+				data: {"key" : $(this).attr("key")},
+				dataType: "json",
+
+				success: function (data){
+					// if(data.target){
+
+					// 	window.location.reload();
+
+					// }
+				},
+				error: function (msg){
+				   	
+				}
+
+			})
+
+		});
+
+		// 删除
+		$(".js_delete").on("click", function(){
+
+			var key = $(this).attr("key");
+
+			if( window.confirm('你确定要删除<<'+key+'>>吗？') ){
+
+				$.ajax({
+
+					type: "post",
+					url: "/delete",
+					data: {"key" : key},
+					dataType: "json",
+
+					success: function (data){
+						if(data.target){
+
+							window.location.reload();
+
+						}
+					},
+					error: function (msg){
+					   	
+					}
+
+				})
+
+
+			}else{
+				return
+			}
+
+		});
+
+		$("#control .js_change_update").on("click", function(){
+
+			if(!$("#title").val() || !$("#categories").val() || !editor.getValue()) return;
+
+			var key = $(this).attr("key");
+
+			console.log(key);
+
+			// return;
+
+			$.ajax({
+				type: "post",
+				url: "/change",
+				data: {
+					"title" : $("#title").val(),
+					"categories": $("#categories").val(),
+					"body": editor.getValue(),
+					"key": key
+				},
+
+				dataType: "json",
+
+				success: function (data){
+					if(data.target){
+
+						window.location.reload();
+
+					}
+				},
+				error: function (msg){
+				   	
+				}
+			})
+
+		});
+
+		// 注册
+
+		$(".js_reg").on("click", function(){
+
+			if(!$("#name").val() || !$("#password").val()) return;
+
+			$.ajax({
+				type: "post",
+				url: "/reg",
+				data: {
+					"name": $("#name").val(),
+					"password": $("#password").val()
+				},
+
+				dataType: "json",
+
+				success: function (data){
+					if(data.target){
+
+						// window.location.reload();
+
+					}
+				},
+				error: function (msg){
+				   	
+				}
+			})
+
+		})
+
+
+		// 登陆
+
+		$(".js_login").on("click", function(){
+
+			if(!$("#name").val() || !$("#password").val()) return;
+
+			$.ajax({
+				type: "post",
+				url: "/login",
+				data: {
+					"name": $("#name").val(),
+					"password": $("#password").val()
+				},
+
+				dataType: "json",
+
+				success: function (data){
+
+					if(data.login){
+
+						window.location.href = '/';
+
+					}
+
+				},
+				error: function (msg){
+				   	
+				}
+			})
+
+		})
+
+	})
+
+
+
+
+// 	seajs.config({
+
+// 		// 配置基础路径，内部模块的依赖，不再需要全局去配置路径
+// 		base: "/js/",
+
+// 		// 系统公用模块，直接依赖
+// 		alias: {
+//      		"jquery"		: "src/jquery.js",
+//      		"mousewheel"	: "src/mousewheel.js",
+//      		"jscrollpane"	: "src/jscrollpane.js"
+//     	}
+
+// 	});
+
+// 	seajs.use("/js/app", function(app){
+// 		app();
+// 	});
+
+// </script>
 </html>

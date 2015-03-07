@@ -304,3 +304,7 @@ body{
 	background-color: #333333;
 	color: #ffffff;
 }
+
+#body{
+	height: 300px;
+}

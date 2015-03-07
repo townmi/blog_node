@@ -9,11 +9,11 @@ define(function (require, exports, module){
 
 	var $ = jQuery = require("jquery");
 
-	// var showdown = require("src/showdown");
+	// var ace = require("src/ace");
 
 	// var prettify       = require("src/extensions/prettify");
 	
-	var highlight       = require("src/highlight");
+	var highlight = require("src/highlight");
 
 	module.exports = function(){
 
@@ -21,287 +21,196 @@ define(function (require, exports, module){
 
 			hljs.highlightBlock(block);
 
-		})
-
-		$("#control .js_edit_update").on("click", function(){
-
-			if(!$("#title").val() || !$("#categories").val() || !$("#body").val()) return;
-
-			$.ajax({
-				type: "post",
-				url: "/edit",
-				data: {
-					"title" : $("#title").val(),
-					"categories": $("#categories").val(),
-					"body": $("#body").val()
-				},
-
-				dataType: "json",
-
-				success: function (data){
-					if(data.target){
-
-						window.location.reload();
-
-					}
-				},
-				error: function (msg){
-				   	
-				}
-			})
-
 		});
 
-		// 修改
-		$(".js_change").on("click", function(){
+		// $("#control .js_edit_update").on("click", function(){
 
-			console.log($(this).attr("key"));
+		// 	if(!$("#title").val() || !$("#categories").val() || !$("#body").val()) return;
 
-			$.ajax({
+		// 	$.ajax({
+		// 		type: "post",
+		// 		url: "/edit",
+		// 		data: {
+		// 			"title" : $("#title").val(),
+		// 			"categories": $("#categories").val(),
+		// 			"body": editor.getValue()
+		// 		},
 
-				type: "get",
-				url: "/edit",
-				data: {"key" : $(this).attr("key")},
-				dataType: "json",
+		// 		dataType: "json",
 
-				success: function (data){
-					// if(data.target){
+		// 		success: function (data){
+		// 			if(data.target){
 
-					// 	window.location.reload();
+		// 				window.location.reload();
 
-					// }
-				},
-				error: function (msg){
+		// 			}
+		// 		},
+		// 		error: function (msg){
 				   	
-				}
+		// 		}
+		// 	})
 
-			})
+		// });
 
-		});
+		// // 修改
+		// $(".js_change").on("click", function(){
 
-		// 删除
-		$(".js_delete").on("click", function(){
+		// 	console.log($(this).attr("key"));
 
-			var key = $(this).attr("key");
+		// 	$.ajax({
 
-			if( window.confirm('你确定要删除<<'+key+'>>吗？') ){
+		// 		type: "get",
+		// 		url: "/edit",
+		// 		data: {"key" : $(this).attr("key")},
+		// 		dataType: "json",
 
-				$.ajax({
+		// 		success: function (data){
+		// 			// if(data.target){
 
-					type: "post",
-					url: "/delete",
-					data: {"key" : key},
-					dataType: "json",
+		// 			// 	window.location.reload();
 
-					success: function (data){
-						if(data.target){
+		// 			// }
+		// 		},
+		// 		error: function (msg){
+				   	
+		// 		}
 
-							window.location.reload();
+		// 	})
 
-						}
-					},
-					error: function (msg){
+		// });
+
+		// // 删除
+		// $(".js_delete").on("click", function(){
+
+		// 	var key = $(this).attr("key");
+
+		// 	if( window.confirm('你确定要删除<<'+key+'>>吗？') ){
+
+		// 		$.ajax({
+
+		// 			type: "post",
+		// 			url: "/delete",
+		// 			data: {"key" : key},
+		// 			dataType: "json",
+
+		// 			success: function (data){
+		// 				if(data.target){
+
+		// 					window.location.reload();
+
+		// 				}
+		// 			},
+		// 			error: function (msg){
 					   	
-					}
+		// 			}
 
-				})
+		// 		})
 
 
-			}else{
-				return
-			}
+		// 	}else{
+		// 		return
+		// 	}
 
-		});
+		// });
 
-		$("#control .js_change_update").on("click", function(){
+		// $("#control .js_change_update").on("click", function(){
 
-			if(!$("#title").val() || !$("#categories").val() || !$("#body").val()) return;
+		// 	if(!$("#title").val() || !$("#categories").val() || !editor.getValue() return;
 
-			var key = $(this).attr("key");
+		// 	var key = $(this).attr("key");
 
-			$.ajax({
-				type: "post",
-				url: "/change",
-				data: {
-					"title" : $("#title").val(),
-					"categories": $("#categories").val(),
-					"body": $("#body").val(),
-					"key": key
-				},
+		// 	console.log(key);
 
-				dataType: "json",
+		// 	$.ajax({
+		// 		type: "post",
+		// 		url: "/change",
+		// 		data: {
+		// 			"title" : $("#title").val(),
+		// 			"categories": $("#categories").val(),
+		// 			"body": editor.getValue(),
+		// 			"key": key
+		// 		},
 
-				success: function (data){
-					if(data.target){
+		// 		dataType: "json",
 
-						window.location.reload();
+		// 		success: function (data){
+		// 			if(data.target){
 
-					}
-				},
-				error: function (msg){
+		// 				window.location.reload();
+
+		// 			}
+		// 		},
+		// 		error: function (msg){
 				   	
-				}
-			})
+		// 		}
+		// 	})
 
-		});
+		// });
 
-		// 注册
+		// // 注册
 
-		$(".js_reg").on("click", function(){
+		// $(".js_reg").on("click", function(){
 
-			if(!$("#name").val() || !$("#password").val()) return;
+		// 	if(!$("#name").val() || !$("#password").val()) return;
 
-			$.ajax({
-				type: "post",
-				url: "/reg",
-				data: {
-					"name": $("#name").val(),
-					"password": $("#password").val()
-				},
+		// 	$.ajax({
+		// 		type: "post",
+		// 		url: "/reg",
+		// 		data: {
+		// 			"name": $("#name").val(),
+		// 			"password": $("#password").val()
+		// 		},
 
-				dataType: "json",
+		// 		dataType: "json",
 
-				success: function (data){
-					if(data.target){
+		// 		success: function (data){
+		// 			if(data.target){
 
-						// window.location.reload();
+		// 				// window.location.reload();
 
-					}
-				},
-				error: function (msg){
+		// 			}
+		// 		},
+		// 		error: function (msg){
 				   	
-				}
-			})
+		// 		}
+		// 	})
 
-		})
+		// })
 
 
-		// 登陆
+		// // 登陆
 
-		$(".js_login").on("click", function(){
+		// $(".js_login").on("click", function(){
 
-			if(!$("#name").val() || !$("#password").val()) return;
+		// 	if(!$("#name").val() || !$("#password").val()) return;
 
-			$.ajax({
-				type: "post",
-				url: "/login",
-				data: {
-					"name": $("#name").val(),
-					"password": $("#password").val()
-				},
+		// 	$.ajax({
+		// 		type: "post",
+		// 		url: "/login",
+		// 		data: {
+		// 			"name": $("#name").val(),
+		// 			"password": $("#password").val()
+		// 		},
 
-				dataType: "json",
+		// 		dataType: "json",
 
-				success: function (data){
+		// 		success: function (data){
 
-					if(data.login){
+		// 			if(data.login){
 
-						window.location.href = '/';
+		// 				window.location.href = '/';
 
-					}
+		// 			}
 
-				},
-				error: function (msg){
+		// 		},
+		// 		error: function (msg){
 				   	
-				}
-			})
+		// 		}
+		// 	})
 
-		})
+		// })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 		// $(window).on('resize', function(){
 
 		// 	$("body").css({"height" : $(window).height()});
