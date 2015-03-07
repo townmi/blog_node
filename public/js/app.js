@@ -11,17 +11,35 @@ define(function (require, exports, module){
 
 	// var ace = require("src/ace");
 
-	// var prettify       = require("src/extensions/prettify");
+	var showdown = require("src/showdown");
+
+	var prettify = require("src/extensions/prettify");
 	
 	var highlight = require("src/highlight");
 
 	module.exports = function(){
+
+		
+
+		var converter = new Showdown.converter({ extensions: ['prettify'] });
+
+		$(".js_body").each(function (e){
+
+			$(this).html( converter.makeHtml( $(this).prev().html() ) );
+
+			$(this).prev().remove();
+
+		})
+
+		// converter.makeHtml( arr[1] );
 
 		$("code").each(function (i, block){
 
 			hljs.highlightBlock(block);
 
 		});
+
+
 
 		// $("#control .js_edit_update").on("click", function(){
 

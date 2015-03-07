@@ -56,7 +56,8 @@ router.get("/", function (req, res){
 
 				arts[i].title = e.title;
 				arts[i].categories = e.categories;
-				arts[i].body = markdown.toHTML( e.body );
+				// arts[i].body = markdown.toHTML( e.body );
+				arts[i].body = e.body;
 				arts[i].id = e.id;
 				arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
@@ -86,7 +87,7 @@ router.get("/", function (req, res){
 
 router.get("/edit", function (req, res){
 
-	console.log(req.session);
+	// console.log(req.session);
 
 	pool.getConnection(function (err, connection) {
 
@@ -148,7 +149,7 @@ router.post("/change", function (req, res){
 
 	var SQL = 'UPDATE art SET title="'+req.body.title+'",categories="'+req.body.categories+'",change_date="'+day+'",body="'+body+'" WHERE id="'+req.body.key+'"';
 
-	
+
 
 	// var SQL = 'UPDATE art SET change_date="'+day+'" WHERE id="4"';
 
