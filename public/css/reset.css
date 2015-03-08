@@ -183,7 +183,7 @@ body{
 
 
 .ui_art_body{
-	padding: 5px;
+	/*padding: 5px;*/
 	font: normal normal 14px/22px "PingHei";
 }
 .ui_art_body p, .ui_art_body li, .ui_art_body h2{
