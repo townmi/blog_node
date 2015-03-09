@@ -50,12 +50,13 @@ var sessionStore = new SessionStore(options);
 
 console.log(sessionStore);
 app.use(session({
-    key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
+    key: 'likeshan',
+    secret: 'likeshan',
     store: sessionStore,
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 }));
+
 
 // favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));

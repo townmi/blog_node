@@ -72,11 +72,11 @@ router.get("/", function (req, res){
 
 })
 
-router.get("/:id", function (req, res){
+router.get("/:id", function (req, res, next){
 
 	var key = req.params.id
 	
-	
+	if(key === "login" || key === "reg" || key === "edit") return next();
 
 	// 'SELECT * FROM art'
 	pool.getConnection(function (err, connection) {
@@ -330,7 +330,7 @@ router.post('/login', function (req, res){
 
 				if(md5(password) == rows[0].password){
 
-					res.send({"login" : true});
+					return res.send({"login" : true});
 
 					// console.log(res.redirect);
 
@@ -340,13 +340,13 @@ router.post('/login', function (req, res){
 
 				}else{
 
-					res.send({"login" : false});
+					return res.send({"login" : false});
 
 				}
 
 			}else{
 
-				res.send({"login" : false});
+				return res.send({"login" : false});
 
 			}
 
