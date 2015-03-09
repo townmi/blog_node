@@ -23,57 +23,12 @@ var pool = mysql.createPool({
 });
 
 router.get("/", function (req, res){
-
-	// console.log(req.session);
-
-	pool.getConnection(function (err, connection) {
-
-		// 'SELECT * FROM art'
-		var SQL = 'SELECT * FROM art WHERE categories in (SELECT * FROM title)';
-
-		connection.query(SQL, function (err, rows){
-
-			console.log(rows);
-
-			// var titles = rows;
-
-			
-
-			// 	var arts = [];
-
-			// 	rows.forEach(function (e, i){
-
-			// 		arts[i] = {};
-
-			// 		var date = new Date( e.change_date );
-
-			// 		arts[i].title = e.title;
-			// 		arts[i].categories = e.categories;
-			// 		// arts[i].body = markdown.toHTML( e.body );
-			// 		arts[i].body = e.body;
-			// 		arts[i].id = e.id;
-			// 		arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
-			// 	})
-
-			connection.release();
-
-
-			res.send(rows);
-
-				// res.render("index",{"arts" : arts, "categories" : titles});
-
-		
-
-		});
-
-	});
-
+	res.send({});
 })
 
 // router.get("/", function (req, res){
 
-// 	// console.log(req.session);
+// 	console.log(req.session);
 
 // 	pool.getConnection(function (err, connection) {
 
@@ -164,44 +119,6 @@ router.get("/:id", function (req, res){
 	});
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 router.get("/edit", function (req, res){
@@ -438,35 +355,6 @@ router.post('/login', function (req, res){
 	});
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

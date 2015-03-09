@@ -8,6 +8,11 @@ var routes = require('./routes/index');
 var root = require('./routes/root');
 var session = require('express-session');
 
+// var mysql = require("mysql");
+var SessionStore = require('express-mysql-session');
+
+var config = require("./config/config.js");
+
 
 var app = express();
 
@@ -31,14 +36,26 @@ app.use(cookieParser('likeshan'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
-// app.set('trust proxy', 1) // trust first proxy
-// app.use(session({
-// 	secret: 'keyboard cat',
-// 	resave: false,
-// 	saveUninitialized: true,
-// 	cookie: { secure: true }
-// }))
+var options = {
+	host: config.host,
+	port: config.port,
+	user: config.user,
+	password: config.password,
+	database: "session"
+}
+// var connection = mysql.createConnection(options)
+// var sessionStore = new SessionStore({}, connection)
+
+var sessionStore = new SessionStore(options);
+
+console.log(sessionStore);
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
 
 // favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
