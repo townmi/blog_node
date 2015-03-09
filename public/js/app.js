@@ -25,7 +25,13 @@ define(function (require, exports, module){
 
 		$(".js_body").each(function (e){
 
-			$(this).html( converter.makeHtml( $(this).prev().html() ) );
+			var html = $(this).prev().html();
+
+			html = html.replace(/&lt;/g, "<");
+
+			html = html.replace(/&gt;/g, ">");
+
+			$(this).html( converter.makeHtml( html ) );
 
 			$(this).prev().remove();
 

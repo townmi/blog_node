@@ -13,18 +13,6 @@ var router = express.Router();
 module.exports = router;
 
 
-function unique(arr) {
-    var result = [], hash = {};
-    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
-        if (!hash[elem]) {
-            result.push(elem);
-            hash[elem] = true;
-        }
-    }
-    return result;
-}
-
-
 var pool = mysql.createPool({
 	connectionLimit : 10,
 	host : config.host,
@@ -41,49 +29,180 @@ router.get("/", function (req, res){
 	pool.getConnection(function (err, connection) {
 
 		// 'SELECT * FROM art'
+		var SQL = 'SELECT * FROM art WHERE categories in (SELECT * FROM title)';
 
-		connection.query('SELECT * FROM art ORDER BY art.change_date DESC', function (err, rows){
+		connection.query(SQL, function (err, rows){
 
-			var categories = [];
+			console.log(rows);
 
-			var arts = [];
+			// var titles = rows;
 
-			rows.forEach(function (e, i){
+			
 
-				arts[i] = {};
+			// 	var arts = [];
 
-				var date = new Date( e.change_date );
+			// 	rows.forEach(function (e, i){
 
-				arts[i].title = e.title;
-				arts[i].categories = e.categories;
-				// arts[i].body = markdown.toHTML( e.body );
-				arts[i].body = e.body;
-				arts[i].id = e.id;
-				arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			// 		arts[i] = {};
 
-				categories.push(e.categories);
+			// 		var date = new Date( e.change_date );
 
-			})
+			// 		arts[i].title = e.title;
+			// 		arts[i].categories = e.categories;
+			// 		// arts[i].body = markdown.toHTML( e.body );
+			// 		arts[i].body = e.body;
+			// 		arts[i].id = e.id;
+			// 		arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
-			// if(arts.length>4){
-
-			// 	arts = arts.slice(0,5);
-
-			// }
-
-			// console.log(arts);
-
-			var categories = unique(categories);
+			// 	})
 
 			connection.release();
 
-			res.render("index",{"arts" : arts, "categories" : categories});
+
+			res.send(rows);
+
+				// res.render("index",{"arts" : arts, "categories" : titles});
+
+		
 
 		});
 
 	});
 
 })
+
+// router.get("/", function (req, res){
+
+// 	// console.log(req.session);
+
+// 	pool.getConnection(function (err, connection) {
+
+// 		// 'SELECT * FROM art'
+// 		var SQL = 'SELECT * FROM title';
+
+// 		connection.query(SQL, function (err, rows){
+
+// 			var titles = rows;
+
+// 			var SQL = 'SELECT * FROM art ORDER BY art.change_date DESC';
+
+// 			connection.query(SQL, function (err, rows){
+
+// 				var arts = [];
+
+// 				rows.forEach(function (e, i){
+
+// 					arts[i] = {};
+
+// 					var date = new Date( e.change_date );
+
+// 					arts[i].title = e.title;
+// 					arts[i].categories = e.categories;
+// 					// arts[i].body = markdown.toHTML( e.body );
+// 					arts[i].body = e.body;
+// 					arts[i].id = e.id;
+// 					arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+// 				})
+
+// 				connection.release();
+
+// 				res.render("index",{"arts" : arts, "categories" : titles});
+
+// 			});
+
+// 		});
+
+// 	});
+
+// })
+
+router.get("/:id", function (req, res){
+
+	var key = req.params.id
+	
+	
+
+	// 'SELECT * FROM art'
+	pool.getConnection(function (err, connection) {
+
+		var SQL = 'SELECT * FROM title';
+
+		connection.query(SQL, function (err, rows){
+
+			var titles = rows;
+
+			var SQL = 'SELECT * FROM art WHERE categories="'+key+'" ORDER BY art.change_date DESC';
+
+			connection.query(SQL, function (err, rows){
+
+				var arts = [];
+
+				rows.forEach(function (e, i){
+
+					arts[i] = {};
+
+					var date = new Date( e.change_date );
+
+					arts[i].title = e.title;
+					arts[i].categories = e.categories;
+					// arts[i].body = markdown.toHTML( e.body );
+					arts[i].body = e.body;
+					arts[i].id = e.id;
+					arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+				})
+
+				connection.release();
+
+				res.render("index",{"arts" : arts, "categories" : titles});
+
+			});
+
+		});
+
+	});
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get("/edit", function (req, res){
 
@@ -393,4 +512,15 @@ function md5(data) {
 
     return crypto.createHash("md5").update(str).digest("hex");
 
+}
+
+function unique(arr) {
+    var result = [], hash = {};
+    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+        if (!hash[elem]) {
+            result.push(elem);
+            hash[elem] = true;
+        }
+    }
+    return result;
 }
