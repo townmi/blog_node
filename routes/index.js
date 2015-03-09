@@ -26,51 +26,51 @@ router.get("/", function (req, res){
 	res.send({});
 })
 
-// router.get("/", function (req, res){
+router.get("/", function (req, res){
 
-// 	console.log(req.session);
+	console.log(req.session);
 
-// 	pool.getConnection(function (err, connection) {
+	pool.getConnection(function (err, connection) {
 
-// 		// 'SELECT * FROM art'
-// 		var SQL = 'SELECT * FROM title';
+		// 'SELECT * FROM art'
+		var SQL = 'SELECT * FROM title';
 
-// 		connection.query(SQL, function (err, rows){
+		connection.query(SQL, function (err, rows){
 
-// 			var titles = rows;
+			var titles = rows;
 
-// 			var SQL = 'SELECT * FROM art ORDER BY art.change_date DESC';
+			var SQL = 'SELECT * FROM art ORDER BY art.change_date DESC';
 
-// 			connection.query(SQL, function (err, rows){
+			connection.query(SQL, function (err, rows){
 
-// 				var arts = [];
+				var arts = [];
 
-// 				rows.forEach(function (e, i){
+				rows.forEach(function (e, i){
 
-// 					arts[i] = {};
+					arts[i] = {};
 
-// 					var date = new Date( e.change_date );
+					var date = new Date( e.change_date );
 
-// 					arts[i].title = e.title;
-// 					arts[i].categories = e.categories;
-// 					// arts[i].body = markdown.toHTML( e.body );
-// 					arts[i].body = e.body;
-// 					arts[i].id = e.id;
-// 					arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+					arts[i].title = e.title;
+					arts[i].categories = e.categories;
+					// arts[i].body = markdown.toHTML( e.body );
+					arts[i].body = e.body;
+					arts[i].id = e.id;
+					arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
-// 				})
+				})
 
-// 				connection.release();
+				connection.release();
 
-// 				res.render("index",{"arts" : arts, "categories" : titles});
+				res.render("index",{"arts" : arts, "categories" : titles});
 
-// 			});
+			});
 
-// 		});
+		});
 
-// 	});
+	});
 
-// })
+})
 
 router.get("/:id", function (req, res){
 
