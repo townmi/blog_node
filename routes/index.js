@@ -14,7 +14,7 @@ var router = express.Router();
 
 module.exports = router;
 
-var server = new mongodb.Server('10.100.50.139', 27017, {auto_reconnect:true});
+var server = new mongodb.Server('192.168.18.130', 27017, {auto_reconnect:true});
 var db = new mongodb.Db('test', server, {safe:true});
 
 console.log(db.close);
@@ -38,7 +38,11 @@ router.get("/", function (req, res){
 	        // 第2种连接方式
 	        db.createCollection('user', {safe:true}, function(err, collection){
 	            if(err){
-	                console.log(err);
+
+	                console.log(err,1);
+
+	                db.close();
+
 	            }else{
 					// 新增数据
 					// var tmp1 = {id:'1',title:'hello',number:1};
@@ -69,6 +73,7 @@ router.get("/", function (req, res){
 					// 	console.log('findOne');
 					// 	console.log(doc);
 					// }); 
+					db.close();
 	            }
 
 	        });
@@ -88,10 +93,13 @@ router.get("/", function (req, res){
 			// }); 
 		
 	    }else{
-	        console.log(err);
+
+	        console.log(err,2);
+
+	        db.close();
 	    }
 
-	    db.close();
+	    // db.close();
 	});
 
 })
@@ -298,6 +306,8 @@ router.post("/reg", function (req, res){
 
 							console.log(result);
 
+							db.close();
+
 						}); 
 
 					}
@@ -308,11 +318,13 @@ router.post("/reg", function (req, res){
 
 		}else{
 
-			console.log(err);
+			console.log(err,2);
+
+			db.close();
 
 		}
 
-		db.close();
+		// db.close();
 
 	})
 
@@ -332,6 +344,8 @@ router.post('/login', function (req, res){
 
 	var password = req.body.password;
 
+
+
 	// console.log(isUsername(name), isPassword(password));
 
 	if(!isPassword(password) || !isUsername(name)) return;
@@ -342,13 +356,26 @@ router.post('/login', function (req, res){
 
 			db.createCollection('user', {safe:true}, function(err, collection){
 
-				collection.find({"name" : name}).toArray(function(err,docs){
-					
-					if(!docs.length){
 
-						console.log(docs);
+
+				collection.find({"name" : name}).toArray(function(err,docs){
+
+					// console.log(docs);
+					
+					if(docs.length){
+
+						if(password === docs[0].password){
+
+							req.session.user = name;
+							req.session.password = password;
+
+							console.log(2);
+
+						}
 
 					}
+
+					db.close();
 
 				});
 
@@ -356,7 +383,9 @@ router.post('/login', function (req, res){
 
 		}else{
 
-			console.log(err);
+			console.log(err,1);
+
+			db.close();
 
 		}
 
