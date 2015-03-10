@@ -1,8 +1,10 @@
-var express = require('express');
-var mysql = require("mysql");
-var markdown = require( "markdown" ).markdown;
 var crypto = require("crypto");
 var Buffer = require("buffer").Buffer;
+
+var express = require('express');
+var mongodb = require('mongodb');
+var markdown = require( "markdown" ).markdown;
+
 
 // var validator = require('validator');
 
@@ -12,62 +14,84 @@ var router = express.Router();
 
 module.exports = router;
 
+var server = new mongodb.Server('10.100.50.139', 27017, {auto_reconnect:true});
+var db = new mongodb.Db('test', server, {safe:true});
 
-var pool = mysql.createPool({
-	connectionLimit : 10,
-	host : config.host,
-	port : config.port,
-	user : config.user,
-	database : 'test',
-	password : config.password
-});
+console.log(db.close);
+
 
 router.get("/", function (req, res){
-	res.send({});
-})
+	// res.send({});
 
-router.get("/", function (req, res){
+	//连接db
+	db.open(function(err, db){
+	    if(!err){
 
-	console.log(req.session);
+	        console.log('connect db');
+	        // 连接Collection（可以认为是mysql的table）
+	        // 第1种连接方式
+	        // db.collection('mycoll',{safe:true}, function(err, collection){
+	        //     if(err){
+	        //         console.log(err);
+	        //     }
+	        // });
+	        // 第2种连接方式
+	        db.createCollection('user', {safe:true}, function(err, collection){
+	            if(err){
+	                console.log(err);
+	            }else{
+					// 新增数据
+					// var tmp1 = {id:'1',title:'hello',number:1};
+					// collection.insert(tmp1,{safe:true},function(err, result){
+					// 	console.log(result);
+					// }); 
+					// 更新数据
+					// collection.update({title:'hello'}, {$set:{number:3}}, {safe:true}, function(err, result){
+					// 	console.log(result);
+					// });
+					// 删除数据
+					// collection.remove({title:'hello'},{safe:true},function(err,result){
+					// 	console.log(result);
+					// });
 
-	pool.getConnection(function (err, connection) {
+					// console.log(collection);
+					// 查询数据
+					// var tmp1 = {title:'hello'};
+					// var tmp2 = {title:'world'};
+					// collection.insert([tmp1,tmp2],{safe:true},function(err,result){
+					// 	console.log(result);
+					// }); 
+					// collection.find().toArray(function(err,docs){
+					// 	console.log('find');
+					// 	console.log(docs);
+					// }); 
+					// collection.findOne(function(err,doc){
+					// 	console.log('findOne');
+					// 	console.log(doc);
+					// }); 
+	            }
 
-		// 'SELECT * FROM art'
-		var SQL = 'SELECT * FROM title';
+	        });
 
-		connection.query(SQL, function (err, rows){
+			// console.log('delete ...');
+			//删除Collection
+			// db.dropCollection('mycoll',{safe:true},function(err,result){
 
-			var titles = rows;
+			// 	if(err){
 
-			var SQL = 'SELECT * FROM art ORDER BY art.change_date DESC';
+			// 		console.log('err:');
+			// 		console.log(err);
+			// 	}else{
+			// 		console.log('ok:');
+			// 		console.log(result);
+			// 	}
+			// }); 
+		
+	    }else{
+	        console.log(err);
+	    }
 
-			connection.query(SQL, function (err, rows){
-
-				var arts = [];
-
-				rows.forEach(function (e, i){
-
-					arts[i] = {};
-
-					var date = new Date( e.change_date );
-
-					arts[i].title = e.title;
-					arts[i].categories = e.categories;
-					// arts[i].body = markdown.toHTML( e.body );
-					arts[i].body = e.body;
-					arts[i].id = e.id;
-					arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
-				})
-
-				connection.release();
-
-				res.render("index",{"arts" : arts, "categories" : titles});
-
-			});
-
-		});
-
+	    db.close();
 	});
 
 })
@@ -238,7 +262,7 @@ router.post('/delete', function (req, res){
 // 用户登录
 router.get('/reg', function (req, res){
 
-	console.log(req.session);
+	// console.log(req.session);
 
 	res.render("login",{"title" : "注册"});
 
@@ -252,51 +276,45 @@ router.post("/reg", function (req, res){
 
 	var password = req.body.password;
 
+	console.log(name, password)
+
 	// console.log(isUsername(name), isPassword(password));
 
 	if(!isPassword(password) || !isUsername(name)) return;
 
-	var FoundSQL = 'SELECT * FROM user WHERE username="'+name+'"';
+	db.open(function(err, db){
 
-	// console.log(md5(password));
+		if(!err){
 
-	var InsertSQL = 'INSERT INTO user(username, password) values('+'"'+name +'","'+ md5(password) +'"'+')';
+			db.createCollection('user', {safe:true}, function(err, collection){
 
-	// console.log(InsertSQL);
+				collection.find().toArray(function(err,docs){
+					
+					if(!docs.length){
 
-	pool.getConnection(function (err, connection) {
+						var tmp1 = {"name": name,"password":password};
 
-		// 'INSERT INTO art(title, categories, body) values('+STR+')'
+						collection.insert(tmp1,{safe:true},function(err, result){
 
-		connection.query(FoundSQL, function (err, rows){
+							console.log(result);
 
-			// connection.release();
+						}); 
 
-			// res.redirect(301,"/");
+					}
 
-			if(rows.length){
+				});
 
-				// console.log(md5("abcd1234") == rows[0].password);
+			});
 
-				connection.release();
+		}else{
 
-				res.send({"target" : true});
+			console.log(err);
 
-				return;
+		}
 
-			}
+		db.close();
 
-			connection.query(InsertSQL, function (err, rows){
-
-				connection.release();
-
-				res.send({"target" : true});
-
-			})
-
-		});
-
-	});
+	})
 
 })
 
@@ -318,41 +336,31 @@ router.post('/login', function (req, res){
 
 	if(!isPassword(password) || !isUsername(name)) return;
 
-	var FoundSQL = 'SELECT * FROM user WHERE username="'+name+'"';
+	db.open(function(err, db){
 
-	pool.getConnection(function (err, connection) {
+		if(!err){
 
-		connection.query(FoundSQL, function (err, rows){
+			db.createCollection('user', {safe:true}, function(err, collection){
 
-			connection.release();
+				collection.find({"name" : name}).toArray(function(err,docs){
+					
+					if(!docs.length){
 
-			if(rows.length){
+						console.log(docs);
 
-				if(md5(password) == rows[0].password){
+					}
 
-					return res.send({"login" : true});
+				});
 
-					// console.log(res.redirect);
+			});
 
-					// res.render("login", {"title" : "登陆"});
+		}else{
 
-					// return res.redirect("/");
+			console.log(err);
 
-				}else{
+		}
 
-					return res.send({"login" : false});
-
-				}
-
-			}else{
-
-				return res.send({"login" : false});
-
-			}
-
-		});
-
-	});
+	})
 
 });
 

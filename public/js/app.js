@@ -19,9 +19,7 @@ define(function (require, exports, module){
 
 	module.exports = function(){
 
-		
-
-		var converter = new Showdown.converter({ extensions: ['prettify'] });
+		// var converter = new Showdown.converter({ extensions: ['prettify'] });
 
 		$(".js_body").each(function (e){
 

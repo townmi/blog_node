@@ -1,19 +1,16 @@
-var express = require('express');
 var path = require('path');
+var http = require('http');
+
+var express = require('express');
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var http = require('http');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
 var routes = require('./routes/index');
 var root = require('./routes/root');
-var session = require('express-session');
-
-// var mysql = require("mysql");
-var SessionStore = require('express-mysql-session');
-
 var config = require("./config/config.js");
-
-
 var app = express();
 
 // view engine setup
@@ -41,22 +38,13 @@ var options = {
 	port: config.port,
 	user: config.user,
 	password: config.password,
-	database: "session"
+	db: 'test'
 }
-// var connection = mysql.createConnection(options)
-// var sessionStore = new SessionStore({}, connection)
 
-var sessionStore = new SessionStore(options);
-
-console.log(sessionStore);
 app.use(session({
-    key: 'likeshan',
-    secret: 'likeshan',
-    store: sessionStore,
-    resave: true,
-    saveUninitialized: true
+    secret: 'foo',
+    store: new MongoStore(options)
 }));
-
 
 // favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
