@@ -261,7 +261,7 @@ router.post("/reg", function (req, res){
 
 	// console.log(isUsername(name), isPassword(password));
 
-	if(!isPassword(password) || !isUsername(name)) return;
+	if(!isPassword(password) || !isUsername(name)) return res.send({"resCode":0, "title" : base.meassage.username[0]});
 
 	var FoundSQL = 'SELECT * FROM user WHERE username="'+name+'"';
 
@@ -287,7 +287,7 @@ router.post("/reg", function (req, res){
 
 				connection.release();
 
-				res.send({"target" : true});
+				res.send({"target" : false});
 
 				return;
 
@@ -376,9 +376,6 @@ router.post('/login', function (req, res){
 });
 
 router.post('/logout', function (req, res){
-
-	// console.log(isUsername(name), isPassword(password));
-	console.log(1);
 
 	req.session.name = null;
 	req.session.user = null;
