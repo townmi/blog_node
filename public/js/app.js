@@ -19,7 +19,7 @@ define(function (require, exports, module){
 
 	module.exports = function(){
 
-		// var converter = new Showdown.converter({ extensions: ['prettify'] });
+		var converter = new Showdown.converter({ extensions: ['prettify'] });
 
 		$(".js_body").each(function (e){
 
@@ -171,68 +171,68 @@ define(function (require, exports, module){
 
 		// 注册
 
-		$(".js_reg").on("click", function(){
+		// $(".js_reg").on("click", function(){
 
-			if(!$("#name").val() || !$("#password").val()) return;
+		// 	if(!$("#name").val() || !$("#password").val()) return;
 
-			$.ajax({
-				type: "post",
-				url: "/reg",
-				data: {
-					"name": $("#name").val(),
-					"password": $("#password").val()
-				},
+		// 	$.ajax({
+		// 		type: "post",
+		// 		url: "/reg",
+		// 		data: {
+		// 			"name": $("#name").val(),
+		// 			"password": $("#password").val()
+		// 		},
 
-				dataType: "json",
+		// 		dataType: "json",
 
-				success: function (data){
-					if(data.target){
+		// 		success: function (data){
+		// 			if(data.target){
 
-						// window.location.reload();
+		// 				// window.location.reload();
 
-					}
-				},
-				error: function (msg){
+		// 			}
+		// 		},
+		// 		error: function (msg){
 				   	
-				}
-			})
+		// 		}
+		// 	})
 
-		})
+		// })
 
 
-		// 登陆
+		// // 登陆
 
-		$(".js_login").on("click", function(){
+		// $(".js_login").on("click", function(){
 
-			if(!$("#name").val() || !$("#password").val()) return;
+		// 	if(!$("#name").val() || !$("#password").val()) return;
 
-			$.ajax({
-				type: "post",
-				url: "/login",
-				data: {
-					"name": $("#name").val(),
-					"password": $("#password").val()
-				},
+		// 	$.ajax({
+		// 		type: "post",
+		// 		url: "/login",
+		// 		data: {
+		// 			"name": $("#name").val(),
+		// 			"password": $("#password").val()
+		// 		},
 
-				dataType: "json",
+		// 		dataType: "json",
 
-				success: function (data){
+		// 		success: function (data){
 
-					if(data.login){
+		// 			if(data.login){
 
-						window.location.href = '/';
+		// 				window.location.href = '/';
 
-					}
+		// 			}
 
-				},
-				error: function (msg){
+		// 		},
+		// 		error: function (msg){
 
-					console.log(msg)
+		// 			console.log(msg)
 				   	
-				}
-			})
+		// 		}
+		// 	})
 
-		})
+		// })
 
 		
 		// $(window).on('resize', function(){

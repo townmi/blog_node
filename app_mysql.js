@@ -4,14 +4,13 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
-var routes = require('./routes/index');
+var routes = require('./routes/index_mysql');
 var root = require('./routes/root');
 var session = require('express-session');
 
 // var mysql = require("mysql");
-var SessionStore = require('express-mysql-session');
-
-var config = require("./config/config.js");
+// var SessionStore = require('express-mysql-session');
+// var config = require("./config/config.js");
 
 
 var app = express();
@@ -32,31 +31,15 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 
-app.use(cookieParser('likeshan'));
+app.use(cookieParser('keyboard cat'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session
-var options = {
-	host: config.host,
-	port: config.port,
-	user: config.user,
-	password: config.password,
-	database: "session"
-}
-// var connection = mysql.createConnection(options)
-// var sessionStore = new SessionStore({}, connection)
-
-var sessionStore = new SessionStore(options);
-
-// console.log(sessionStore);
-app.use(session({
-    key: 'likeshan',
-    secret: 'likeshan',
-    store: sessionStore,
-    resave: true,
-    saveUninitialized: true
+app.use(session({ 
+    secret: 'keyboard cat', 
+    key: 'sid', 
+    cookie: { secure: false }
 }));
-
 
 // favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));

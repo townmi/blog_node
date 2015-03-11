@@ -73,25 +73,119 @@
 </body>
 
 <script type="text/javascript" src="../js/seajs/sea.js"></script>
+<script type="text/javascript" src="../js/src/jquery.js"></script>
 <script type="text/javascript">
 
-	seajs.config({
+	// seajs.config({
 
-		// 配置基础路径，内部模块的依赖，不再需要全局去配置路径
-		base: "/js/",
+	// 	// 配置基础路径，内部模块的依赖，不再需要全局去配置路径
+	// 	base: "/js/",
 
-		// 系统公用模块，直接依赖
-		alias: {
-     		"jquery"		: "src/jquery.js",
-     		"mousewheel"	: "src/mousewheel.js",
-     		"jscrollpane"	: "src/jscrollpane.js"
-    	}
+	// 	// 系统公用模块，直接依赖
+	// 	alias: {
+ //     		"jquery"		: "src/jquery.js",
+ //     		"mousewheel"	: "src/mousewheel.js",
+ //     		"jscrollpane"	: "src/jscrollpane.js"
+ //    	}
+
+	// });
+
+	// seajs.use("/js/app", function(app){
+	// 	app();
+	// });
+
+	$(".js_reg").on("click", function(){
+
+		if(!$("#name").val() || !$("#password").val()) return;
+
+		$.ajax({
+			type: "post",
+			url: "/reg",
+			data: {
+				"name": $("#name").val(),
+				"password": $("#password").val()
+			},
+
+			dataType: "json",
+
+			success: function (data){
+				if(data.target){
+
+					// window.location.reload();
+
+				}
+			},
+			error: function (msg){
+			   	
+			}
+		})
+
+	})
+
+
+	// 登陆
+
+	$(".js_login").on("click", function(){
+
+		if(!$("#name").val() || !$("#password").val()) return;
+
+		$.ajax({
+			type: "post",
+			url: "/login",
+			data: {
+				"name": $("#name").val(),
+				"password": $("#password").val()
+			},
+
+			dataType: "json",
+
+			success: function (data){
+
+				if(data.login){
+
+					window.location.href = '/';
+
+				}
+
+			},
+			error: function (msg){
+
+				console.log(msg)
+			   	
+			}
+		})
 
 	});
 
-	seajs.use("/js/app", function(app){
-		app();
-	});
+	// 登出
+	$("#logout").on('click', function(){
+
+		$.ajax({
+			type: "post",
+			url: "/logout",
+			data: {
+				
+			},
+
+			dataType: "json",
+
+			success: function (data){
+
+				if(data.login){
+
+					window.location.href = '/';
+
+				}
+
+			},
+			error: function (msg){
+
+				console.log(msg)
+			   	
+			}
+		})
+
+	})
 
 </script>
 </html>

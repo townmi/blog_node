@@ -23,10 +23,6 @@ var pool = mysql.createPool({
 });
 
 router.get("/", function (req, res){
-	res.send({});
-})
-
-router.get("/", function (req, res){
 
 	console.log(req.session);
 
@@ -62,7 +58,7 @@ router.get("/", function (req, res){
 
 				connection.release();
 
-				res.render("index",{"arts" : arts, "categories" : titles});
+				res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user});
 
 			});
 
@@ -76,7 +72,7 @@ router.get("/:id", function (req, res, next){
 
 	var key = req.params.id
 	
-	if(key === "login" || key === "reg" || key === "edit") return next();
+	if(key === "login" || key === "reg" || key === "edit" || key === "logout") return next();
 
 	// 'SELECT * FROM art'
 	pool.getConnection(function (err, connection) {
@@ -110,7 +106,7 @@ router.get("/:id", function (req, res, next){
 
 				connection.release();
 
-				res.render("index",{"arts" : arts, "categories" : titles});
+				res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user});
 
 			});
 
@@ -123,27 +119,32 @@ router.get("/:id", function (req, res, next){
 
 router.get("/edit", function (req, res){
 
-	// console.log(req.session);
+	console.log(req.session);
 
-	pool.getConnection(function (err, connection) {
+	if(!req.session.user && !req.session.password){
 
-		// 'SELECT * FROM art WHERE title="'+req.query.key+'"'
+		res.redirect("/login");
 
-		connection.query('SELECT * FROM art WHERE title="'+req.query.key+'"', function (err, rows) {
+	}else{
+		pool.getConnection(function (err, connection) {
 
-			connection.release();
+			// 'SELECT * FROM art WHERE title="'+req.query.key+'"'
 
-			// res.redirect(301,"/");
+			connection.query('SELECT * FROM art WHERE title="'+req.query.key+'"', function (err, rows) {
 
-			// console.log(rows);
+				connection.release();
 
-			res.render("edit", {"title" : "编辑", data : rows});
+				// res.redirect(301,"/");
+
+				// console.log(rows);
+
+				res.render("edit", {"title" : "编辑", data : rows});
+
+			});
 
 		});
 
-	});
-
-	
+	}
 
 });
 
@@ -238,9 +239,15 @@ router.post('/delete', function (req, res){
 // 用户登录
 router.get('/reg', function (req, res){
 
-	console.log(req.session);
+	if(req.session.name === "admin_root"){
 
-	res.render("login",{"title" : "注册"});
+		res.redirect("/");
+
+	}else{
+
+		res.render("login",{"title" : "注册"});
+
+	}
 
 });
 
@@ -302,9 +309,15 @@ router.post("/reg", function (req, res){
 
 router.get('/login', function (req, res){
 
-	console.log(req.session);
+	if(req.session.name === "admin_root"){
 
-	res.render("login", {"title" : "登陆"});
+		res.redirect("/");
+
+	}else{
+
+		res.render("login", {"title" : "登陆"});
+
+	}
 
 });
 
@@ -329,6 +342,12 @@ router.post('/login', function (req, res){
 			if(rows.length){
 
 				if(md5(password) == rows[0].password){
+
+					req.session.name = "admin_root";
+
+					req.session.user = name;
+
+					req.session.password = password;
 
 					return res.send({"login" : true});
 
@@ -356,6 +375,18 @@ router.post('/login', function (req, res){
 
 });
 
+router.post('/logout', function (req, res){
+
+	// console.log(isUsername(name), isPassword(password));
+	console.log(1);
+
+	req.session.name = null;
+	req.session.user = null;
+	req.session.password = null;
+
+	res.send({"login" : false});
+
+});
 
 
 
