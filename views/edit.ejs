@@ -136,7 +136,7 @@
 
 		$("#control .js_edit_update").on("click", function(){
 
-			if(!$("#title").val() || !$("#categories").val() || !$("#body").val()) return;
+			if(!$("#title").val() || !$("#categories").val() || !editor.getValue()) return;
 
 			$.ajax({
 				type: "post",
@@ -152,7 +152,7 @@
 				success: function (data){
 					if(data.target){
 
-						window.location.reload();
+						window.location.href="/";
 
 					}
 				},

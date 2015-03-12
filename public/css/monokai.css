@@ -7,16 +7,14 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 pre, code {
   margin-top: 0;
   margin-bottom: 0;
-  padding: .5em;
+  padding: .6em;
   font: 14px Consolas, "Liberation Mono", Menlo, Courier, monospace;
   background-color: #23241f;
 }
 .prettyprint{
-  padding: 0 4px;
-  margin: 0 4px;
+  padding: 1px 4px;
   color: #ffffff;
   background-color: #23241f;
-  border-radius: 3px;
 }
 .hljs {
   display: inline-block;

@@ -29,13 +29,13 @@
 				<li>
 					<div class="ui_art_head">
 						<h2 class="ui_art_title"><a href=<%- e.categories+"?"+e.title %>><%= e.title %></a></h2>
-						<p class="clear">
+						<p class="clear ui_targets">
 							<a href=<%= e.categories %> class="ui_target fl"><%= e.categories %></a>
-							<span class="ui_date fr"><%= e.change_date %></span>
+							<span class="ui_date fr">最后修改日期：<%= e.change_date %></span>
 						</p>
 					</div>
 					<div style="display: none;"><%= e.body %></div>
-					<div class="js_body">
+					<div class="js_body ui_art_body">
 					</div>
 					<div class="ui_art_foot">
 						<p>
