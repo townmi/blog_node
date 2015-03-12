@@ -6,26 +6,10 @@
  * date : 2015.1.22
  *
 */
-@font-face {
-	font-family:'PingHei';
-	font-style:normal;
-	font-weight: 200;
-	src:local('☺︎'), url("../font/PingHei-light.ttf") format("truetype");
-	/* Copyright (c) 2000-2008, Changzhou SinoType Technology Co., Ltd.  All rights reserved. */
-}
-@font-face {
-	font-family:'LanTing';
-	font-style:normal;
-	font-weight: normal;
-	src:local('☺︎'), url("../font/LanTing.ttf") format("truetype");
-	/* Copyright (c) 2000-2008, Changzhou SinoType Technology Co., Ltd.  All rights reserved. */
-}
-
-
 body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{
 	margin: 0;
 	padding: 0;
-	font-weight: normal;
+	font-weight: 200;
 }
 table{
 	border-collapse: collapse;
@@ -36,6 +20,7 @@ li{
 }
 p{
 	word-wrap: break-word;
+	line-height: 32px;
 }
 a{
 	text-decoration: none;
@@ -43,6 +28,9 @@ a{
 	-webkit-transition: all .2s ease-in-out;
 	-moz-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
+}
+a:hover{
+	text-decoration: none;
 }
 em{
 	font-style: normal;
@@ -67,4 +55,280 @@ body{
 	font: 14px "Microsoft Yahei", "Arial Narrow", HELVETICA;
 	background-color: #ededed;
 	-webkit-text-size-adjust: 100%;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clear:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.clear{
+	zoom: 1;
+}
+
+
+.ui_global_progress_bg{
+	height: 4px;
+	background-color: #ff4455;
+}
+.ui_global_progress{
+	width: 10%;
+	height: 100%;
+	background-color: #00EF43;
+}
+.ui_head_bg{
+	height: 30px;
+	background: -webkit-linear-gradient(top, #ebe9e8, #dbd9d8);
+	background: -moz-linear-gradient(top, #ebe9e8, #dbd9d8);
+	background: -ms-linear-gradient(top, #ebe9e8, #dbd9d8);
+	background: linear-gradient(top, #ebe9e8, #dbd9d8);
+}
+.ui_head{
+	width: 960px;
+	height: 100%;
+	padding: 0 20px;
+	margin: 0 auto;
+	background: -webkit-linear-gradient(top, #ebe9e8, #dbd9d8);
+	background: -moz-linear-gradient(top, #ebe9e8, #dbd9d8);
+	background: -ms-linear-gradient(top, #ebe9e8, #dbd9d8);
+	background: linear-gradient(top, #ebe9e8, #dbd9d8);
+	text-align: right;
+}
+.ui_head a{
+	font: 14px/30px "Microsoft Yahei";
+	color: #aaaaaa;
+}
+.ui_head a:hover{
+	color: #3d3d3d;
+}
+
+
+
+
+
+
+
+
+
+.ui_center{
+	width: 1000px;
+	padding: 20px 0;
+	margin: 0 auto;
+	background-color: #ffffff;
+}
+.ui_article{
+	width: 700px;
+}
+.ui_sidebox{
+	width: 299px;
+	height: 1400px;
+	border-left: 1px solid #ccc;
+	position: relative;
+}
+.ui_side{
+	width: 280px;
+	height: 200px;
+	padding-left: 20px;
+	position: absolute;
+	top: 0;
+}
+.ui_categories{
+	padding: 10px 0;
+}
+.ui_categories li{
+	padding: 3px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ui_art_list{
+	padding: 20px;
+}
+.ui_art_list li{
+	width: 100%;
+}
+.ui_art_head{
+	
+}
+.ui_art_title{
+	display: block;
+	padding: 0 3px;
+	font-size: 22px;
+	line-height: 32px;
+}
+.ui_target{
+	line-height: 24px;
+	padding: 0 10px;
+	display: inline-block;
+	background-color: #e4e4e4;
+	border-radius: 3px;
+}
+.ui_target:hover{
+	background-color: #333333;
+	color: #ffffff;
+}
+
+
+
+
+
+
+
+.ui_art_body{
+	padding: 5px;
+	font: normal normal 14px/22px "PingHei";
+}
+.ui_art_body p, .ui_art_body li, .ui_art_body h2{
+	line-height: 22px;
+	margin-top: 12px;
+}
+.ui_art_body p{
+	text-indent: 2em
+}
+
+
+
+
+.ui_art_foot{
+	line-height: 22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ui_page{
+	text-align: center;
+}
+.ui_page .ui_prev{
+	
+}
+
+
+
+
+
+
+
+
+.ui_foot_bg{
+	width: 100%;
+	background: -webkit-linear-gradient(top, #414141, #313131);
+	background: -moz-linear-gradient(top, #414141, #313131);
+	background: -ms-linear-gradient(top, #414141, #313131);
+	background: linear-gradient(top, #414141, #313131);
+	color: #b8b8b8;
+	font: 22px/40px "PingHei";
+}
+.ui_foot{
+	width: 1000px;
+	margin: 0 auto;
+	background: -webkit-linear-gradient(top, #414141, #313131);
+	background: -moz-linear-gradient(top, #414141, #313131);
+	background: -ms-linear-gradient(top, #414141, #313131);
+	background: linear-gradient(top, #414141, #313131);
+}
+.ui_foot a{
+	color: #b8b8b8;
+}
+.ui_foot a:hover{
+	color: #ffffff;
+}
+.ui_foot .node_js:hover{
+	color: #80bd01;
+}
+.ui_foot .digitalocean:hover{
+	color: #3686be;
+}
+
+
+/*login*/
+.ui_login{
+	width: 400px;
+	margin: 100px auto;
+}
+.ui_input_line{
+	padding: 15px 0;
+}
+.ui_label{
+	width: 20%;
+	padding-right: 2%;
+	display: inline-block;
+	font: normal normal 16px/30px "PingHei";
+	text-align: right;
+	vertical-align:top;
+}
+.ui_input{
+	width: 70%;
+	height: 20px;
+	padding: 5px;
+	border: 1px solid #333;
+	vertical-align:top;
+}
+.ui_input_error{
+	border-color: red;
+}
+.ui_btn{
+	width: 60%;
+	height: 42px;
+	display: block;
+	margin-left: 23%;
+	font: normal normal 22px/42px "PingHei";
+	text-align: center;
+	border-radius: 5px;
+	background-color: #e7e7e7;
+}
+.ui_btn:hover{
+	background-color: #333333;
+	color: #ffffff;
 }
