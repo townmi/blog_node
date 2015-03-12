@@ -30,6 +30,7 @@
 	
 </head>
 <body>
+	
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -208,7 +209,7 @@
 
 			success: function (data){
 
-				if(data.login){
+				if(!data.login){
 
 					window.location.reload();
 

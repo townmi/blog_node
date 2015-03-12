@@ -5,45 +5,57 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<meta name="keywords" content="汤海祥, towne, townmi" />
 	<meta name="description" content="汤海祥的个人网站"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<title><%= title %></title>
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
-	<!-- Latest compiled and minified CSS -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
-
-	<!-- Optional theme -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css"> -->
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
+
+	<style type="text/css">
+	.control-label-slim{
+		font-size: 16px;
+		font-weight: 200;
+	}
+	.btn-slim{
+		font-size: 16px;
+		font-weight: 200;
+	}
+
+	</style>
 </head>
 <body>
-	
-	<div class="container-fluid container">
-		<div class="col-md-3"></div>
-		<div class="col-md-5">
-			<form action="">
-				<div class="form-group">
-					<label for="name">用户名：</label>
-					<input type="text" class="form-control" id="name" placeholder="用户名" name="name">
+
+	<div class="container">
+		<div class="col-md-3 col-sm-2"></div>
+		<div class="col-md-6 col-sm-8">
+			<form action="" class="form-horizontal">
+				<div class="form-group" style="margin-bottom: 30px;">
+					<label for="name" class="col-sm-3 control-label control-label-slim">用户名:</label>
+					<div class="col-sm-7">
+						<input type="text" id="name" class="form-control" placeholder="用户名" required autofocus data-container="body" data-toggle="popover" data-placement="right">
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="password">密码</label>
-					<input type="password" class="form-control" id="password" placeholder="密码" name="password">
+				<div class="form-group" style="margin-bottom: 30px;">
+					<label for="password" class="col-sm-3 control-label control-label-slim">密码:</label>
+					<div class="col-sm-7">
+						<input type="password" id="password" class="form-control" placeholder="密码" required data-container="body" data-toggle="popover" data-placement="right">
+					</div>
 				</div>
+				<div class="col-md-3 col-sm-3 col-xs-0" ></div>
 				<% if(title === "注册"){ %>
-				<a class="btn btn-primary col-md-9" id="js_reg"><%= title %></a>
+				<a class="btn col-md-7 btn-default btn-slim col-sm-7 col-xs-12" id="js_reg" ><%= title %></a>
 				<% }else{ %>
-				<a class="btn btn-primary col-md-9" id="js_login"><%= title %></a>
+				<a class="btn col-md-7 btn-primary btn-slim col-sm-7 col-xs-12" id="js_login" ><%= title %></a>
 				<% } %>
-				<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." id="example" >Popover on left</button>
 			</form>
 		</div>
-			
+	
 	</div>
 
 	<!-- foot -->
-	<div class="ui_foot_bg">
+	<div class="container" id="js_foot">
 		<div class="ui_foot">
 			<span style="color: #80bd01;">Powered by</span>
 			<a href="http://nodejs.org/" target="_blank" class="node_js">NodeJs</a>
@@ -59,6 +71,8 @@
 <script type="text/javascript" src="../js/src/jquery.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
+	
 
 	$("#js_reg").on("click", function(){
 
@@ -77,7 +91,24 @@
 			success: function (data){
 				if(data.resCode === 0){
 
-					$('#example').click();
+					$('#name').attr({"data-content": data.title}).popover("show").unbind("click").parent().addClass("has-error");
+
+				}else if(data.resCode === 1){
+
+					$('#name').popover("destroy").parent().removeClass("has-error").addClass("has-success");
+
+					$('#password').attr({"data-content": data.title}).popover("show").unbind("click").parent().addClass("has-error");
+
+				}else if(data.resCode === 2){
+
+					$('#password').popover("destroy").parent().removeClass("has-error").addClass("has-success");
+
+					$('#name').attr({"data-content": data.title}).popover("show").unbind("click").parent().addClass("has-error");
+
+				}else if(data.resCode === 3){
+
+					window.location.reload();
+
 				}
 			},
 			error: function (msg){
@@ -104,15 +135,27 @@
 			dataType: "json",
 
 			success: function (data){
+				if(data.resCode === 0){
 
-				if(data.login){
+					$('#name').attr({"data-content": data.title}).popover("show").unbind("click").parent().addClass("has-error");
 
-					console.log(data);
+				}else if(data.resCode === 1){
 
-					// window.location.href = '/';
+					$('#name').popover("destroy").parent().removeClass("has-error").addClass("has-success");
+
+					$('#password').attr({"data-content": data.title}).popover("show").unbind("click").parent().addClass("has-error");
+
+				}else if(data.resCode === 2){
+
+					$('#password').popover("destroy").parent().removeClass("has-error").addClass("has-success");
+
+					$('#name').attr({"data-content": data.title}).popover("show").unbind("click").parent().addClass("has-error");
+
+				}else if(data.resCode === 3){
+
+					window.location.reload();
 
 				}
-
 			},
 			error: function (msg){
 
@@ -124,10 +167,24 @@
 	});
 
 	$(function () {
-		$('#example').popover();
-
-		$('#element').popover('show');
+		$('#name').hover(function(){
+			
+		})
+  		
 	})
 
+</script>
+<script type="text/javascript">
+	$(function (){
+
+    	var TOBOOTOM =  $(window).height() - $("body").height();
+
+	    if( TOBOOTOM>0 ){
+
+	        $("#js_foot").prev().css({"margin-top":TOBOOTOM/2,"margin-bottom":TOBOOTOM/2})
+	        
+	    }
+
+	})
 </script>
 </html>

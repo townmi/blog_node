@@ -24,7 +24,7 @@ var pool = mysql.createPool({
 
 router.get("/", function (req, res){
 
-	console.log(req.session);
+	console.log(req);
 
 	pool.getConnection(function (err, connection) {
 
@@ -259,9 +259,15 @@ router.post("/reg", function (req, res){
 
 	var password = req.body.password;
 
-	// console.log(isUsername(name), isPassword(password));
+	if(!isUsername(name)){
 
-	if(!isPassword(password) || !isUsername(name)) return res.send({"resCode":0, "title" : base.meassage.username[0]});
+		return res.send({"resCode": 0, "title" : base.meassage.username[0]});
+
+	}else if(!isPassword(password)){
+
+		return res.send({"resCode": 1, "title" : base.meassage.password[1]});
+
+	}
 
 	var FoundSQL = 'SELECT * FROM user WHERE username="'+name+'"';
 
@@ -287,9 +293,7 @@ router.post("/reg", function (req, res){
 
 				connection.release();
 
-				res.send({"target" : false});
-
-				return;
+				return res.send({"resCode": 2, "title" : base.meassage.username[1]});
 
 			}
 
@@ -297,7 +301,13 @@ router.post("/reg", function (req, res){
 
 				connection.release();
 
-				res.send({"target" : true});
+				req.session.name = "admin_root";
+
+				req.session.user = name;
+
+				req.session.password = password;
+
+				return res.send({"resCode": 3, "title" : "success"});
 
 			})
 
@@ -327,9 +337,15 @@ router.post('/login', function (req, res){
 
 	var password = req.body.password;
 
-	// console.log(isUsername(name), isPassword(password));
+	if(!isUsername(name)){
 
-	if(!isPassword(password) || !isUsername(name)) return;
+		return res.send({"resCode": 0, "title" : base.meassage.username[0]});
+
+	}else if(!isPassword(password)){
+
+		return res.send({"resCode": 1, "title" : base.meassage.password[1]});
+
+	}
 
 	var FoundSQL = 'SELECT * FROM user WHERE username="'+name+'"';
 
@@ -349,23 +365,17 @@ router.post('/login', function (req, res){
 
 					req.session.password = password;
 
-					return res.send({"login" : true});
-
-					// console.log(res.redirect);
-
-					// res.render("login", {"title" : "登陆"});
-
-					// return res.redirect("/");
+					return res.send({"resCode": 3, "title" : "success"});
 
 				}else{
 
-					return res.send({"login" : false});
+					return res.send({"resCode": 1, "title" : base.meassage.password[2]});
 
 				}
 
 			}else{
 
-				return res.send({"login" : false});
+				return res.send({"resCode": 2, "title" : base.meassage.username[2]});
 
 			}
 
@@ -398,10 +408,10 @@ var base = {
 	chinname : /^[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*$/,
 	captcha : /^\w{4}$/,
 	meassage : {
-		username : ["手机或邮箱格式错误",""],
+		username : ["手机或邮箱格式错误","手机或邮箱已注册","手机或邮箱未注册"],
 		phone : ["手机号码不能为空！", "请输入正确手机号！"],
 		email : ["邮箱格式有误"],
-		password : ["密码不能为空！","密码格式错误"],
+		password : ["密码不能为空！","密码格式错误","密码不正确"],
 		nickname : ["昵称只能用中文、英文、数字组合"],
 		identity : ["身份证格式错误"],
 		checkIdCard : ["身份证号码错误"],
