@@ -1,6 +1,6 @@
 var express = require('express');
 var mysql = require("mysql");
-var markdown = require( "markdown" ).markdown;
+// var markdown = require( "markdown" ).markdown;
 var crypto = require("crypto");
 var Buffer = require("buffer").Buffer;
 
@@ -23,8 +23,6 @@ var pool = mysql.createPool({
 });
 
 router.get("/", function (req, res){
-
-	console.log(req);
 
 	pool.getConnection(function (err, connection) {
 
@@ -58,7 +56,7 @@ router.get("/", function (req, res){
 
 				connection.release();
 
-				res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user});
+				res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user, "simple" : true});
 
 			});
 
@@ -83,7 +81,17 @@ router.get("/:id", function (req, res, next){
 
 			var titles = rows;
 
-			var SQL = 'SELECT * FROM art WHERE categories="'+key+'" ORDER BY art.change_date DESC';
+			if(req.query.key){
+
+				var SQL = 'SELECT * FROM art WHERE title ="'+req.query.key+'"';
+
+				console.log(SQL);
+
+			}else{
+
+				var SQL = 'SELECT * FROM art WHERE categories="'+key+'" ORDER BY art.change_date DESC';
+
+			}
 
 			connection.query(SQL, function (err, rows){
 
@@ -106,7 +114,15 @@ router.get("/:id", function (req, res, next){
 
 				connection.release();
 
-				res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user});
+				if(req.query.key){
+
+					res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user, "simple" : false});
+
+				}else{
+
+					res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user, "simple" : true});
+
+				}
 
 			});
 
@@ -119,7 +135,7 @@ router.get("/:id", function (req, res, next){
 
 router.get("/edit", function (req, res){
 
-	console.log(req.session);
+	// console.log(req.session);
 
 	if(!req.session.user && !req.session.password){
 
@@ -155,8 +171,6 @@ router.post("/edit", function (req, res){
 	// var SQL = "INSERT INTO art(title, categories, body) values('" & req.body.title & "','" & req.body.categories & "','" & req.body.body &"')";
 
 	var SQL = 'INSERT INTO art(title, categories, body) values('+STR+')';
-
-	console.log(SQL);
 
 	pool.getConnection(function (err, connection) {
 
@@ -202,8 +216,6 @@ router.post("/change", function (req, res){
 		connection.query(SQL, function (err, rows) {
 
 			connection.release();
-
-			console.log(rows);
 
 			// res.redirect(301,"/");
 

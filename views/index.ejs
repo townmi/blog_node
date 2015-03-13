@@ -28,9 +28,9 @@
 				<% arts.forEach(function (e){ %>
 				<li>
 					<div class="ui_art_head">
-						<h2 class="ui_art_title"><a href=<%- e.categories+"?"+e.title %>><%= e.title %></a></h2>
+						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"?key="+e.title+'"' %>><%= e.title %></a></h2>
 						<p class="clear ui_targets">
-							<a href=<%= e.categories %> class="ui_target fl"><%= e.categories %></a>
+							<a href=<%- '"/'+e.categories+'"' %> class="ui_target fl"><%= e.categories %></a>
 							<span class="ui_date fr">最后修改日期：<%= e.change_date %></span>
 						</p>
 					</div>
@@ -42,10 +42,12 @@
 						<% if(!login){ %>
 						<div class="col-md-10"></div>
 						<% }else{%>
-							<a href="javascript:;" class="js_delete" key=<%= e.title %>>删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href=<%- "/edit?key="+e.title %> class="js_change" key=<%= e.title %>>修改</a>
+							<a href="javascript:;" class="js_delete" key=<%- '"'+e.title+'"' %>>删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href=<%- '"/edit?key='+e.title+'"' %> class="js_change" key=<%- '"'+e.title+'"' %>>修改</a>
 						<% } %>
-							<a href="/" class="btn btn-primary btn-slim">>ReadMore</a>
+						<% if(simple){ %>
+						<a href="/" class="btn btn-primary btn-slim">>ReadMore</a>
+						<% }%>
 						</p>
 					</div>
 				</li>
@@ -55,8 +57,18 @@
 		<div class="ui_sidebox fr">
 			<div class="ui_side js_side">
 				<ul class="ui_categories">
-					<li>
+					<li style="background:none; padding-left:0;">
 						<h3>文章分类</h3>
+					</li>
+					<% categories.forEach(function (e){%>
+					<li><a href=<%- '"/'+ e.title+'"' %>><%= e.title %></a></li>
+					<% })%>
+				</ul>
+			</div>
+			<div class="ui_side js_side">
+				<ul class="ui_categories">
+					<li style="background:none; padding-left:0;">
+						<h3>文章归档</h3>
 					</li>
 					<% categories.forEach(function (e){%>
 					<li><a href=<%- '"/'+ e.title+'"' %>><%= e.title %></a></li>
@@ -133,7 +145,41 @@
 			}
 		})
 
-	})
+	});
+
+	// 删除
+	$(".js_delete").on("click", function(){
+
+		var key = $(this).attr("key");
+
+		if( window.confirm('你确定要删除<<'+key+'>>吗？') ){
+
+			$.ajax({
+
+				type: "post",
+				url: "/delete",
+				data: {"key" : key},
+				dataType: "json",
+
+				success: function (data){
+					if(data.target){
+
+						window.location.reload();
+
+					}
+				},
+				error: function (msg){
+				   	
+				}
+
+			})
+
+
+		}else{
+			return
+		}
+
+	});
 
 </script>
 </html>

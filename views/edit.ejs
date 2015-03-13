@@ -152,7 +152,7 @@
 				success: function (data){
 					if(data.target){
 
-						window.location.href="/";
+						window.location.href="http://127.0.0.1:3000/";
 
 					}
 				},
@@ -160,67 +160,6 @@
 				   	
 				}
 			})
-
-		});
-
-		// 修改
-		$(".js_change").on("click", function(){
-
-			console.log($(this).attr("key"));
-
-			$.ajax({
-
-				type: "get",
-				url: "/edit",
-				data: {"key" : $(this).attr("key")},
-				dataType: "json",
-
-				success: function (data){
-					// if(data.target){
-
-					// 	window.location.reload();
-
-					// }
-				},
-				error: function (msg){
-				   	
-				}
-
-			})
-
-		});
-
-		// 删除
-		$(".js_delete").on("click", function(){
-
-			var key = $(this).attr("key");
-
-			if( window.confirm('你确定要删除<<'+key+'>>吗？') ){
-
-				$.ajax({
-
-					type: "post",
-					url: "/delete",
-					data: {"key" : key},
-					dataType: "json",
-
-					success: function (data){
-						if(data.target){
-
-							window.location.reload();
-
-						}
-					},
-					error: function (msg){
-					   	
-					}
-
-				})
-
-
-			}else{
-				return
-			}
 
 		});
 
@@ -249,7 +188,7 @@
 				success: function (data){
 					if(data.target){
 
-						window.location.reload();
+						window.location.href="http://127.0.0.1:3000/";
 
 					}
 				},
@@ -259,69 +198,6 @@
 			})
 
 		});
-
-		// 注册
-
-		$(".js_reg").on("click", function(){
-
-			if(!$("#name").val() || !$("#password").val()) return;
-
-			$.ajax({
-				type: "post",
-				url: "/reg",
-				data: {
-					"name": $("#name").val(),
-					"password": $("#password").val()
-				},
-
-				dataType: "json",
-
-				success: function (data){
-					if(data.target){
-
-						// window.location.reload();
-
-					}
-				},
-				error: function (msg){
-				   	
-				}
-			})
-
-		})
-
-
-		// 登陆
-
-		$(".js_login").on("click", function(){
-
-			if(!$("#name").val() || !$("#password").val()) return;
-
-			$.ajax({
-				type: "post",
-				url: "/login",
-				data: {
-					"name": $("#name").val(),
-					"password": $("#password").val()
-				},
-
-				dataType: "json",
-
-				success: function (data){
-
-					if(data.login){
-
-						window.location.href = '/';
-
-					}
-
-				},
-				error: function (msg){
-				   	
-				}
-			})
-
-		})
 
 	})
 

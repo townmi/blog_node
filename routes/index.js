@@ -3,12 +3,12 @@ var Buffer = require("buffer").Buffer;
 
 var express = require('express');
 var mongodb = require('mongodb');
-var markdown = require( "markdown" ).markdown;
+// var markdown = require( "markdown" ).markdown;
 
 
 // var validator = require('validator');
 
-var config = require("../config/config.js");
+// var config = require("../config/config.js");
 var app = express();
 var router = express.Router();
 
@@ -16,9 +16,6 @@ module.exports = router;
 
 var server = new mongodb.Server('192.168.18.130', 27017, {auto_reconnect:true});
 var db = new mongodb.Db('test', server, {safe:true});
-
-console.log(db.close);
-
 
 router.get("/", function (req, res){
 	// res.send({});

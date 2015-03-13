@@ -6,7 +6,7 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
+// var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
 var root = require('./routes/root');
@@ -29,22 +29,29 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 
-app.use(cookieParser('likeshan'));
+app.use(cookieParser('keyboard cat'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session
-var options = {
-	host: config.host,
-	port: config.port,
-	user: config.user,
-	password: config.password,
-	db: 'test'
-}
+// var options = {
+// 	host: config.host,
+// 	port: config.port,
+// 	user: config.user,
+// 	password: config.password,
+// 	db: 'test'
+// }
+// app.use(session({
+//     secret: 'foo',
+//     store: new MongoStore(options)
+// }));
 
-app.use(session({
-    secret: 'foo',
-    store: new MongoStore(options)
+// session
+app.use(session({ 
+    secret: 'keyboard cat', 
+    key: 'sid', 
+    cookie: { secure: false }
 }));
+
 
 // favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
