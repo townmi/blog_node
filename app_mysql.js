@@ -1,12 +1,15 @@
-var express = require('express');
 var path = require('path');
+var http = require('http');
+
+var express = require('express');
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var http = require('http');
+var session = require('express-session');
+
 var routes = require('./routes/index_mysql');
 var root = require('./routes/root');
-var session = require('express-session');
+var mem = require("./routes/mem.js");
 
 // var mysql = require("mysql");
 // var SessionStore = require('express-mysql-session');
@@ -62,6 +65,8 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
+
+mem();
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port' + app.get('port'));

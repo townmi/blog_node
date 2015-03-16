@@ -61,7 +61,7 @@
 						<h3>文章分类</h3>
 					</li>
 					<% categories.forEach(function (e){%>
-					<li><a href=<%- '"/'+ e.title+'"' %>><%= e.title %></a></li>
+					<li><a href=<%- '"/'+ e+'"' %>><%= e %><span>(<%= e.num %>)</span></a></li>
 					<% })%>
 				</ul>
 			</div>

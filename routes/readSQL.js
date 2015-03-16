@@ -7,16 +7,18 @@ var pool = mysql.createPool({
 	port : config.port,
 	user : config.user,
 	database : 'test',
-	password : config.password
+	password : config.password,
+	multipleStatements : true
 });
 
-
+module.exports = Read;
 
 function Read(sql){
 
 	this.sql = sql;
 
-}
+};
+
 
 Read.prototype.get = function (cb){
 
@@ -34,25 +36,9 @@ Read.prototype.get = function (cb){
 
 			});
 
-		}else if(typeof _this.sql === "array"){
+		}else{
 
-			var arr = [];
 
-			connection.query(_this.sql[0], function (err, rows){
-
-				arr.push(rows);
-
-				connection.query(_this.sql[1], function (err, rows){
-
-					connection.release();
-
-					arr.push(rows);
-
-					cb(arr);
-
-				})
-
-			})
 
 		}
 

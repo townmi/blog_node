@@ -7,64 +7,48 @@ var Buffer = require("buffer").Buffer;
 // var validator = require('validator');
 
 var config = require("../config/config.js");
+var Read = require("./readSQL.js");
+var mem = require("./mem.js");
 var app = express();
 var router = express.Router();
 
 module.exports = router;
 
 
-var pool = mysql.createPool({
-	connectionLimit : 10,
-	host : config.host,
-	port : config.port,
-	user : config.user,
-	database : 'test',
-	password : config.password
-});
 
 router.get("/", function (req, res){
 
-	pool.getConnection(function (err, connection) {
+	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.change_date DESC';
 
-		// 'SELECT * FROM art'
-		var SQL = 'SELECT * FROM title';
+	var read = new Read(SQL);
 
-		connection.query(SQL, function (err, rows){
+	read.get(function (rows){
 
-			var titles = rows;
+		var arts = [];
 
-			var SQL = 'SELECT * FROM art ORDER BY art.change_date DESC';
+		rows[1].forEach(function (e, i){
 
-			connection.query(SQL, function (err, rows){
-
-				var arts = [];
-
-				rows.forEach(function (e, i){
-
-					arts[i] = {};
-
-					var date = new Date( e.change_date );
-
-					arts[i].title = e.title;
-					arts[i].categories = e.categories;
-					// arts[i].body = markdown.toHTML( e.body );
-					arts[i].body = e.body;
-					arts[i].id = e.id;
-					arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
-				})
-
-				connection.release();
-
-				res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user, "simple" : true});
-
-			});
+			arts[i] = {};
+			var date = new Date( e.change_date );
+			arts[i].title = e.title;
+			arts[i].categories = e.categories;
+			arts[i].body = e.body;
+			arts[i].id = e.id;
+			arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
 		});
 
+		mem();
+
+		res.render("index",{"arts" : arts, "categories" : rows[0], "login" : req.session.user, "simple" : true});
+
 	});
 
+	
+
 })
+
+
 
 router.get("/:id", function (req, res, next){
 
@@ -341,6 +325,8 @@ router.get('/login', function (req, res){
 
 	}
 
+	return mem();
+
 });
 
 router.post('/login', function (req, res){
@@ -359,39 +345,37 @@ router.post('/login', function (req, res){
 
 	}
 
-	var FoundSQL = 'SELECT * FROM user WHERE username="'+name+'"';
+	var SQL = 'SELECT * FROM user WHERE username="'+name+'"';
 
-	pool.getConnection(function (err, connection) {
+	var read = new Read(SQL);
 
-		connection.query(FoundSQL, function (err, rows){
+	read.get(function (rows){
 
-			connection.release();
+		if(rows.length){
 
-			if(rows.length){
+			if(md5(password) == rows[0].password){
 
-				if(md5(password) == rows[0].password){
+				req.session.name = "admin_root";
 
-					req.session.name = "admin_root";
+				req.session.user = name;
 
-					req.session.user = name;
+				req.session.password = password;
 
-					req.session.password = password;
-
-					return res.send({"resCode": 3, "title" : "success"});
-
-				}else{
-
-					return res.send({"resCode": 1, "title" : base.meassage.password[2]});
-
-				}
+				return res.send({"resCode": 3, "title" : "success"});
 
 			}else{
 
-				return res.send({"resCode": 2, "title" : base.meassage.username[2]});
+				return res.send({"resCode": 1, "title" : base.meassage.password[2]});
 
 			}
 
-		});
+		}else{
+
+			return res.send({"resCode": 2, "title" : base.meassage.username[2]});
+
+		}
+
+		mem();
 
 	});
 
