@@ -18,7 +18,7 @@ module.exports = router;
 // get index "/"
 router.get("/", function (req, res){
 
-	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.change_date DESC';
+	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.change_date DESC; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
 
 	var read = new Read(SQL);
 
@@ -37,6 +37,8 @@ router.get("/", function (req, res){
 			arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
 		});
+
+
 
 		mem();
 
@@ -162,28 +164,11 @@ router.post("/change", function (req, res){
 
 	var SQL = 'UPDATE art SET title="'+req.body.title+'",categories="'+req.body.categories+'",change_date="'+day+'",body="'+body+'" WHERE id="'+req.body.key+'"';
 
+	var read = new Read(SQL);
 
+	read.get(function (){
 
-	// var SQL = 'UPDATE art SET change_date="'+day+'" WHERE id="4"';
-
-	// 'UPDATE art SET body="``` var str = "abcd"; console.log('+"'"+'abcd'+"'"+');```" WHERE id="4"';
-
-	// var str = "``` var  console.log('abcd');```";
-	// str.replace(/'/g, ''+"'"+'');
-
-	pool.getConnection(function (err, connection) {
-
-		// 'INSERT INTO test(name, sex) values("hanmeimei", "1"),("lilie", "0")'
-
-		connection.query(SQL, function (err, rows) {
-
-			connection.release();
-
-			// res.redirect(301,"/");
-
-			res.send({"target" : true});
-
-		});
+		res.send({"target" : true});
 
 	});
 
@@ -192,13 +177,46 @@ router.post("/change", function (req, res){
 // 删除
 router.post('/delete', function (req, res){
 
-	var SQL = 'DELETE FROM art WHERE title="'+req.body.key+'"';
+	var title = req.body.key;
 
-	var read = Read(SQL);
+	var SQL = 'SELECT title,categories FROM art WHERE title="'+title+'"';
 
-	read.get(function (){
+	var read = new Read(SQL);
 
-		res.send({"target" : true});
+	read.get(function (rows){
+
+		if(rows.length){
+
+			var categories = rows[0].categories
+
+			var SQL = 'SELECT title,num FROM title WHERE title="'+categories+'"';
+
+			read.get(function (rows){
+
+				var num = rows[0].num-1;
+
+				if(num<1){
+
+					var SQL = 'DELETE FROM art WHERE title="'+title+'"; DELETE FROM title WHERE title="'+categories+'"';
+
+				}else{
+
+					var SQL = 'DELETE FROM art WHERE title="'+title+'"; UPDATE title SET num="'+num+'" WHERE title="'+categories+'"';
+				}
+
+				read.get(function (){
+
+					res.send({"target" : true});
+
+				}, SQL)
+
+			}, SQL);
+
+		}else{
+
+			res.send({"target" : false});
+
+		}
 
 	});
 
@@ -406,13 +424,64 @@ function md5(data) {
 
 }
 
-function unique(arr) {
+function unique(arr){
     var result = [], hash = {};
-    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+    for (var i = 0, elem; (elem = arr[i]) != null; i++){
         if (!hash[elem]) {
             result.push(elem);
             hash[elem] = true;
         }
     }
     return result;
+}
+
+
+function repeate(arr){
+	var date = [];
+
+	for(var i=0; i<arr.length; i++){
+
+		var b = a.concat();
+		var d = new Date( arr[i] );
+
+		date[i] = {};
+		date[i].date = d.getFullYear()+"-"+(d.getMonth()+1);
+		date[i].num = 1;
+
+		for(var j=i+1; j<b.length; j++){
+
+			var dd = new Date( b[j] ).getTime();
+
+			if( dd > d && dd< )
+
+
+		}
+
+
+
+	}
+
+
+}
+
+for(var i=0; i<a.length; i++){
+
+	var b = a.concat();
+
+	arr[i] = {};
+	arr[i].title = a[i];
+	arr[i].num = 1;
+
+	for(var j=i+1; j<b.length; j++){
+
+		if(arr[i].title === a[j]){
+
+			a.splice(j,1);
+
+			arr[i].num++;
+
+		}
+
+	}
+
 }

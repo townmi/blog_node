@@ -21,6 +21,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.disable("x-powered-by");
+
 
 // set port
 app.set('port', process.env.PROT || 3000);

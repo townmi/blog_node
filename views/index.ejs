@@ -200,13 +200,19 @@
 
 	    	$("#js_article").css({
 	    		"height" : TOBOOTOM+w2
-	    	})
+	    	});
 
 	    }else if(TOBOOTOM<0 && w2>w1){
 
 	    	$("#js_article").css({
 	    		"height" : w2
-	    	})
+	    	});
+
+	    }else if(TOBOOTOM>0){
+
+	    	$("#js_article").css({
+	    		"height" : TOBOOTOM+w1
+	    	});
 
 	    }
 

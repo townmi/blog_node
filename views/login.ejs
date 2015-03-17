@@ -120,6 +120,16 @@
 
 	// 登陆
 
+	$("#password").on("keydown", function (e){
+
+		if(e.keyCode === 13){
+
+			$("#js_login").click();
+
+		}
+
+	});
+
 	$("#js_login").on("click", function(){
 
 		if(!$("#name").val() || !$("#password").val()) return;
