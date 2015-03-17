@@ -23,7 +23,7 @@ function Read(sql){
 Read.prototype.get = function (cb, sql){
 
 	if(typeof sql === "string"){
-		this.sql = str;
+		this.sql = sql;
 	}
 
 	var _this = this;

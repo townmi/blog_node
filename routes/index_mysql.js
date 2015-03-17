@@ -100,11 +100,11 @@ router.get("/:id", function (req, res, next){
 
 router.get("/edit", function (req, res){
 
-	if(!req.session.user && !req.session.password){
+	// if(!req.session.user && !req.session.password){
 
-		res.redirect("/login");
+	// 	res.redirect("/login");
 
-	}else{
+	// }else{
 
 		var SQL = 'SELECT * FROM art WHERE title="'+req.query.key+'"';
 
@@ -116,25 +116,37 @@ router.get("/edit", function (req, res){
 
 		});
 
-	}
+	// }
 
 });
 
 router.post("/edit", function (req, res){
 
-	var STR = '"'+req.body.title +'","'+ req.body.categories +'","'+ req.body.body +'"';
+	var cate = req.body.categories;
 
-	// var SQL = 'INSERT INTO art(title, categories, body) values('+STR+')';
+	var STR = '"'+req.body.title +'","'+ cate +'","'+ req.body.body +'"';
 
-	var SQL = 'SELECT title,num form title WHERE title="'+req.body.categories+'"';
+	var SQL = 'SELECT title,num FROM title WHERE title="'+cate+'"';
 
 	var read = new Read(SQL);
 
 	read.get(function (rows){
 
-		console.log(rows);
+		if(rows.length){
 
-		// res.send({"target" : true});
+			var SQL = 'INSERT INTO art(title, categories, body) values('+STR+'); UPDATE title SET num="'+(rows[0].num+1)+'" WHERE title="'+cate+'"';
+
+		}else{
+
+			var SQL = 'INSERT INTO art(title, categories, body) values('+STR+'); INSERT INTO title(title, num) values("'+cate+'", 1)';
+
+		}
+
+		read.get(function (rows){
+
+			res.send({"target" : true});
+
+		}, SQL);
 
 	});
 
