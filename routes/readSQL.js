@@ -20,27 +20,23 @@ function Read(sql){
 };
 
 
-Read.prototype.get = function (cb){
+Read.prototype.get = function (cb, sql){
+
+	if(typeof sql === "string"){
+		this.sql = str;
+	}
 
 	var _this = this;
 
 	pool.getConnection(function (err, connection){
-	
-		if(typeof _this.sql === "string"){
 
-			connection.query(_this.sql, function (err, rows){
+		connection.query(_this.sql, function (err, rows){
 
-				connection.release();
+			connection.release();
 
-				cb(rows);
+			cb(rows);
 
-			});
-
-		}else{
-
-
-
-		}
+		});
 
 	});
 

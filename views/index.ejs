@@ -13,20 +13,23 @@
 
 	<!-- head -->
 	<div class="ui_head_bg">
-		<div class="ui_head">
-			<a href="/login" >登陆</a>
+		<div class="ui_head clear">
+			<a href="/" class="fl">/</a>
+			<% if(!login){ %>
+			<a href="/login" class="fr">登陆</a>
+			<% }else{%>
+			<a href="javascript:;" id="logout" class="fr">登出</a>
+			<% } %>
 		</div>
 	</div>
-
-
 
 	<!-- head over -->
 	
 	<div class="ui_center clear js_center">
-		<div class="ui_article fl">
+		<div class="ui_article fl" id="js_article">
 			<ul class="ui_art_list">
 				<% arts.forEach(function (e){ %>
-				<li>
+				<li class="ui_art_list_one">
 					<div class="ui_art_head">
 						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"?key="+e.title+'"' %>><%= e.title %></a></h2>
 						<p class="clear ui_targets">
@@ -46,7 +49,7 @@
 							<a href=<%- '"/edit?key='+e.title+'"' %> class="js_change" key=<%- '"'+e.title+'"' %>>修改</a>
 						<% } %>
 						<% if(simple){ %>
-						<a href="/" class="btn btn-primary btn-slim">>ReadMore</a>
+						<!-- <a href="/" class="btn btn-primary btn-slim">阅读更多</a> -->
 						<% }%>
 						</p>
 					</div>
@@ -61,7 +64,7 @@
 						<h3>文章分类</h3>
 					</li>
 					<% categories.forEach(function (e){%>
-					<li><a href=<%- '"/'+ e+'"' %>><%= e %><span>(<%= e.num %>)</span></a></li>
+					<li><a href=<%- '"/'+ e.title+'"' %>><%= e.title %><span>(<%= e.num %>)</span></a></li>
 					<% })%>
 				</ul>
 			</div>
@@ -78,13 +81,20 @@
 			</div>
 		</div>
 	</div>
-
-	<footer class="blog-footer">
-		<p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-		<p>
-		<a href="#">Back to top</a>
-		</p>
-	</footer>
+	
+	<!-- foot -->
+	<!-- <div class="ui_mar"></div> -->
+	<div class="ui_foot_bg" id="js_foot">
+		<div class="ui_foot">
+			<span style="color: #80bd01;">Powered by</span>
+			<a href="http://nodejs.org/" target="_blank" class="node_js">NodeJs</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3686be;">Running on</span>
+			<a href="https://www.digitalocean.com/" target="_blank" class="digitalocean">Digitalocean</a>
+			<a href="" class="fr">github</a>
+			<a href="" class="fr">weibo</a>
+		</div>
+	</div>
+	<!-- foot over -->
 
 </body>
 <script type="text/javascript" src="../js/src/jquery.js"></script>
@@ -107,14 +117,10 @@
 
 		$(this).prev().remove();
 
-	})
-
-	// converter.makeHtml( arr[1] );
+	});
 
 	$("code").each(function (i, block){
-
 		hljs.highlightBlock(block);
-
 	});
 
 	// 登出
@@ -124,7 +130,6 @@
 			type: "post",
 			url: "/logout",
 			data: {
-				
 			},
 
 			dataType: "json",
@@ -181,5 +186,30 @@
 
 	});
 
+</script>
+<script type="text/javascript">
+	$(function (){
+
+    	var TOBOOTOM =  $(window).height() - $("body").height();
+
+	    var w1 = $("#js_article").height();
+
+	    var w2 = $("#js_article").next().height();
+
+	    if(TOBOOTOM>0 && w2>w1){
+
+	    	$("#js_article").css({
+	    		"height" : TOBOOTOM+w2
+	    	})
+
+	    }else if(TOBOOTOM<0 && w2>w1){
+
+	    	$("#js_article").css({
+	    		"height" : w2
+	    	})
+
+	    }
+
+	})
 </script>
 </html>

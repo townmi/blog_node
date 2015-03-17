@@ -6,14 +6,8 @@
 	<meta name="keywords" content="汤海祥, towne, townmi" />
 	<meta name="description" content="汤海祥的个人网站"/>
 	<title><%= title %></title>
-	
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
-
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/monokai.css">
 	
 </head>
 <body>
@@ -28,45 +22,43 @@
 		</div>
 	</div>
 	<!-- head over -->
-	<div class="ui_banner">
-		
-	</div>
-	<div class="ui_center clear js_center">
-		<div class="ui_article fl">
+
+	<div class="ui_edit clear" id="js_center">
+		<div class="ui_edit_in fl" id="js_article">
 			<div id="control">
 				<% if(data[0]){ %>
-				<ul>
+				<ul class="ui_edit_tags">
 					<li>
 						<label for="title">标题:</label>
-						<input type="text" placeholder="请输入标题" id="title" value=<%= data[0].title %>>
+						<input type="text" class="ui_base_text" placeholder="请输入标题" id="title" value=<%= data[0].title %>>
 					</li>
 					<li>
 						<label for="categories">分类:</label>
-						<input type="text" placeholder="请输入分类" id="categories" value=<%= data[0].categories %>>
+						<input type="text" class="ui_base_text" placeholder="请输入分类" id="categories" value=<%= data[0].categories %>>
 					</li>
 				</ul>
 				<div>
 					<label for="body">内容:</label>
-					<pre id="body" style="height:300px;"><%= data[0].body %></pre>
+					<pre id="body" style="height:400px;"><%= data[0].body %></pre>
 				</div>
 				<p>
 					<a href="javascript:;" class="js_change_update" key=<%= data[0].id %>>提交</a>
 				</p>
 				<% }else{ %>
-				<ul>
+				<ul class="ui_edit_tags">
 					<li>
 						<label for="title">标题:</label>
-						<input type="text" placeholder="请输入标题" id="title">
+						<input type="text" class="ui_base_text" placeholder="请输入标题" id="title">
 					</li>
 					<li>
 						<label for="categories">分类:</label>
-						<input type="text" placeholder="请输入分类" id="categories">
+						<input type="text" class="ui_base_text" placeholder="请输入分类" id="categories">
 					</li>
 				</ul>
 				<div>
 					<label for="body">内容:</label>
 					<!-- <textarea placeholder="请输入内容" id="body" rows="20" cols="50"spellcheck="false" autocomplete="off"></textarea> -->
-					<pre id="body" style="height:300px;"></pre>
+					<pre id="body" style="height:400px;"></pre>
 				</div>
 				<p>
 					<a href="javascript:;" class="js_edit_update">提交</a>
@@ -75,12 +67,8 @@
 				
 			</div>
 		</div>
-		<div class="ui_sidebox fr">
-			<div class="ui_side js_side">
-				<div class="ui_audio">
-					
-				</div>
-			</div>
+		<div class="ui_edit_out fr" id="js_edit_show">
+			
 		</div>
 	</div>
 
@@ -100,21 +88,25 @@
 
 </body>
 <script type="text/javascript" src="../js/src/jquery.js"></script>
+<script type="text/javascript" src="../js/src/showdown.js"></script>
+<script type="text/javascript" src="../js/src/extensions/prettify.js"></script>
 <script type="text/javascript" src="../js/src/highlight.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js"></script>
 <script type="text/javascript">
 
 	$(function(){
 
-		$("code").each(function (i, block){
-
-			hljs.highlightBlock(block);
-
-		});
+		var converter = new Showdown.converter({ extensions: ['prettify'] });
 
 		ace.require("ace/ext/chromevox");
 
 		var val = $("#body").html();
+
+		$("#js_edit_show").html( converter.makeHtml( val) );
+
+		$("code").each(function (i, block){
+			hljs.highlightBlock(block);
+		});
 
 	    var editor = ace.edit("body");
 
@@ -122,15 +114,17 @@
 
 	    editor.setTheme("ace/theme/monokai");
 
-
-
 	    editor.setValue(val); // or session.setValue
 		
 		editor.setHighlightActiveLine(false);
 
 		editor.getSession().on('change', function(e) {
-	    	// e.type, etc
-	    	console.log(editor.getValue());
+
+			$("#js_edit_show").html( converter.makeHtml( editor.getValue() ) );
+
+	    	$("code").each(function (i, block){
+				hljs.highlightBlock(block);
+			});
 
 		});
 
@@ -199,28 +193,23 @@
 
 		});
 
+	});
+</script>
+<script type="text/javascript">
+	$(function (){
+
+    	var TOBOOTOM =  $(window).height() - $("body").height();
+
+    	var w1 = $("#js_center").height();
+
+    	if(TOBOOTOM>0){
+
+    		$("#js_center").css({
+    			"height" : TOBOOTOM+w1
+    		});
+
+    	}
+
 	})
-
-
-
-
-// 	seajs.config({
-
-// 		// 配置基础路径，内部模块的依赖，不再需要全局去配置路径
-// 		base: "/js/",
-
-// 		// 系统公用模块，直接依赖
-// 		alias: {
-//      		"jquery"		: "src/jquery.js",
-//      		"mousewheel"	: "src/mousewheel.js",
-//      		"jscrollpane"	: "src/jscrollpane.js"
-//     	}
-
-// 	});
-
-// 	seajs.use("/js/app", function(app){
-// 		app();
-// 	});
-
-// </script>
+</script>
 </html>

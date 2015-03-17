@@ -15,7 +15,7 @@ var router = express.Router();
 module.exports = router;
 
 
-
+// get index "/"
 router.get("/", function (req, res){
 
 	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.change_date DESC';
@@ -44,103 +44,75 @@ router.get("/", function (req, res){
 
 	});
 
-	
+});
 
-})
-
-
-
+// get /css ~~~~~
 router.get("/:id", function (req, res, next){
 
-	var key = req.params.id
+	var key = req.params.id;
 	
 	if(key === "login" || key === "reg" || key === "edit" || key === "logout") return next();
 
-	// 'SELECT * FROM art'
-	pool.getConnection(function (err, connection) {
+	if(req.query.key){
 
-		var SQL = 'SELECT * FROM title';
+		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+req.query.key+'"';
 
-		connection.query(SQL, function (err, rows){
+	}else{
 
-			var titles = rows;
+		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE categories="'+key+'" ORDER BY art.change_date DESC';
 
-			if(req.query.key){
+	}
 
-				var SQL = 'SELECT * FROM art WHERE title ="'+req.query.key+'"';
+	var read = new Read(SQL);
 
-				console.log(SQL);
+	read.get(function (rows){
 
-			}else{
+		var arts = [];
 
-				var SQL = 'SELECT * FROM art WHERE categories="'+key+'" ORDER BY art.change_date DESC';
+		rows[1].forEach(function (e, i){
 
-			}
-
-			connection.query(SQL, function (err, rows){
-
-				var arts = [];
-
-				rows.forEach(function (e, i){
-
-					arts[i] = {};
-
-					var date = new Date( e.change_date );
-
-					arts[i].title = e.title;
-					arts[i].categories = e.categories;
-					// arts[i].body = markdown.toHTML( e.body );
-					arts[i].body = e.body;
-					arts[i].id = e.id;
-					arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
-				})
-
-				connection.release();
-
-				if(req.query.key){
-
-					res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user, "simple" : false});
-
-				}else{
-
-					res.render("index",{"arts" : arts, "categories" : titles, "login" : req.session.user, "simple" : true});
-
-				}
-
-			});
+			arts[i] = {};
+			var date = new Date( e.change_date );
+			arts[i].title = e.title;
+			arts[i].categories = e.categories;
+			arts[i].body = e.body;
+			arts[i].id = e.id;
+			arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
 		});
 
+		mem();
+
+		if(req.query.key){
+
+			res.render("index",{"arts" : arts, "categories" : rows[0], "login" : req.session.user, "simple" : false});
+
+		}else{
+
+			res.render("index",{"arts" : arts, "categories" : rows[0], "login" : req.session.user, "simple" : true});
+
+		}	
+
 	});
 
-})
+});
 
 
 router.get("/edit", function (req, res){
-
-	// console.log(req.session);
 
 	if(!req.session.user && !req.session.password){
 
 		res.redirect("/login");
 
 	}else{
-		pool.getConnection(function (err, connection) {
 
-			// 'SELECT * FROM art WHERE title="'+req.query.key+'"'
+		var SQL = 'SELECT * FROM art WHERE title="'+req.query.key+'"';
 
-			connection.query('SELECT * FROM art WHERE title="'+req.query.key+'"', function (err, rows) {
+		var read = new Read(SQL);
 
-				connection.release();
+		read.get(function (rows){
 
-				// res.redirect(301,"/");
-
-				// console.log(rows);
-
-				res.render("edit", {"title" : "编辑", data : rows});
-
-			});
+			res.render("edit", {"title" : "编辑", data : rows});
 
 		});
 
@@ -152,23 +124,17 @@ router.post("/edit", function (req, res){
 
 	var STR = '"'+req.body.title +'","'+ req.body.categories +'","'+ req.body.body +'"';
 
-	// var SQL = "INSERT INTO art(title, categories, body) values('" & req.body.title & "','" & req.body.categories & "','" & req.body.body &"')";
+	// var SQL = 'INSERT INTO art(title, categories, body) values('+STR+')';
 
-	var SQL = 'INSERT INTO art(title, categories, body) values('+STR+')';
+	var SQL = 'SELECT title,num form title WHERE title="'+req.body.categories+'"';
 
-	pool.getConnection(function (err, connection) {
+	var read = new Read(SQL);
 
-		// 'INSERT INTO art(title, categories, body) values('+STR+')'
+	read.get(function (rows){
 
-		connection.query(SQL, function (err, rows) {
+		console.log(rows);
 
-			connection.release();
-
-			// res.redirect(301,"/");
-
-			res.send({"target" : true});
-
-		});
+		// res.send({"target" : true});
 
 	});
 
@@ -216,17 +182,11 @@ router.post('/delete', function (req, res){
 
 	var SQL = 'DELETE FROM art WHERE title="'+req.body.key+'"';
 
-	pool.getConnection(function (err, connection) {
+	var read = Read(SQL);
 
-		connection.query(SQL, function (err, rows) {
+	read.get(function (){
 
-			connection.release();
-
-			// res.redirect(301,"/");
-
-			res.send({"target" : true});
-
-		});
+		res.send({"target" : true});
 
 	});
 
@@ -246,8 +206,6 @@ router.get('/reg', function (req, res){
 	}
 
 });
-
-// console.log(md5("password"));
 
 router.post("/reg", function (req, res){
 

@@ -41,6 +41,7 @@ img{
 }
 input{
 	outline: none;
+	font: inherit;
 }
 *:focus {
 	outline: none;
@@ -109,10 +110,6 @@ body{
 
 
 
-
-
-
-
 .ui_center{
 	width: 1000px;
 	padding: 20px 0;
@@ -121,10 +118,10 @@ body{
 }
 .ui_article{
 	width: 700px;
+	border-right: 1px solid #ccc;
 }
 .ui_sidebox{
 	width: 299px;
-	border-left: 1px solid #ccc;
 	position: relative;
 }
 .ui_side{
@@ -132,48 +129,30 @@ body{
 	padding-left: 20px;
 }
 .ui_categories{
-	padding: 10px 0;
+	padding: 10px 70px 10px 0;
 }
 .ui_categories li{
 	padding: 2px 0;
 	line-height: 20px;
-	border-bottom: 1px dotted #e4e4e4;
+	border-bottom: 1px dashed #e4e4e4;
 	padding-left: 20px;
-	background: url(../images/1.png) no-repeat 6px 7px;
+	background: url(../images/1.png) no-repeat 6px 8px;
+}
+.ui_categories li a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 .ui_categories li h3{
 	padding-bottom: 6px;
 }
 .ui_categories li:hover a{
-	color: #ff5500;
+	color: #ffffff;
 }
 .ui_categories li:hover{
-	background-position: 6px -18px;
+	background-color: #333333;
+	background-position: 6px -14px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -187,17 +166,20 @@ body{
 .ui_art_list{
 	padding: 20px;
 }
-.ui_art_list li{
+.ui_art_list_one{
 	width: 100%;
+	padding-bottom: 25px;
 }
 .ui_art_head{
 	
 }
 .ui_art_title{
 	display: block;
-	padding: 0 3px;
 	font-size: 22px;
 	line-height: 32px;
+}
+.ui_art_title a{
+	color: #cc5500;
 }
 .ui_targets{
 	line-height: 24px;
@@ -307,7 +289,9 @@ body{
 	background: -ms-linear-gradient(top, #414141, #313131);
 	background: linear-gradient(top, #414141, #313131);
 	color: #b8b8b8;
-	font: 22px/40px "PingHei";
+	font-size: 22px;
+	line-height: 40px;
+	font-weight: 100
 }
 .ui_foot{
 	width: 1000px;
@@ -370,4 +354,37 @@ body{
 .ui_btn:hover{
 	background-color: #333333;
 	color: #ffffff;
+}
+/*edit*/
+
+.ui_base_text{
+	width: 50%;
+	height: 28px;
+	padding: 0 10px;
+	line-height: 30px;
+	font-size: 14px;
+	border-radius: 5px;
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	background-image: none;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.ui_base_text:focus{
+	border-color: #0E75C7;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)
+}
+.ui_edit_in{
+	width: 48%;
+	padding-left: 1%;
+}
+.ui_edit_tags li{
+	padding: 10px;
+}
+
+.ui_edit_out{
+	width: 48%;
+	padding: 10px 0.5%;
+	padding-top: 120px;
+	background-color: #ffffff;
 }
