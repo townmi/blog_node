@@ -2,6 +2,8 @@ var express = require('express');
 // var markdown = require( "markdown" ).markdown;
 
 // var validator = require('validator');
+var Duoshuo = require("duoshuo");
+
 var Read = require("./readSQL.js");
 var mem = require("./mem.js");
 
@@ -61,7 +63,7 @@ router.get("/:id", function (req, res, next){
 
 		var dd = d.getMonth() === 11 ? new Date( (d.getFullYear()+1)+"-"+(1) ) : new Date( d.getFullYear()+"-"+(d.getMonth()+2) );
 
-		key = '(borth_date>'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' AND borth_date<'+dd.getFullYear()+'-'+(dd.getMonth()+1)+'-'+dd.getDate()+')';
+		key = 'borth_date BETWEEN "'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+'" AND "'+dd.getFullYear()+'-'+(dd.getMonth()+1)+'-'+dd.getDate()+'"';
 
 	}
 
@@ -74,8 +76,6 @@ router.get("/:id", function (req, res, next){
 		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE '+key+' ORDER BY art.change_date DESC; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
 
 	}
-
-	console.log(SQL);
 
 	var read = new Read(SQL);
 
@@ -113,6 +113,27 @@ router.get("/:id", function (req, res, next){
 
 });
 
+
+
+
+// var duoshuo = new  Duoshuo({
+
+// 	short_name: 'townmi.duoshuo.com', // 站点申请的多说二级域名。
+// 	secret: '64abff226af02540c498db839bec6eb3' // 站点密钥
+
+// });
+
+// var access_token = 'tanghaixiang'; 
+// var duoshuoClient = duoshuo.getClient(access_token);
+
+// duoshuoClient.tops({
+// 	range: 'daily' // 获取本日，详见：http://dev.duoshuo.com/docs/50398b4b8551ece011000023
+// 	num_items: 10 // 获取10篇
+// }, function (err, threads){
+// 	console.log(threads)
+// });
+
+// // console.log(duoshuoClient)
 
 
 

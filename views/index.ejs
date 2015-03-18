@@ -45,17 +45,35 @@
 						<% if(!login){ %>
 						<div class="col-md-10"></div>
 						<% }else{%>
-							<a href="javascript:;" class="js_delete" key=<%- '"'+e.title+'"' %>>删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href=<%- '"/edit?key='+e.title+'"' %> class="js_change" key=<%- '"'+e.title+'"' %>>修改</a>
+						<a href="javascript:;" class="js_delete" key=<%- '"'+e.title+'"' %>>删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href=<%- '"/edit?key='+e.title+'"' %> class="js_change" key=<%- '"'+e.title+'"' %>>修改</a>
 						<% } %>
-						<% if(simple){ %>
-						<!-- <a href="/" class="btn btn-primary btn-slim">阅读更多</a> -->
-						<% }%>
 						</p>
 					</div>
+					<% if(!simple){ %>
+					<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://127.0.0.1:3000/'+e.categories+"?key="+e.title+'"' %>></div>
+					<!-- 多说评论框 end -->
+					<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+					<script type="text/javascript">
+						var duoshuoQuery = {short_name:"townmi"};
+						(function() {
+							var ds = document.createElement('script');
+							ds.type = 'text/javascript';ds.async = true;
+							ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+							ds.charset = 'UTF-8';
+							(document.getElementsByTagName('head')[0] 
+							 || document.getElementsByTagName('body')[0]).appendChild(ds);
+						})();
+					</script>
+					<!-- 多说公共JS代码 end -->
+					<% }%>
 				</li>
 				<% })%>
 			</ul>
+			<% if(arts.length === 1){ %>
+			
+			<% } %>
 		</div>
 		<div class="ui_sidebox fr">
 			<div class="ui_side js_side">
