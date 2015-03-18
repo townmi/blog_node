@@ -51,7 +51,7 @@ app.get("/", routes);
 app.get("/:id", routes);
 
 app.get("/edit", edit);
-app.post("/eidt", edit);
+app.post("/edit", edit);
 app.post("/change", edit);
 app.post("/delete", edit);
 

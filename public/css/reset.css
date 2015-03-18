@@ -199,6 +199,76 @@ body{
 
 
 
+
+.ui_share{
+	margin-left: 15px;
+	position: relative;
+}
+.ui_share span{
+	padding: 0 15px 0 25px;
+	display: inline-block;
+	line-height: 24px;
+	border-radius: 4px;
+	background-color: #e4e4e4;
+	background-size: 12px 12px;
+	background-image: url(../images/3.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+	cursor: pointer;
+}
+.ui_share span:hover{
+	background-image: url(../images/4.png);
+	color: #ffffff;
+	background-color: #ff5500;
+}
+.ui_share_list{
+	position: absolute;
+	top: 24px;
+	left: 0;
+	background-color: #ffffff;
+}
+.ui_share_list li{
+	width: 100%;
+	float: left;
+	padding: 0 0 0 25px;
+	line-height: 24px;
+	border-radius: 4px;
+	background-color: #e4e4e4;
+	background-repeat: no-repeat;
+	white-space: nowrap; 
+}
+.ui_share_list li:nth-child(1){
+	background-size: 16px 16px;
+	background-image: url(../images/5.png);
+	background-position: 5px center;
+}
+.ui_share_list li:hover{
+	
+	background-color: #cc5500;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*body*/
 .ui_art_body hr{
 	margin: 2px 0;
@@ -327,7 +397,6 @@ body{
 	width: 20%;
 	padding-right: 2%;
 	display: inline-block;
-	font: normal normal 16px/30px "PingHei";
 	text-align: right;
 	vertical-align:top;
 }
@@ -346,7 +415,6 @@ body{
 	height: 42px;
 	display: block;
 	margin-left: 23%;
-	font: normal normal 22px/42px "PingHei";
 	text-align: center;
 	border-radius: 5px;
 	background-color: #e7e7e7;
@@ -387,4 +455,12 @@ body{
 	padding: 10px 0.5%;
 	padding-top: 120px;
 	background-color: #ffffff;
+}
+
+/*duoshuo*/
+.ds-meta, .ds-comments-info, .ds-powered-by, .ds-post-repost{
+	display: none;
+}
+.ds-header{
+	font-weight: 100;
 }

@@ -18,7 +18,8 @@
 			<% if(!login){ %>
 			<a href="/login" class="fr">登陆</a>
 			<% }else{%>
-			<a href="javascript:;" id="logout" class="fr">登出</a>
+			<a href="javascript:;" id="logout" class="fr" style="margin-left: 20px;">登出</a>
+			<a href="/edit" class ="fr">添加文章</a>
 			<% } %>
 		</div>
 	</div>
@@ -32,10 +33,18 @@
 				<li class="ui_art_list_one">
 					<div class="ui_art_head">
 						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"?key="+e.title+'"' %>><%= e.title %></a></h2>
-						<p class="clear ui_targets">
+						<div class="clear ui_targets">
 							<a href=<%- '"/'+e.categories+'"' %> class="ui_target fl"><%= e.categories %></a>
+							<div class="ui_share fl js_share">
+								<span>分享</span>
+								<ol class="ui_share_list">
+									<li>QQ空间</li>
+									<li>微博</li>
+									<li>微信</li>
+								</ol>
+							</div>
 							<span class="ui_date fr">最后修改日期：<%= e.change_date %></span>
-						</p>
+						</div>
 					</div>
 					<div style="display: none;"><%= e.body %></div>
 					<div class="js_body ui_art_body">
@@ -52,14 +61,34 @@
 					</div>
 					<% if(!simple){ %>
 					<!-- 多说评论框 start -->
-					<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://127.0.0.1:3000/'+e.categories+"?key="+e.title+'"' %>></div>
+					<style type="text/css">
+						#ds-thread #ds-reset #ds-hot-posts{
+							border-color: #333;
+						}
+						#ds-reset .ds-rounded{
+							border-radius: 5px;
+						}
+						#ds-thread #ds-reset .ds-header{
+							font-weight: 100;
+						}
+						#ds-thread #ds-reset .ds-account-control ul{
+							border-radius: 4px;
+						}
+						#ds-thread #ds-reset .ds-post-button{
+							width: 100px;
+							font-weight: 100;
+							font-size: 16px;
+							font-family: "Microsoft Yahei";
+						}
+					</style>
+					<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://10.106.88.43:3000/'+e.categories+"?key="+e.title+'"' %>></div>
 					<!-- 多说评论框 end -->
 					<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 					<script type="text/javascript">
 						var duoshuoQuery = {short_name:"townmi"};
 						(function() {
 							var ds = document.createElement('script');
-							ds.type = 'text/javascript';ds.async = true;
+							ds.type = 'text/javascript';ds.async = false;
 							ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
 							ds.charset = 'UTF-8';
 							(document.getElementsByTagName('head')[0] 
@@ -204,36 +233,58 @@
 
 	});
 
+	$(".js_share").on("mouseover", function(){
+		// alert(1);
+		$(this).find("ol").stop().show();
+	});
+	$(".js_share").on("mouseout", function(){
+		// alert(2);
+		$(this).find("ol").stop().hide();
+	})
+
 </script>
 <script type="text/javascript">
-	$(function (){
+	
+	$(window).load(function(){
 
-    	var TOBOOTOM =  $(window).height() - $("body").height();
+		function reH(){
 
-	    var w1 = $("#js_article").height();
+			var TOBOOTOM =  $(window).height() - $("body").height();
 
-	    var w2 = $("#js_article").next().height();
+		    var w1 = $("#js_article").height();
 
-	    if(TOBOOTOM>0 && w2>w1){
+		    var w2 = $("#js_article").next().height();
 
-	    	$("#js_article").css({
-	    		"height" : TOBOOTOM+w2
-	    	});
+		    if(TOBOOTOM>0 && w2>w1){
 
-	    }else if(TOBOOTOM<0 && w2>w1){
+		    	$("#js_article").css({
+		    		"height" : TOBOOTOM+w2
+		    	});
 
-	    	$("#js_article").css({
-	    		"height" : w2
-	    	});
+		    }else if(TOBOOTOM<0 && w2>w1){
 
-	    }else if(TOBOOTOM>0){
+		    	$("#js_article").css({
+		    		"height" : w2
+		    	});
 
-	    	$("#js_article").css({
-	    		"height" : TOBOOTOM+w1
-	    	});
+		    }else if(TOBOOTOM>0){
 
-	    }
+		    	$("#js_article").css({
+		    		"height" : TOBOOTOM+w1
+		    	});
 
-	})
+		    }
+
+		}
+
+		if($("#ds-thread").length){
+			$("#ds-thread").load(function(){
+				reH();
+			})
+		}else{
+			reH();
+		}
+
+	});
 </script>
 </html>
