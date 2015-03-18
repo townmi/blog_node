@@ -8,13 +8,10 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var routes = require('./routes/index_mysql');
-var root = require('./routes/root');
+var users = require('./routes/user');
+var edit = require('./routes/edit');
+
 var mem = require("./routes/mem.js");
-
-// var mysql = require("mysql");
-// var SessionStore = require('express-mysql-session');
-// var config = require("./config/config.js");
-
 
 var app = express();
 
@@ -50,7 +47,19 @@ app.use(session({
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // 路由分发
-app.use(routes);
+app.get("/", routes);
+app.get("/:id", routes);
+
+app.get("/edit", edit);
+app.post("/eidt", edit);
+app.post("/change", edit);
+app.post("/delete", edit);
+
+app.get("/reg", users);
+app.get("/login", users);
+app.post("/reg", users);
+app.post("/login", users);
+app.post("/logout", users);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -73,3 +82,4 @@ mem();
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port' + app.get('port'));
 });
+
