@@ -48,8 +48,22 @@ router.get("/", function (req, res){
 router.get("/:id", function (req, res, next){
 
 	var key = req.params.id;
-	
+
 	if(key === "login" || key === "reg" || key === "edit" || key === "logout") return next();
+
+	var d = new Date(key);
+
+	if(d == "Invalid Date"){
+
+		key = 'categories="'+ key+'"';
+
+	}else{
+
+		var dd = d.getMonth() === 11 ? new Date( (d.getFullYear()+1)+"-"+(1) ) : new Date( d.getFullYear()+"-"+(d.getMonth()+2) );
+
+		key = '(borth_date>'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' AND borth_date<'+dd.getFullYear()+'-'+(dd.getMonth()+1)+'-'+dd.getDate()+')';
+
+	}
 
 	if(req.query.key){
 
@@ -57,9 +71,11 @@ router.get("/:id", function (req, res, next){
 
 	}else{
 
-		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE categories="'+key+'" ORDER BY art.change_date DESC; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE '+key+' ORDER BY art.change_date DESC; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
 
 	}
+
+	console.log(SQL);
 
 	var read = new Read(SQL);
 
