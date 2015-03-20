@@ -35,14 +35,17 @@
 						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"?key="+e.title+'"' %>><%= e.title %></a></h2>
 						<div class="clear ui_targets">
 							<a href=<%- '"/'+e.categories+'"' %> class="ui_target fl"><%= e.categories %></a>
+							<% if(!simple){ %>
 							<div class="ui_share fl js_share">
 								<span>分享</span>
-								<ol class="ui_share_list">
+								<ol class="ui_share_list" title=<%- '"'+e.categories+"?key="+e.title+'"' %>>
 									<li>QQ空间</li>
 									<li>微博</li>
 									<li>微信</li>
 								</ol>
+								<div id="js_code" class="ui_share_code"></div>
 							</div>
+							<% } %>
 							<span class="ui_date fr">最后修改日期：<%= e.change_date %></span>
 						</div>
 					</div>
@@ -148,6 +151,11 @@
 <script type="text/javascript" src="../js/src/showdown.js"></script>
 <script type="text/javascript" src="../js/src/extensions/prettify.js"></script>
 <script type="text/javascript" src="../js/src/highlight.js"></script>
+
+<% if(!simple){ %>
+<script type="text/javascript" src="../js/src/code.js"></script>
+<script type="text/javascript" src="../js/src/jquery.code.js"></script>
+<% } %>
 <script type="text/javascript">
 
 	var converter = new Showdown.converter({ extensions: ['prettify'] });
@@ -234,14 +242,54 @@
 	});
 
 	$(".js_share").on("mouseover", function(){
-		// alert(1);
 		$(this).find("ol").stop().show();
 	});
 	$(".js_share").on("mouseout", function(){
-		// alert(2);
 		$(this).find("ol").stop().hide();
-	})
+	});
+	$(".js_share li").each(function(i){
 
+		var basePath = "http://10.106.88.43:3000/";
+		var dir = basePath + $(this).parent().attr("title");
+
+		if(i===0){
+			$(this).on("click", function(){
+				hx_qqzone_index(basePath, "ceshi", "", "", "")
+			});
+		}else if(i===1){
+			$(this).on("click", function(){
+				hx_weibo_index(dir, "ceshi")
+			});
+		}else{
+
+			$(this).on("mouseover", function(){
+				$("#js_code").qrcode({
+					"text" : dir,
+					"background" : "#ffffff",
+					"foreground" : "#000000",
+					"width" : 100,
+					"height" : 100
+
+				});
+
+			});
+			$(this).on("mouseout", function(){
+
+				$("#js_code").html("");
+			});
+
+		}
+	});
+	// var stitle_index= "星火-宜信财富管理服务专家";
+	// var url_index = "http://xinghuo.yixin.com/";
+	//分享到QQ空间
+	function hx_qqzone_index(url_index, stitle_index, pics, stitle_index, summary){
+		window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+url_index+"&title"+stitle_index+"&pics="+pics+"&desc="+stitle_index+"&summary="+summary);
+	}
+	//分享到新浪微薄
+	function hx_weibo_index(url_index,stitle_index){
+		window.open("http://service.weibo.com/share/share.php?appkey=&title="+stitle_index+"&url="+url_index+"&searchPic=true");
+	}
 </script>
 <script type="text/javascript">
 	
@@ -278,10 +326,14 @@
 		}
 
 		if($("#ds-thread").length){
-			$("#ds-thread").load(function(){
-				reH();
-			})
+			// $("#ds-reset").load(function(){
+			// 	alert(1);
+				setTimeout(function(){
+					reH();
+				}, 100);
+			// })
 		}else{
+			// alert(1);
 			reH();
 		}
 

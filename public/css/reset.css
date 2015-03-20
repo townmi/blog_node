@@ -214,9 +214,6 @@ body{
 	background-image: url(../images/3.png);
 	background-repeat: no-repeat;
 	background-position: 5px center;
-	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
-	transition: all .2s ease-in-out;
 	cursor: pointer;
 }
 .ui_share span:hover{
@@ -229,31 +226,47 @@ body{
 	top: 24px;
 	left: 0;
 	background-color: #ffffff;
+	border-radius: 4px;
+	overflow: hidden;
+	display: none;
 }
 .ui_share_list li{
 	width: 100%;
 	float: left;
-	padding: 0 0 0 25px;
+	padding: 0 20px 0 25px;
 	line-height: 24px;
-	border-radius: 4px;
 	background-color: #e4e4e4;
 	background-repeat: no-repeat;
 	white-space: nowrap; 
+	cursor: pointer;
+}
+.ui_share_list li:hover{
+	color: #ffffff;
+	background-color: #ff5500;
+
 }
 .ui_share_list li:nth-child(1){
 	background-size: 16px 16px;
 	background-image: url(../images/5.png);
 	background-position: 5px center;
 }
-.ui_share_list li:hover{
-	
-	background-color: #cc5500;
-
+.ui_share_list li:nth-child(2){
+	background-size: 20px 16px;
+	padding-left: 35px;
+	background-image: url(../images/6.png);
+	background-position: 5px center;
 }
-
-
-
-
+.ui_share_list li:nth-child(3){
+	background-size: 20px 18px;
+	padding-left: 35px;
+	background-image: url(../images/7.png);
+	background-position: 5px center;
+}
+.ui_share_code{
+	position: absolute;
+	left: 100%;
+	top: 0;
+}
 
 
 
@@ -463,4 +476,7 @@ body{
 }
 .ds-header{
 	font-weight: 100;
+}
+.ds-thread{
+	padding-top: 20px;
 }
