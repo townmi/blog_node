@@ -6,12 +6,16 @@ var Duoshuo = require("duoshuo");
 
 var Read = require("./readSQL.js");
 var mem = require("./mem.js");
+var Base64 = require("../config/Base64.js");
 
 var app = express();
 var router = express.Router();
 
 module.exports = router;
 
+var base = new Base64();
+
+console.log(base.encode("这是测试"))
 
 // get index "/"
 router.get("/", function (req, res){
@@ -28,7 +32,8 @@ router.get("/", function (req, res){
 
 			arts[i] = {};
 			var date = new Date( e.change_date );
-			arts[i].title = e.title;
+			arts[i].title = e.title
+			arts[i].title2 = base.encode( e.title );
 			arts[i].categories = e.categories;
 			arts[i].body = e.body;
 			arts[i].id = e.id;
@@ -51,7 +56,7 @@ router.get("/:id", function (req, res, next){
 
 	var key = req.params.id;
 
-	if(key === "login" || key === "reg" || key === "edit" || key === "logout") return next();
+	if(key === "login" || key === "reg" || key === "edit" || key === "logout" || key === "topic") return next();
 
 	var d = new Date(key);
 
@@ -68,8 +73,10 @@ router.get("/:id", function (req, res, next){
 	}
 
 	if(req.query.key){
+		console.log(req.query.key)
+		console.log(base.decode( req.query.key ));
 
-		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+req.query.key+'"; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+base.decode( req.query.key )+'"; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
 
 	}else{
 
@@ -87,7 +94,8 @@ router.get("/:id", function (req, res, next){
 
 			arts[i] = {};
 			var date = new Date( e.change_date );
-			arts[i].title = e.title;
+			arts[i].title = e.title
+			arts[i].title2 = base.encode( e.title );
 			arts[i].categories = e.categories;
 			arts[i].body = e.body;
 			arts[i].id = e.id;
@@ -112,30 +120,6 @@ router.get("/:id", function (req, res, next){
 	});
 
 });
-
-
-
-
-// var duoshuo = new  Duoshuo({
-
-// 	short_name: 'townmi.duoshuo.com', // 站点申请的多说二级域名。
-// 	secret: '64abff226af02540c498db839bec6eb3' // 站点密钥
-
-// });
-
-// var access_token = 'tanghaixiang'; 
-// var duoshuoClient = duoshuo.getClient(access_token);
-
-// duoshuoClient.tops({
-// 	range: 'daily' // 获取本日，详见：http://dev.duoshuo.com/docs/50398b4b8551ece011000023
-// 	num_items: 10 // 获取10篇
-// }, function (err, threads){
-// 	console.log(threads)
-// });
-
-// // console.log(duoshuoClient)
-
-
 
 function repeate(arr){
 	var date = [];

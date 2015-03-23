@@ -32,13 +32,13 @@
 				<% arts.forEach(function (e){ %>
 				<li class="ui_art_list_one">
 					<div class="ui_art_head">
-						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"?key="+e.title+'"' %>><%= e.title %></a></h2>
+						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"?key="+e.title2+'"' %>><%= e.title %></a></h2>
 						<div class="clear ui_targets">
 							<a href=<%- '"/'+e.categories+'"' %> class="ui_target fl"><%= e.categories %></a>
 							<% if(!simple){ %>
 							<div class="ui_share fl js_share">
 								<span>分享</span>
-								<ol class="ui_share_list" title=<%- '"'+e.categories+"?key="+e.title+'"' %>>
+								<ol class="ui_share_list" tip=<%- '"'+e.categories+"?key="+e.title2+'"' %>>
 									<li>QQ空间</li>
 									<li>微博</li>
 									<li>微信</li>
@@ -154,6 +154,7 @@
 
 <% if(!simple){ %>
 <script type="text/javascript" src="../js/src/code.js"></script>
+<script type="text/javascript" src="../js/src/sha.js"></script>
 <script type="text/javascript" src="../js/src/jquery.code.js"></script>
 <% } %>
 <script type="text/javascript">
@@ -250,7 +251,8 @@
 	$(".js_share li").each(function(i){
 
 		var basePath = "http://10.106.88.43:3000/";
-		var dir = basePath + $(this).parent().attr("title");
+		var dir = basePath + $(this).parent().attr("tip");
+
 
 		if(i===0){
 			$(this).on("click", function(){
@@ -271,6 +273,8 @@
 					"height" : 100
 
 				});
+
+			
 
 			});
 			$(this).on("mouseout", function(){
