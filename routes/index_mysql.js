@@ -6,16 +6,11 @@ var Duoshuo = require("duoshuo");
 
 var Read = require("./readSQL.js");
 var mem = require("./mem.js");
-var Base64 = require("../config/Base64.js");
 
 var app = express();
 var router = express.Router();
 
 module.exports = router;
-
-var base = new Base64();
-
-console.log(base.encode("这是测试"))
 
 // get index "/"
 router.get("/", function (req, res){
@@ -33,7 +28,7 @@ router.get("/", function (req, res){
 			arts[i] = {};
 			var date = new Date( e.change_date );
 			arts[i].title = e.title
-			arts[i].title2 = base.encode( e.title );
+			arts[i].title2 = e.title;
 			arts[i].categories = e.categories;
 			arts[i].body = e.body;
 			arts[i].id = e.id;
@@ -45,7 +40,7 @@ router.get("/", function (req, res){
 
 		mem();
 
-		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections,"login" : req.session.user, "simple" : true});
+		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : true, title : "首页"});
 
 	});
 
@@ -56,9 +51,16 @@ router.get("/:id", function (req, res, next){
 
 	var key = req.params.id;
 
+	for(var i in req.query){
+		var key_title = i;
+		break;
+	}
+	// console.log(key_title)
 	if(key === "login" || key === "reg" || key === "edit" || key === "logout" || key === "topic") return next();
 
-	var d = new Date(key);
+	var d = new Date(key), dd;
+
+	var d2 = d.getFullYear() +"-"+ (d.getMonth()+1) +"-"+ d.getDate();
 
 	if(d == "Invalid Date"){
 
@@ -72,11 +74,9 @@ router.get("/:id", function (req, res, next){
 
 	}
 
-	if(req.query.key){
-		console.log(req.query.key)
-		console.log(base.decode( req.query.key ));
+	if(key_title){
 
-		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+base.decode( req.query.key )+'"; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+key_title+'"; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
 
 	}else{
 
@@ -95,7 +95,7 @@ router.get("/:id", function (req, res, next){
 			arts[i] = {};
 			var date = new Date( e.change_date );
 			arts[i].title = e.title
-			arts[i].title2 = base.encode( e.title );
+			arts[i].title2 = e.title;
 			arts[i].categories = e.categories;
 			arts[i].body = e.body;
 			arts[i].id = e.id;
@@ -107,13 +107,17 @@ router.get("/:id", function (req, res, next){
 
 		mem();
 
-		if(req.query.key){
+		if(key_title){
 
 			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : false});
 
+		}else if(d == "Invalid Date"){
+
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : true, title : req.params.id});
+
 		}else{
 
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : true});
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : true, title : d2});
 
 		}	
 
