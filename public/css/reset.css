@@ -424,17 +424,17 @@ body{
 	border: 1px solid #333;
 	vertical-align:top;
 }
-.ui_input_error{
-	border-color: red;
-}
+
 .ui_btn{
 	width: 60%;
 	height: 42px;
+	line-height: 42px;
 	display: block;
 	margin-left: 23%;
 	text-align: center;
 	border-radius: 5px;
 	background-color: #e7e7e7;
+	font-size: 18px;
 }
 .ui_btn:hover{
 	background-color: #333333;
@@ -457,6 +457,24 @@ body{
 }
 .ui_base_text:focus{
 	border-color: #0E75C7;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)
+}
+.ui_text_error{
+	border-color: red;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.ui_text_error:focus{
+	border-color: red;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(233, 102, 102, .6)
+}
+.ui_text_success{
+	border-color: green;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.ui_text_sucess:focus{
+	border-color: green;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)
 }
 .ui_edit_in{
