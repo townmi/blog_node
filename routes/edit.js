@@ -23,7 +23,7 @@ router.get("/edit", function (req, res){
 
 		read.get(function (rows){
 
-			res.render("edit", {"title" : "编辑", "login" : req.session.user, data : rows});
+			res.render("edit", {"title" : "编辑", "login" : req.session.name, data : rows});
 
 		});
 

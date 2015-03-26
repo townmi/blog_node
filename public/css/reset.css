@@ -73,6 +73,7 @@ body{
 }
 
 
+
 .ui_global_progress_bg{
 	height: 4px;
 	background-color: #ff4455;
@@ -426,7 +427,7 @@ body{
 }
 
 .ui_btn{
-	width: 60%;
+	width: 56%;
 	height: 42px;
 	line-height: 42px;
 	display: block;
@@ -440,6 +441,7 @@ body{
 	background-color: #333333;
 	color: #ffffff;
 }
+
 /*edit*/
 
 .ui_base_text{
@@ -473,9 +475,9 @@ body{
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-.ui_text_sucess:focus{
+.ui_text_success:focus{
 	border-color: green;
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(8, 103, 13, .6)
 }
 .ui_edit_in{
 	width: 48%;
@@ -501,4 +503,105 @@ body{
 }
 .ds-thread{
 	padding-top: 20px;
+}
+
+
+/*tip*/
+.ui_tip{
+	padding: 3px 6px;
+	position: absolute;
+	border-radius: 5px;
+	border: 1px solid #0E75C7;
+	background-color: #ffffff;
+}
+.ui_tip .ui_content{
+	line-height: 24px;
+	display: inline-block;
+}
+.ui_tip .ui_arrow, .ui_tip .ui_arrow:after{
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+	box-sizing: border-box;
+}
+.ui_tip .ui_arrow{
+	border-width: 8px;
+}
+.ui_tip .ui_arrow:after{
+	content: "";
+	border-width: 7px;
+}
+.ui_tip .right{
+	left: -8px;
+	top: 50%;
+	margin-top: -8px;
+	border-right-color: #00589E;
+	border-left-width: 0;
+}
+.ui_tip .right:after{
+	bottom: -7px;
+	left: 1px;
+	border-right-color: #fff;
+	border-left-width: 0;
+}
+.ui_tip .left{
+	border-width: 8px;
+	top: 50%;
+	right: -8px;
+	margin-top: -8px;
+	border-left-color: #00589E;
+	border-right-width: 0;
+}
+.ui_tip .left:after{
+	top: -7px;
+	left: -8px;
+	border-left-color: #ffffff;
+	border-right-width: 0;
+}
+.ui_tip .top{
+	border-width: 8px;
+	left: 50%;
+	bottom: -8px;
+	margin-left: -8px;
+	border-top-color: #00589E;
+	border-bottom-width: 0;
+}
+.ui_tip .top:after{
+	top: -8px;
+	left: -7px;
+	border-top-color: #ffffff;
+	border-bottom-width: 0;
+}
+.ui_tip .bottom{
+	border-width: 8px;
+	left: 50%;
+	top: -8px;
+	margin-left: -8px;
+	border-bottom-color: #00589E;
+	border-top-width: 0;
+}
+.ui_tip .bottom:after{
+	bottom: -8px;
+	left: -7px;
+	border-bottom-color: #ffffff;
+	border-top-width: 0;
+}
+
+
+
+
+
+
+
+/*失效的UI*/
+.desabled{
+	background-color: #777777;
+	color: #eeeeee;
+}
+.desabled:hover{
+	background-color: #777777;
+	color: #eeeeee;
 }

@@ -36,7 +36,7 @@ router.get("/", function (req, res){
 
 		mem();
 
-		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : true, title : "首页"});
+		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : true, title : "首页"});
 
 	});
 
@@ -105,15 +105,15 @@ router.get("/:id", function (req, res, next){
 
 		if(key_title){
 
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : false});
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : false});
 
 		}else if(d == "Invalid Date"){
 
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : true, title : req.params.id});
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : true, title : req.params.id});
 
 		}else{
 
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.user, "simple" : true, title : d2});
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : true, title : d2});
 
 		}	
 

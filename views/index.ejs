@@ -255,7 +255,7 @@
 	$(".js_share li").each(function(i){
 
 		var basePath = "http://10.106.88.43:3000/";
-		var dir = utf16to8( basePath + $(this).parent().attr("tip") );
+		var dir = basePath + $(this).parent().attr("tip");
 
 		function utf16to8(str) {  
 			var out, i, len, c;  
@@ -290,14 +290,13 @@
 			$(this).on("mouseover", function(){
 
 				$("#js_code").show().qrcode({
-					"text" : dir,
+					"text" : utf16to8(dir),
 					"background" : "#ffffff",
 					"foreground" : "#ff6600",
 					"width" : 200,
 					"height" : 200
 
 				});
-				console.log(dir);
 			});
 			$(this).on("mouseout", function(){
 
