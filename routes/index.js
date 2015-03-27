@@ -11,7 +11,7 @@ module.exports = router;
 // get index "/"
 router.get("/", function (req, res){
 
-	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.change_date DESC; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.change_date DESC limit 0,5; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
 
 	var read = new Read(SQL);
 
@@ -36,7 +36,7 @@ router.get("/", function (req, res){
 
 		mem();
 
-		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : true, title : "首页"});
+		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, pages: Math.ceil(rows[2].length/5),"login" : req.session.name, "simple" : true, title : "首页"});
 
 	});
 
@@ -76,7 +76,7 @@ router.get("/:id", function (req, res, next){
 
 	}else{
 
-		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE '+key+' ORDER BY art.change_date DESC; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE '+key+' ORDER BY art.change_date DESC limit 0,5; SELECT borth_date FROM art ORDER BY art.borth_date DESC;  SELECT * FROM art WHERE '+key;
 
 	}
 
@@ -109,11 +109,11 @@ router.get("/:id", function (req, res, next){
 
 		}else if(d == "Invalid Date"){
 
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : true, title : req.params.id});
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, pages: Math.ceil(rows[3].length/5),"login" : req.session.name, "simple" : true, title : req.params.id});
 
 		}else{
 
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : true, title : d2});
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, pages:  Math.ceil(rows[3].length/5),"login" : req.session.name, "simple" : true, title : d2});
 
 		}	
 

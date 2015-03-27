@@ -66,50 +66,62 @@
 						<% } %>
 						</p>
 					</div>
-					<% if(!simple){ %>
-					<!-- 多说评论框 start -->
-					<style type="text/css">
-						#ds-thread #ds-reset #ds-hot-posts{
-							border-color: #333;
-						}
-						#ds-reset .ds-rounded{
-							border-radius: 5px;
-						}
-						#ds-thread #ds-reset .ds-header{
-							font-weight: 100;
-						}
-						#ds-thread #ds-reset .ds-account-control ul{
-							border-radius: 4px;
-						}
-						#ds-thread #ds-reset .ds-post-button{
-							width: 100px;
-							font-weight: 100;
-							font-size: 16px;
-							font-family: "Microsoft Yahei";
-						}
-					</style>
-					<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://10.106.88.43:3000/'+e.categories+"?key="+e.title+'"' %>></div>
-					<!-- 多说评论框 end -->
-					<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-					<script type="text/javascript">
-						var duoshuoQuery = {short_name:"townmi"};
-						(function() {
-							var ds = document.createElement('script');
-							ds.type = 'text/javascript';ds.async = false;
-							ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-							ds.charset = 'UTF-8';
-							(document.getElementsByTagName('head')[0] 
-							 || document.getElementsByTagName('body')[0]).appendChild(ds);
-						})();
-					</script>
-					<!-- 多说公共JS代码 end -->
-					<% }%>
+
 				</li>
 				<% })%>
 			</ul>
-			<% if(arts.length === 1){ %>
-			
-			<% } %>
+			<% if(!simple){ %>
+			<!-- 多说评论框 start -->
+			<style type="text/css">
+				#ds-thread #ds-reset #ds-hot-posts{
+					border-color: #333;
+				}
+				#ds-reset .ds-rounded{
+					border-radius: 5px;
+				}
+				#ds-thread #ds-reset .ds-header{
+					font-weight: 100;
+				}
+				#ds-thread #ds-reset .ds-account-control ul{
+					border-radius: 4px;
+				}
+				#ds-thread #ds-reset .ds-post-button{
+					width: 100px;
+					font-weight: 100;
+					font-size: 16px;
+					font-family: "Microsoft Yahei";
+				}
+				#ds-reset ul.ds-comments-tabs{
+					display: none;
+				}
+				#ds-thread #ds-reset .ds-textarea-wrapper, #ds-thread #ds-reset .ds-post-options{
+					border-right: none;
+				}
+			</style>
+			<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://10.106.88.43:3000/'+arts[0].categories+"?"+arts[0].title+'="' %>></div>
+			<!-- 多说评论框 end -->
+			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+			<script type="text/javascript">
+				var duoshuoQuery = {short_name:"townmi"};
+				(function() {
+					var ds = document.createElement('script');
+					ds.type = 'text/javascript';ds.async = false;
+					ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+					ds.charset = 'UTF-8';
+					(document.getElementsByTagName('head')[0] 
+					 || document.getElementsByTagName('body')[0]).appendChild(ds);
+				})();
+			</script>
+			<!-- 多说公共JS代码 end -->
+			<% }else{ %>
+				<% if(pages>1){ %>
+					<div class="ui_pages js_pages clear">
+						<span class="ui_pages_btn ui_pages_prev fl">前一页</span>
+						<span class="ui_pages_btn ui_pages_next fr">后一页</span>
+					</div>
+
+				<% } %>
+			<% }%>
 		</div>
 		<div class="ui_sidebox fr">
 			<div class="ui_side js_side">

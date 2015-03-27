@@ -49,6 +49,10 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 // 路由分发
 app.get("/", routes);
 app.get("/:id", routes);
+app.get("/:id/:nextid", function (req, res){
+    console.log(req.params.id, req.params.nextid);
+})
+
 
 app.get("/edit", edit);
 app.post("/edit", edit);
