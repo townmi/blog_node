@@ -1,3 +1,35 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!doctype html>
+<html lang="en">
+<head>
+	<% include head_meta.ejs %>
+	<% if(message === "Not Found"){ %>
+	<title><%= message %></title>
+	<% }else{ %>
+	<title>出错啦！</title>
+	<% } %>
+	<style>
+	body{
+		height: 100%;
+		width: 100%;
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+
+	<% if(message === "Not Found"){ %>
+		<h1><%= message %></h1>
+	<% }else{ %>
+		<h1>出错啦！</h1>
+	<% } %>
+	<a href="/" class="ui_target">返回首页</a>
+
+	<% if(error.status){ %>
+	<h2><%=error.status  %></h2>
+	<% } %>
+
+	<% if(error.stack){ %>
+	<pre><%= error.stack %></pre>
+	<% } %>
+</body>
+</html>

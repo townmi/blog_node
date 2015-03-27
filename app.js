@@ -49,10 +49,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 // 路由分发
 app.get("/", routes);
 app.get("/:id", routes);
-app.get("/:id/:nextid", function (req, res){
-    console.log(req.params.id, req.params.nextid);
-})
-
+app.get("/:id/:title", routes);
 
 app.get("/edit", edit);
 app.post("/edit", edit);
@@ -80,8 +77,6 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-
-mem();
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port' + app.get('port'));

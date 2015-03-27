@@ -1,29 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<meta name="keywords" content="汤海祥, towne, townmi" />
-	<meta name="description" content="汤海祥的个人网站"/>
+	<% include head_meta.ejs %>
 	<title><%= title %></title>
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
 	<link rel="stylesheet" type="text/css" href="../css/monokai.css">
-	
 </head>
 <body>
-	<!-- head -->
-	<div class="ui_head_bg">
-		<div class="ui_head clear">
-			<a href="/" class="fl">/</a>
-			<% if(!login){ %>
-			<a href="/login" class="fr">登陆</a>
-			<% }else{%>
-			<a href="javascript:;" id="logout" class="fr" style="margin-left: 20px;">登出</a>
-			<a href="/edit" class ="fr">添加文章</a>
-			<% } %>
-		</div>
-	</div>
-	<!-- head over -->
+
+	<% include head.ejs %>
 
 	<div class="ui_edit clear" id="js_center">
 		<div class="ui_edit_in fl" id="js_article">
@@ -39,11 +24,11 @@
 						<input type="text" class="ui_base_text" placeholder="请输入分类" id="categories" value=<%= data[0].categories %>>
 					</li>
 				</ul>
-				<div>
+				<div class="ui_edit_content">
 					<label for="body">内容:</label>
-					<pre id="body" style="height:400px;"><%= data[0].body %></pre>
+					<pre id="body" style="height: 680px;"><%= data[0].body %></pre>
 				</div>
-				<p>
+				<p class="ui_edit_submit">
 					<a href="javascript:;" class="js_change_update" key=<%= data[0].id %>>提交</a>
 				</p>
 				<% }else{ %>
@@ -57,12 +42,12 @@
 						<input type="text" class="ui_base_text" placeholder="请输入分类" id="categories">
 					</li>
 				</ul>
-				<div>
+				<div class="ui_edit_content">
 					<label for="body">内容:</label>
 					<!-- <textarea placeholder="请输入内容" id="body" rows="20" cols="50"spellcheck="false" autocomplete="off"></textarea> -->
-					<pre id="body" style="height:400px;"></pre>
+					<pre id="body" style="height: 680px;"></pre>
 				</div>
-				<p>
+				<p class="ui_edit_submit">
 					<a href="javascript:;" class="js_edit_update">提交</a>
 				</p>
 				<% } %>
@@ -74,19 +59,7 @@
 		</div>
 	</div>
 
-
-	<!-- foot -->
-	<div class="ui_foot_bg">
-		<div class="ui_foot">
-			<span style="color: #80bd01;">Powered by</span>
-			<a href="http://nodejs.org/" target="_blank" class="node_js">NodeJs</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3686be;">Running on</span>
-			<a href="https://www.digitalocean.com/" target="_blank" class="digitalocean">Digitalocean</a>
-			<a href="" class="fr">github</a>
-			<a href="" class="fr">weibo</a>
-		</div>
-	</div>
-	<!-- foot over -->
+	<% include foot.ejs %>
 
 </body>
 <script type="text/javascript" src="../js/src/jquery.js"></script>
@@ -111,8 +84,6 @@
 		});
 
 	    var editor = ace.edit("body");
-
-	    // editor.session.setMode("ace/mode/html");
 
 	    editor.setTheme("ace/theme/monokai");
 
@@ -142,21 +113,15 @@
 					"categories": $("#categories").val(),
 					"body": editor.getValue()
 				},
-
 				dataType: "json",
-
 				success: function (data){
 					if(data.target){
-
 						window.location.href="http://127.0.0.1:3000/";
-
 					}
 				},
 				error: function (msg){
-				   	
 				}
 			})
-
 		});
 
 		$("#control .js_change_update").on("click", function(){
@@ -164,10 +129,6 @@
 			if(!$("#title").val() || !$("#categories").val() || !editor.getValue()) return;
 
 			var key = $(this).attr("key");
-
-			console.log(key);
-
-			// return;
 
 			$.ajax({
 				type: "post",
@@ -178,23 +139,35 @@
 					"body": editor.getValue(),
 					"key": key
 				},
-
 				dataType: "json",
-
 				success: function (data){
 					if(data.target){
-
 						window.location.href="http://127.0.0.1:3000/";
+					}
+				},
+				error: function (msg){ 	
+				}
+			})
+		});
 
+		// 登出
+		$("#logout").on('click', function(){
+			$.ajax({
+				type: "post",
+				url: "/logout",
+				data: {
+				},
+				dataType: "json",
+				success: function (data){
+					if(!data.login){
+						window.location.reload();
 					}
 				},
 				error: function (msg){
-				   	
+					console.log(msg)
 				}
 			})
-
 		});
-
 	});
 </script>
 <script type="text/javascript">

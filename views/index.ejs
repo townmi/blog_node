@@ -1,10 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<meta name="keywords" content="汤海祥, towne, townmi" />
-	<meta name="description" content="汤海祥的个人网站"/>
+	<% include head_meta.ejs %>
 	<% if(!simple){ %>
 	<title><%- "townmi | "+arts[0].title %></title>
 	<% }else{ %>
@@ -15,20 +12,7 @@
 </head>
 <body>
 
-	<!-- head -->
-	<div class="ui_head_bg">
-		<div class="ui_head clear">
-			<a href="/" class="fl">/</a>
-			<% if(!login){ %>
-			<a href="/login" class="fr">登陆</a>
-			<% }else{%>
-			<a href="javascript:;" id="logout" class="fr" style="margin-left: 20px;">登出</a>
-			<a href="/edit" class ="fr">添加文章</a>
-			<% } %>
-		</div>
-	</div>
-
-	<!-- head over -->
+	<% include head.ejs %>
 	
 	<div class="ui_center clear js_center">
 		<div class="ui_article fl" id="js_article">
@@ -36,13 +20,13 @@
 				<% arts.forEach(function (e){ %>
 				<li class="ui_art_list_one">
 					<div class="ui_art_head">
-						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"?"+e.title2+'="' %>><%= e.title %></a></h2>
+						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"/"+e.title2+'"' %>><%= e.title %></a></h2>
 						<div class="clear ui_targets">
 							<a href=<%- '"/'+e.categories+'"' %> class="ui_target fl"><%= e.categories %></a>
 							<% if(!simple){ %>
 							<div class="ui_share fl js_share">
 								<span>分享</span>
-								<ol class="ui_share_list" tip=<%- '"'+e.categories+"?"+e.title2+'="' %>>
+								<ol class="ui_share_list" tip=<%- '"'+e.categories+"/"+e.title2+'"' %>>
 									<li>QQ空间</li>
 									<li>微博</li>
 									<li>微信</li>
@@ -50,19 +34,19 @@
 								<div id="js_code" class="ui_share_code" style="display: none;"></div>
 							</div>
 							<% } %>
-							<span class="ui_date fr">最后修改日期：<%= e.change_date %></span>
+							<span class="ui_date fr">最后修改日期：<%= e.borth_date %></span>
 						</div>
 					</div>
 					<div style="display: none;"><%= e.body %></div>
 					<div class="js_body ui_art_body">
 					</div>
 					<div class="ui_art_foot">
-						<p>
+						<p class="clear">
 						<% if(!login){ %>
 						<div class="col-md-10"></div>
 						<% }else{%>
-						<a href="javascript:;" class="js_delete" key=<%- '"'+e.title+'"' %>>删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href=<%- '"/edit?key='+e.title+'"' %> class="js_change" key=<%- '"'+e.title+'"' %>>修改</a>
+						<a href="javascript:;" class="ui_func js_delete" key=<%- '"'+e.title+'"' %>>删除</a>
+						<a href=<%- '"/edit?key='+e.title+'"' %> class="ui_func js_change" key=<%- '"'+e.title+'"' %>>修改</a>
 						<% } %>
 						</p>
 					</div>
@@ -94,11 +78,8 @@
 				#ds-reset ul.ds-comments-tabs{
 					display: none;
 				}
-				#ds-thread #ds-reset .ds-textarea-wrapper, #ds-thread #ds-reset .ds-post-options{
-					border-right: none;
-				}
 			</style>
-			<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://10.106.88.43:3000/'+arts[0].categories+"?"+arts[0].title+'="' %>></div>
+			<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://10.106.88.43:3000/'+arts[0].categories+"/"+arts[0].title+'"' %>></div>
 			<!-- 多说评论框 end -->
 			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 			<script type="text/javascript">
@@ -114,10 +95,15 @@
 			</script>
 			<!-- 多说公共JS代码 end -->
 			<% }else{ %>
-				<% if(pages>1){ %>
+				<% if(page.page_all>0){ %>
 					<div class="ui_pages js_pages clear">
-						<span class="ui_pages_btn ui_pages_prev fl">前一页</span>
-						<span class="ui_pages_btn ui_pages_next fr">后一页</span>
+						<% if(page.page_current>0){ %>
+						<a class="ui_pages_prev fl" href=<%- '"?page='+(page.page_current-1)+'"' %>>上一页</a>
+						<% }%>
+
+						<% if(page.page_current<page.page_all){ %>
+						<a class="ui_pages_next fr" href=<%- '"?page='+(page.page_current+1)+'"' %>>下一页</a>
+						<% }%>
 					</div>
 
 				<% } %>
@@ -148,19 +134,7 @@
 		</div>
 	</div>
 	
-	<!-- foot -->
-	<!-- <div class="ui_mar"></div> -->
-	<div class="ui_foot_bg" id="js_foot">
-		<div class="ui_foot">
-			<span style="color: #80bd01;">Powered by</span>
-			<a href="http://nodejs.org/" target="_blank" class="node_js">NodeJs</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #3686be;">Running on</span>
-			<a href="https://www.digitalocean.com/" target="_blank" class="digitalocean">Digitalocean</a>
-			<a href="" class="fr">github</a>
-			<a href="" class="fr">weibo</a>
-		</div>
-	</div>
-	<!-- foot over -->
+	<% include foot.ejs %>
 
 </body>
 <script type="text/javascript" src="../js/src/jquery.js"></script>
@@ -258,10 +232,10 @@
 
 	});
 
-	$(".js_share").on("mouseover", function(){
+	$(".js_share").on("mouseover focus", function(){
 		$(this).find("ol").stop().show();
 	});
-	$(".js_share").on("mouseout", function(){
+	$(".js_share").on("mouseout blur", function(){
 		$(this).find("ol").stop().hide();
 	});
 	$(".js_share li").each(function(i){

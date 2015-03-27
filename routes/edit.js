@@ -11,7 +11,8 @@ module.exports = router;
 
 router.get("/edit", function (req, res){
 
-	if(!req.session.user && !req.session.password){
+
+	if(!req.session.name){
 
 		res.redirect("/login");
 
@@ -65,13 +66,9 @@ router.post("/edit", function (req, res){
 
 router.post("/change", function (req, res){
 
-	var date = new Date();
-
-	var day = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-
 	var body = req.body.body.replace(/"/g, "'");
 
-	var SQL = 'UPDATE art SET title="'+req.body.title+'",categories="'+req.body.categories+'",change_date="'+day+'",body="'+body+'" WHERE id="'+req.body.key+'"';
+	var SQL = 'UPDATE art SET title="'+req.body.title+'",categories="'+req.body.categories+'",body="'+body+'" WHERE id="'+req.body.key+'"';
 
 	var read = new Read(SQL);
 

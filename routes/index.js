@@ -11,7 +11,13 @@ module.exports = router;
 // get index "/"
 router.get("/", function (req, res){
 
-	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.change_date DESC limit 0,5; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+	var page_i = req.query.page;
+
+	if(!page_i) page_i = 0;
+
+	page_i = parseInt(page_i);
+
+	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.borth_date DESC limit '+page_i*5+',5; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
 
 	var read = new Read(SQL);
 
@@ -22,21 +28,22 @@ router.get("/", function (req, res){
 		rows[1].forEach(function (e, i){
 
 			arts[i] = {};
-			var date = new Date( e.change_date );
+			var date = new Date( e.borth_date );
 			arts[i].title = e.title
 			arts[i].title2 = e.title;
 			arts[i].categories = e.categories;
 			arts[i].body = e.body;
 			arts[i].id = e.id;
-			arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			arts[i].borth_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
 		});
 
 		var date_collections = repeate(rows[2]);
+		var page = {page_all: Math.floor(rows[2].length/5), page_current: page_i, page_source: ""}
 
 		mem();
 
-		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, pages: Math.ceil(rows[2].length/5),"login" : req.session.name, "simple" : true, title : "首页"});
+		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, page: page,"login" : req.session.name, "simple" : true, title : "首页"});
 
 	});
 
@@ -45,13 +52,11 @@ router.get("/", function (req, res){
 // get /css ~~~~~
 router.get("/:id", function (req, res, next){
 
-	var key = req.params.id;
+	var id = key = req.params.id , page_i = req.query.page;
 
-	for(var i in req.query){
-		var key_title = i;
-		break;
-	}
-	// console.log(key_title)
+	if(!page_i) page_i = 0;
+	page_i = parseInt(page_i);
+
 	if(key === "login" || key === "reg" || key === "edit" || key === "logout" || key === "topic") return next();
 
 	var d = new Date(key), dd;
@@ -70,15 +75,7 @@ router.get("/:id", function (req, res, next){
 
 	}
 
-	if(key_title){
-
-		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+key_title+'"; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
-
-	}else{
-
-		var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE '+key+' ORDER BY art.change_date DESC limit 0,5; SELECT borth_date FROM art ORDER BY art.borth_date DESC;  SELECT * FROM art WHERE '+key;
-
-	}
+	var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE '+key+' ORDER BY art.borth_date DESC limit '+page_i*5+',5; SELECT borth_date FROM art ORDER BY art.borth_date DESC;  SELECT * FROM art WHERE '+key;
 
 	var read = new Read(SQL);
 
@@ -89,13 +86,61 @@ router.get("/:id", function (req, res, next){
 		rows[1].forEach(function (e, i){
 
 			arts[i] = {};
-			var date = new Date( e.change_date );
+			var date = new Date( e.borth_date );
 			arts[i].title = e.title
 			arts[i].title2 = e.title;
 			arts[i].categories = e.categories;
 			arts[i].body = e.body;
 			arts[i].id = e.id;
-			arts[i].change_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			arts[i].borth_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+
+		});
+
+		var date_collections = repeate(rows[2]);
+
+		var all = rows[3].length/5 === Math.floor(rows[3].length/5) ? 0 : Math.floor(rows[3].length/5);
+
+		var page = {page_all: all, page_current: page_i}
+
+		mem();
+
+		if(d == "Invalid Date"){
+
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, page: page,"login" : req.session.name, "simple" : true, title : req.params.id});
+
+		}else{
+
+			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, page: page,"login" : req.session.name, "simple" : true, title : d2});
+
+		}	
+
+	});
+
+});
+
+// get like /css/xxxxxx   ~~~~~~
+router.get("/:id/:title", function (req, res){
+
+	var id = req.params.id, title = req.params.title;
+
+	var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+title+'"; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+
+	var read = new Read(SQL);
+
+	read.get(function (rows){
+
+		var arts = [];
+
+		rows[1].forEach(function (e, i){
+
+			arts[i] = {};
+			var date = new Date( e.borth_date );
+			arts[i].title = e.title
+			arts[i].title2 = e.title;
+			arts[i].categories = e.categories;
+			arts[i].body = e.body;
+			arts[i].id = e.id;
+			arts[i].borth_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
 		});
 
@@ -103,23 +148,12 @@ router.get("/:id", function (req, res, next){
 
 		mem();
 
-		if(key_title){
-
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : false});
-
-		}else if(d == "Invalid Date"){
-
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, pages: Math.ceil(rows[3].length/5),"login" : req.session.name, "simple" : true, title : req.params.id});
-
-		}else{
-
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, pages:  Math.ceil(rows[3].length/5),"login" : req.session.name, "simple" : true, title : d2});
-
-		}	
+		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : false});
 
 	});
 
 });
+
 
 function repeate(arr){
 	var date = [];

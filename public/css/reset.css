@@ -20,7 +20,7 @@ li{
 }
 p{
 	word-wrap: break-word;
-	line-height: 32px;
+	line-height: 30px;
 }
 a{
 	text-decoration: none;
@@ -71,9 +71,6 @@ body{
 .clear{
 	zoom: 1;
 }
-
-
-
 .ui_global_progress_bg{
 	height: 4px;
 	background-color: #ff4455;
@@ -108,9 +105,6 @@ body{
 .ui_head a:hover{
 	color: #3d3d3d;
 }
-
-
-
 .ui_center{
 	width: 1000px;
 	padding: 20px 0;
@@ -133,36 +127,24 @@ body{
 	padding: 10px 70px 10px 0;
 }
 .ui_categories li{
-	padding: 2px 0;
-	line-height: 20px;
 	border-bottom: 1px dashed #e4e4e4;
-	padding-left: 20px;
-	background: url(../images/1.png) no-repeat 6px 8px;
 }
 .ui_categories li a{
+	width: 190px;
 	display: inline-block;
-	width: 100%;
-	height: 100%;
+	padding: 2px 0;
+	line-height: 24px;
+	padding-left: 20px;
+	background: url(../images/1.png) no-repeat 6px 10px;
 }
 .ui_categories li h3{
 	padding-bottom: 6px;
 }
-.ui_categories li:hover a{
+.ui_categories a:hover,  .ui_categories a:focus{
 	color: #ffffff;
-}
-.ui_categories li:hover{
 	background-color: #333333;
-	background-position: 6px -14px;
+	background-position: 6px -12px;
 }
-
-
-
-
-
-
-
-
-
 
 .ui_art_list{
 	padding: 20px;
@@ -170,6 +152,7 @@ body{
 .ui_art_list_one{
 	width: 100%;
 	padding-bottom: 25px;
+	border-bottom: 1px dashed #eaeaea;
 }
 .ui_art_head{
 	
@@ -193,7 +176,7 @@ body{
 	border-radius: 3px;
 	vertical-align: middle;
 }
-.ui_target:hover{
+.ui_target:hover, .ui_target:focus{
 	background-color: #333333;
 	color: #ffffff;
 }
@@ -273,20 +256,6 @@ body{
 	background-color: #ffffff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*body*/
 .ui_art_body hr{
 	margin: 2px 0;
@@ -333,43 +302,23 @@ body{
 .ui_art_body blockquote p{
 	text-indent: 0;
 }
-
+/*文章尾*/
 .ui_art_foot{
-	line-height: 22px;
+	padding-top: 15px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.ui_page{
-	text-align: center;
+/*功能按钮*/
+.ui_func{
+	padding: 0 10px;
+	line-height: 24px;
+	margin-right: 20px;
+	float: left;
+	background-color: #e4e4e4;
+	border-radius: 3px;
 }
-.ui_page .ui_prev{
-	
+.ui_func:hover, .ui_func:focus{
+	background-color: #333333;
+	color: #ffffff;
 }
-
-
-
-
-
-
-
-
 .ui_foot_bg{
 	width: 100%;
 	background: -webkit-linear-gradient(top, #414141, #313131);
@@ -489,48 +438,62 @@ body{
 
 .ui_edit_out{
 	width: 48%;
+	height: 695px;
 	padding: 10px 0.5%;
-	padding-top: 120px;
+	padding-top: 135px;
 	background-color: #ffffff;
+	overflow: scroll;
 }
-
+.ui_edit_content{
+	padding: 10px;
+}
+.ui_edit_content label{
+	line-height: 24px;
+	padding-bottom: 10px;
+	display: block;
+}
+.ui_edit_submit{
+	text-align: center;
+	padding: 10px 0;
+}
+.ui_edit_submit a{
+	width: 30%;
+	line-height: 32px;
+	border-radius: 5px;
+	display: inline-block;
+	font-size: 20px;
+	background-color: #e4e4e4;
+	color: #333333;
+}
+.ui_edit_submit a:hover, .ui_edit_submit a:focus{
+	background-color: #333333;
+	color: #ffffff;
+}
 /*pages*/
 .ui_pages{
 	padding: 10px 20px;
 	text-align: center;
 }
-.ui_pages span{
-	height: 24px;
-	display: inline-block;
+.ui_pages a{
 	border-radius: 3px;
 	margin: 0 3px;
 	background-color: #e4e4e4;
 	color: #333333;
-	vertical-align: top;
 	cursor: pointer;
 	-webkit-transition: all .2s ease-in-out;
 	-moz-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
 }
-.ui_pages span.active{
+.ui_pages a.active{
 	background-color: #333333;
 	color: #ffffff;
 }
-
-.ui_pages_btn{
-	width: 30px;
-	font: 14px/24px Arial;
-}
-.ui_pages_more{
-	font: 18px/14px Arial;
-}
-
 .ui_pages_prev, .ui_pages_next{
 	width: 70px;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 24px;
 }
-.ui_pages span:hover{
+.ui_pages a:hover, .ui_pages a:focus{
 	background-color: #333333;
 	color: #ffffff;
 };
@@ -545,6 +508,7 @@ body{
 }
 .ds-thread{
 	padding-top: 20px;
+	padding: 20px;
 }
 
 
@@ -632,13 +596,6 @@ body{
 	border-bottom-color: #ffffff;
 	border-top-width: 0;
 }
-
-
-
-
-
-
-
 /*失效的UI*/
 .desabled{
 	background-color: #777777;

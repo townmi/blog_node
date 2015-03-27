@@ -21,7 +21,7 @@ router.get('/login', function (req, res){
 
 	}else{
 
-		res.render("login", {"title" : "登陆"});
+		res.render("login", {"title" : "登陆", "login" : req.session.name});
 
 	}
 
@@ -56,45 +56,56 @@ router.post("/login", function abc(req, res){
 	// 这里做验证码的校验
 
 	// 验证码校验通过就是SQL查询；
-	var SQL = 'SELECT username, password FROM user WHERE username="'+arr[0].key+'"';
-	var read = new Read(SQL);
+	// var SQL = 'SELECT username, password FROM user WHERE username="'+arr[0].key+'"';
+	// var read = new Read(SQL);
 
-	read.get(function (rows){
+	// read.get(function (rows){
 
-		// 用户名输入错误
-		if(!rows.length) return res.send({"status": false, "method": "username", "mesg": base.meassage["username"][2]});
+	// 	// 用户名输入错误
+	// 	if(!rows.length) return res.send({"status": false, "method": "username", "mesg": base.meassage["username"][2]});
 		
-		// 用户名正确，密码错误
-		if(rows[0].password != md5( arr[1].key) ) return res.send({"status": false, "method": "password", "mesg": base.meassage["password"][2]});
+	// 	// 用户名正确，密码错误
+	// 	if(rows[0].password != md5( arr[1].key) ) return res.send({"status": false, "method": "password", "mesg": base.meassage["password"][2]});
 
-		// 登陆成功，设置session
-		req.session.name = "admin_root";
-		req.session.username = rows[0].username;
-		req.session.password = rows[0].password;
+	// 	// 登陆成功，设置session
+	// 	req.session.name = "admin_root";
+	// 	req.session.username = rows[0].username;
+	// 	req.session.password = rows[0].password;
 
-		return res.send({"status": true});
+	// 	return res.send({"status": true});
 
-	});
+	// });
+
+    // 算了，直接写死
+    var pass = {"username": "abcd12345678哈哈", "password" : "e19d5cd5af0378da05f63f891c7467af"};
+
+    if(arr[0].key != pass.username) return res.send({"status": false, "method": "username", "mesg": base.meassage["username"][2]});
+
+    if(md5( arr[1].key) != pass.password) return res.send({"status": false, "method": "password", "mesg": base.meassage["password"][2]});
+
+    // 登陆成功，设置session
+    req.session.name = "admin_root";
+    req.session.username = pass.username;
+
+    return res.send({"status": true});
 
 })
 
 router.post('/logout', function (req, res){
 
 	req.session.name = null;
-	req.session.user = null;
-	req.session.password = null;
+	req.session.username = null;
 
 	res.send({"login" : false});
 
 });
 
-
 var base = {
-	username : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$|^1[3,4,5,7,8]{1}[0-9]{9}$/,
+	username : /^[A-Za-z0-9\u4E00-\u9FA5]+$/,
 	phone : /^1[3,4,5,7,8]{1}[0-9]{9}$/,
 	email : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
 	password:/^(?!\d+$)(?![a-zA-Z]+$)[0-9a-zA-Z]{6,18}$/,
-	nickname : /^[A-Za-z0-9\u4E00-\u9FA5]+$/,
+	nickname : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$|^1[3,4,5,7,8]{1}[0-9]{9}$/,
 	identity : /^\d{17}[\d,x,X]$/,
 	bankcard : /^\d{16,19}$/,
 	chinname : /^[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*$/,
