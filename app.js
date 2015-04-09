@@ -10,6 +10,7 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var edit = require('./routes/edit');
+var resm = require('./routes/resm');
 
 var mem = require("./routes/mem.js");
 
@@ -61,6 +62,9 @@ app.get("/login", users);
 app.post("/reg", users);
 app.post("/login", users);
 app.post("/logout", users);
+
+app.get("/resm", resm);
+app.post("/resm", resm);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {

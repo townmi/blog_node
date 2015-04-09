@@ -2,8 +2,8 @@
 /* CSS Document */
 /*
  * author : towne
- * version : 0.0.1
- * date : 2015.1.22
+ * version : 0.0.2
+ * date : 2015.4.9
  *
 */
 body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,blockquote,legend,input,textarea,select{
@@ -379,7 +379,7 @@ body{
 	width: 56%;
 	height: 42px;
 	line-height: 42px;
-	display: block;
+	display: inline-block;
 	margin-left: 23%;
 	text-align: center;
 	border-radius: 5px;
@@ -604,4 +604,28 @@ body{
 .desabled:hover{
 	background-color: #777777;
 	color: #eeeeee;
+}
+
+/*2015-4-9 add resm*/
+.ui_resm{
+
+}
+.ui_resm>div{
+	border-bottom: 1px solid #e4e4e4;
+}
+.ui_resm h2{
+	padding: 10px;
+	line-height: 24px;
+}
+.ui_resm form{
+	padding: 10px;
+}
+.ui_resm ul{
+	padding: 5px 20px;
+}
+.ui_resm li{
+	min-width: 70%;
+	padding: 5px 0;
+	display: inline-block;
+	border-bottom: 1px dashed #cccccc;
 }

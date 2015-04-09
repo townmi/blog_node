@@ -57,7 +57,7 @@ router.get("/:id", function (req, res, next){
 	if(!page_i) page_i = 0;
 	page_i = parseInt(page_i);
 
-	if(key === "login" || key === "reg" || key === "edit" || key === "logout" || key === "topic") return next();
+	if(key === "login" || key === "reg" || key === "edit" || key === "logout" || key === "topic" || key === "resm") return next();
 
 	var d = new Date(key), dd;
 

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<% include head_meta.ejs %>
+	<title>资源管理|townmi</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+</head>
+<body>
+
+	<% include head.ejs %>
+	
+	<div class="ui_center ui_resm" id="js_center">
+		<div>
+			<h2>添加资源</h2>
+			<form action="/file" method="post" enctype="multipart/form-data" id="form" name="form">
+
+				<label for="file">文件名称:</label>
+				
+				<input type="file"id="file" value="上传文件" id="file" name="file">
+
+				<!-- <input type="submit" value="提交"> -->
+				<a href="javascript:;" class="ui_btn" style="width: 15%; height: 30px; line-height:30px; margin: 0;" id="js_upload">上传</a>
+			</form>
+			
+		</div>
+		<div>
+			<h2>图片</h2>
+			<ul>
+				<% imgs.forEach(function (e){ %>
+				<li class="clear ui_targets">
+					<span class="fl" style="margin-right: 15px;"><%= e %></span>
+					<a href=<%- '"'+e+'"' %> target="_blank" class="ui_target fr" style="margin-left: 15px;">查看</a>
+					<a href="javascript:;" class="js_delete ui_target fr" key=<%- '"'+e+'"' %> style="margin-left: 15px;">删除</a>
+				</li>
+				<% }) %>
+			</ul>
+		</div>
+		<div>
+			<h2>音乐</h2>
+			<ul>
+				<% mp3.forEach(function (e){ %>
+				<li class="clear ui_targets">
+					<span class="fl" style="margin-right: 15px;"><%= e %></span>
+					<a href=<%- '"'+e+'"' %> target="_blank" class="ui_target fr" style="margin-left: 15px;">查看</a>
+					<a href="javascript:;" class="js_delete ui_target fr" key=<%- '"'+e+'"' %> style="margin-left: 15px;">删除</a>
+				</li>
+				<% }) %>
+			</ul>
+		</div>
+	</div>
+
+	<% include foot.ejs %>
+
+</body>
+<script type="text/javascript" src="../js/src/jquery.js"></script>
+
+<script type="text/javascript">
+	
+	$("#js_upload").on("click", function(){
+		var formobj =  document.getElementById("form");
+
+		var data = new FormData(formobj);
+
+    	// data.append('file', $('#file')[0].files[0]);
+
+		$.ajax({
+			type: "post",
+			url: "/resm",
+			data: data,
+			processData: false,
+        	contentType: false,
+			success: function (data) {
+				
+				// if(data.target){
+
+				// 	window.location.reload();
+
+				// }
+				console.log(data);
+
+			},
+			error: function (msg) {
+			   	
+			}
+		});
+	})
+
+</script>
+<script type="text/javascript">
+	$(function (){
+
+    	var TOBOOTOM =  $(window).height() - $("body").height();
+
+    	var w1 = $("#js_center").height();
+
+    	if(TOBOOTOM>0){
+
+    		$("#js_center").css({
+    			"height" : TOBOOTOM+w1
+    		});
+
+    	}
+
+	})
+</script>
+</html>

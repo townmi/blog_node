@@ -1,6 +1,6 @@
 {
   "name": "Tblog",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "blog of towne",
   "main": "index.js",
   "scripts": {
@@ -13,9 +13,8 @@
     "serve-favicon": "~2.1.0",
     "ejs": "~0.8.5",
     "mysql": "~2.0.0",
-    "markdown": "~0.5.0",
-    "connect-mongo": "^0.7.0",
-    "mongodb": "^1.4.34"
+    "formidable": "~1.0.17",
+    "eventproxy": "^0.3.2"
   },
   "repository": {
     "type": "git",
