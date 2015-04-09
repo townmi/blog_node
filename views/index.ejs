@@ -20,7 +20,7 @@
 				<% arts.forEach(function (e){ %>
 				<li class="ui_art_list_one">
 					<div class="ui_art_head">
-						<h2 class="ui_art_title"><a href=<%- '"/'+e.categories+"/"+e.title2+'"' %>><%= e.title %></a></h2>
+						<h2 class="ui_art_title js_art_title"><a href=<%- '"/'+e.categories+"/"+e.title2+'"' %>><%= e.title %></a></h2>
 						<div class="clear ui_targets">
 							<a href=<%- '"/'+e.categories+'"' %> class="ui_target fl"><%= e.categories %></a>
 							<% if(!simple){ %>
@@ -33,6 +33,8 @@
 								</ol>
 								<div id="js_code" class="ui_share_code" style="display: none;"></div>
 							</div>
+							<audio loop="loop" autoplay="autoplay" style="display: none;" id="js_music" src=<%- '"'+e.music+'"'%>></audio>
+							<a href="javascript:;" class="ui_target fl" style="margin-left: 15px;" id="js_ctrl_music" onoff="0">暂停</a>
 							<% } %>
 							<span class="ui_date fr">最后修改日期：<%= e.borth_date %></span>
 						</div>
@@ -86,7 +88,7 @@
 				var duoshuoQuery = {short_name:"townmi"};
 				(function() {
 					var ds = document.createElement('script');
-					ds.type = 'text/javascript';ds.async = false;
+					ds.type = 'text/javascript';ds.async = "async";
 					ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
 					ds.charset = 'UTF-8';
 					(document.getElementsByTagName('head')[0] 
@@ -148,9 +150,9 @@
 <% } %>
 
 <script type="text/javascript">
-
+	// markdown
 	var converter = new Showdown.converter({ extensions: ['prettify'] });
-
+	// 渲染文章
 	$(".js_body").each(function (e){
 
 		var html = $(this).prev().html();
@@ -163,8 +165,10 @@
 
 		$(this).prev().remove();
 
-	});
+		$(this).find("p").has("img").css({"text-indent":0,"text-align":"center"});
 
+	});
+	// 对代码染色
 	$("code").each(function (i, block){
 		hljs.highlightBlock(block);
 	});
@@ -232,6 +236,7 @@
 
 	});
 
+	// 分享
 	$(".js_share").on("mouseover focus", function(){
 		$(this).find("ol").stop().show();
 	});
@@ -239,9 +244,10 @@
 		$(this).find("ol").stop().hide();
 	});
 	$(".js_share li").each(function(i){
-
+		// 分享配置
 		var basePath = "http://10.106.88.43:3000/";
 		var dir = basePath + $(this).parent().attr("tip");
+		var stitle_index= $(".js_art_title a").html();
 
 		function utf16to8(str) {  
 			var out, i, len, c;  
@@ -264,15 +270,17 @@
 		}
 
 		if(i===0){
+			// QQ
 			$(this).on("click", function(){
-				hx_qqzone_index(dir, "ceshi", "", "", "")
+				hx_qqzone_index(dir, stitle_index, "", "")
 			});
 		}else if(i===1){
+			// weibo
 			$(this).on("click", function(){
-				hx_weibo_index(dir, "ceshi")
+				hx_weibo_index(dir, stitle_index)
 			});
 		}else{
-
+			// 微信
 			$(this).on("mouseover", function(){
 
 				$("#js_code").show().qrcode({
@@ -291,16 +299,30 @@
 
 		}
 	});
-	// var stitle_index= "星火-宜信财富管理服务专家";
+	
 	// var url_index = "http://xinghuo.yixin.com/";
 	//分享到QQ空间
-	function hx_qqzone_index(url_index, stitle_index, pics, stitle_index, summary){
-		window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+url_index+"&title"+stitle_index+"&pics="+pics+"&desc="+stitle_index+"&summary="+summary);
+	function hx_qqzone_index(url_index, stitle_index, pics, summary){
+		window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+url_index+"&title="+stitle_index+"&pics="+pics+"&desc="+stitle_index+"&summary="+summary);
 	}
 	//分享到新浪微薄
 	function hx_weibo_index(url_index,stitle_index){
 		window.open("http://service.weibo.com/share/share.php?appkey=&title="+stitle_index+"&url="+url_index+"&searchPic=true");
 	}
+
+	// 播放音乐
+	$("#js_ctrl_music").on("click", function(){
+		if($(this).attr("onoff") === "0"){
+			$("#js_music")[0].pause();
+			$(this).attr("onoff","12");
+			$(this).html("播放");
+		}else{
+			$("#js_music")[0].play();
+			$(this).attr("onoff","0");
+			$(this).html("暂停");
+		}
+		
+	})
 </script>
 <script type="text/javascript">
 	

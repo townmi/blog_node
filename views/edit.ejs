@@ -23,6 +23,10 @@
 						<label for="categories">分类:</label>
 						<input type="text" class="ui_base_text" placeholder="请输入分类" id="categories" value=<%= data[0].categories %>>
 					</li>
+					<li>
+						<label for="music">音乐:</label>
+						<input type="text" class="ui_base_text" placeholder="请输入背景音乐" id="music" value=<%= data[0].music %>>
+					</li>
 				</ul>
 				<div class="ui_edit_content">
 					<label for="body">内容:</label>
@@ -40,6 +44,10 @@
 					<li>
 						<label for="categories">分类:</label>
 						<input type="text" class="ui_base_text" placeholder="请输入分类" id="categories">
+					</li>
+					<li>
+						<label for="music">音乐:</label>
+						<input type="text" class="ui_base_text" placeholder="请输入背景音乐" id="music">
 					</li>
 				</ul>
 				<div class="ui_edit_content">
@@ -86,9 +94,7 @@
 	    var editor = ace.edit("body");
 
 	    editor.setTheme("ace/theme/monokai");
-
 	    editor.setValue(val);
-		
 		editor.setHighlightActiveLine(false);
 
 		editor.getSession().on('change', function(e) {
@@ -103,7 +109,7 @@
 
 		$("#control .js_edit_update").on("click", function(){
 
-			if(!$("#title").val() || !$("#categories").val() || !editor.getValue()) return;
+			if(!$("#title").val() || !$("#categories").val() || !$("#music").val() || !editor.getValue()) return;
 
 			$.ajax({
 				type: "post",
@@ -111,12 +117,13 @@
 				data: {
 					"title" : $("#title").val(),
 					"categories": $("#categories").val(),
+					"music": $("#music").val(),
 					"body": editor.getValue()
 				},
 				dataType: "json",
 				success: function (data){
 					if(data.target){
-						window.location.href="http://127.0.0.1:3000/";
+						window.location.href = window.location.origin;
 					}
 				},
 				error: function (msg){
@@ -126,7 +133,7 @@
 
 		$("#control .js_change_update").on("click", function(){
 
-			if(!$("#title").val() || !$("#categories").val() || !editor.getValue()) return;
+			if(!$("#title").val() || !$("#categories").val() || !$("#music").val() || !editor.getValue()) return;
 
 			var key = $(this).attr("key");
 
@@ -136,13 +143,14 @@
 				data: {
 					"title" : $("#title").val(),
 					"categories": $("#categories").val(),
+					"music": $("#music").val(),
 					"body": editor.getValue(),
 					"key": key
 				},
 				dataType: "json",
 				success: function (data){
 					if(data.target){
-						window.location.href="http://127.0.0.1:3000/";
+						window.location.href = window.location.origin;
 					}
 				},
 				error: function (msg){ 	

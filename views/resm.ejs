@@ -28,6 +28,7 @@
 			<ul>
 				<% imgs.forEach(function (e){ %>
 				<li class="clear ui_targets">
+					<img src=<%- '"'+e+'"' %> alt="" height="24px" class="fl" style="margin-right: 15px;">
 					<span class="fl" style="margin-right: 15px;"><%= e %></span>
 					<a href=<%- '"'+e+'"' %> target="_blank" class="ui_target fr" style="margin-left: 15px;">查看</a>
 					<a href="javascript:;" class="js_delete ui_target fr" key=<%- '"'+e+'"' %> style="margin-left: 15px;">删除</a>
@@ -38,7 +39,7 @@
 		<div>
 			<h2>音乐</h2>
 			<ul>
-				<% mp3.forEach(function (e){ %>
+				<% music.forEach(function (e){ %>
 				<li class="clear ui_targets">
 					<span class="fl" style="margin-right: 15px;"><%= e %></span>
 					<a href=<%- '"'+e+'"' %> target="_blank" class="ui_target fr" style="margin-left: 15px;">查看</a>
@@ -56,12 +57,12 @@
 
 <script type="text/javascript">
 	
+	// 添加资源
 	$("#js_upload").on("click", function(){
+
 		var formobj =  document.getElementById("form");
 
 		var data = new FormData(formobj);
-
-    	// data.append('file', $('#file')[0].files[0]);
 
 		$.ajax({
 			type: "post",
@@ -70,20 +71,50 @@
 			processData: false,
         	contentType: false,
 			success: function (data) {
-				
-				// if(data.target){
-
-				// 	window.location.reload();
-
-				// }
-				console.log(data);
-
+				if(data.target){
+					window.location.reload();
+				}
 			},
 			error: function (msg) {
 			   	
 			}
 		});
+
+	});
+	// 删除资源
+	$(".js_delete").on("click", function(){
+
+		var key = $(this).attr("key");
+
+		if( window.confirm('你确定要删除'+key+'吗？') ){
+
+			$.ajax({
+
+				type: "post",
+				url: "/deleteres",
+				data: {"key" : key},
+				dataType: "json",
+
+				success: function (data){
+					if(data.target){
+
+						window.location.reload();
+
+					}
+				},
+				error: function (msg){
+				   	
+				}
+
+			})
+
+		}else{
+			return
+		}
+
 	})
+
+
 
 </script>
 <script type="text/javascript">

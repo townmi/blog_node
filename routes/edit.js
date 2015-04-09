@@ -36,7 +36,7 @@ router.post("/edit", function (req, res){
 
 	var cate = req.body.categories;
 
-	var STR = '"'+req.body.title +'","'+ cate +'","'+ req.body.body +'"';
+	var STR = '"'+req.body.title +'","'+ cate +'","'+ req.body.body +'","'+ req.body.music +'"';
 
 	var SQL = 'SELECT title,num FROM title WHERE title="'+cate+'"';
 
@@ -46,11 +46,11 @@ router.post("/edit", function (req, res){
 
 		if(rows.length){
 
-			var SQL = 'INSERT INTO art(title, categories, body) values('+STR+'); UPDATE title SET num="'+(rows[0].num+1)+'" WHERE title="'+cate+'"';
+			var SQL = 'INSERT INTO art(title, categories, body, music) values('+STR+'); UPDATE title SET num="'+(rows[0].num+1)+'" WHERE title="'+cate+'"';
 
 		}else{
 
-			var SQL = 'INSERT INTO art(title, categories, body) values('+STR+'); INSERT INTO title(title, num) values("'+cate+'", 1)';
+			var SQL = 'INSERT INTO art(title, categories, body, music) values('+STR+'); INSERT INTO title(title, num) values("'+cate+'", 1)';
 
 		}
 
@@ -68,7 +68,7 @@ router.post("/change", function (req, res){
 
 	var body = req.body.body.replace(/"/g, "'");
 
-	var SQL = 'UPDATE art SET title="'+req.body.title+'",categories="'+req.body.categories+'",body="'+body+'" WHERE id="'+req.body.key+'"';
+	var SQL = 'UPDATE art SET title="'+req.body.title+'",categories="'+req.body.categories+'",body="'+body+'",music="'+req.body.music+'" WHERE id="'+req.body.key+'"';
 
 	var read = new Read(SQL);
 

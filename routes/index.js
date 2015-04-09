@@ -141,6 +141,7 @@ router.get("/:id/:title", function (req, res){
 			arts[i].body = e.body;
 			arts[i].id = e.id;
 			arts[i].borth_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			arts[i].music = e.music
 
 		});
 

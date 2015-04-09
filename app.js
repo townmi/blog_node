@@ -65,6 +65,7 @@ app.post("/logout", users);
 
 app.get("/resm", resm);
 app.post("/resm", resm);
+app.post("/deleteres", resm);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {

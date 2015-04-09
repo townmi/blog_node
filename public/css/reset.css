@@ -302,6 +302,9 @@ body{
 .ui_art_body blockquote p{
 	text-indent: 0;
 }
+.ui_art_body img{
+	width: 658px;
+}
 /*文章尾*/
 .ui_art_foot{
 	padding-top: 15px;
@@ -444,6 +447,10 @@ body{
 	background-color: #ffffff;
 	overflow: scroll;
 }
+.ui_edit_out img{
+	max-width: 650px;
+}
+
 .ui_edit_content{
 	padding: 10px;
 }
