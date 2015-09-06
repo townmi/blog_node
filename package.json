@@ -1,6 +1,6 @@
 {
   "name": "Tblog",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "blog of towne",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "ejs": "~0.8.5",
     "mysql": "~2.0.0",
     "formidable": "~1.0.17",
-    "eventproxy": "^0.3.2"
+    "express-session": "~1.11.2",
+    "sequelize": "~3.5.0"
   },
   "repository": {
     "type": "git",
