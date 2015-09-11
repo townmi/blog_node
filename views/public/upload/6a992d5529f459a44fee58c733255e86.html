@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="townmi">
+
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="http://10.100.142.95/admin2/build/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://10.100.142.95/admin2/build/css/admin.css">
+	<link rel="stylesheet" type="text/css" href="./static/css/api.css">
+</head>
+<body>
+	
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand fn-ms" href="/html/index.html">星火前端开发</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right fn-ms">
+					<li class="active"><a href="/html/flow.html">前端开发流程|规范</a></li>
+					<li><a href="/html/admin.html">ADMIN系统文档</a></li>
+					<li><a href="#">WEB文档</a></li>
+					<li>
+						<a href="javascript:;" data-toggle="dropdown">星火前端库</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">字体库</a></li>
+							<li><a href="#">插件库</a></li>
+							<li><a href="#">动画库</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Help&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	
+
+	<div class="container">
+		<h2 class="fn-ms row" style="padding-top: 75px;">前端开发流程</h2>
+		<section class="row">
+			<h3 class="fn-ms">流程说明:</h3>
+			<ul class="ui_flow_ul fn-ms">
+				<li>1.	由相关负责人分配需求，可以登录星火需求平台查看</li>
+				<li>2.	与相关人员(产品、开发、设计师、测试人员等)进行分析评估、选择开发方案。</li>
+				<li>3.	将设计图转换网页(切图)，自行测试网页兼容性（IE8+）。部分需求可能没有设计师参与，可根据原型转换。</li>
+				<li>4.	将设计完成的网页提交至SVN--前端静态页面。</li>
+				<li>5.	从SVN前端资源主干代码拉分支进行开发，分支地址要求：，分支名称例如：admin_20150720_haixiangtang。</li>
+				<li>6.	和开发一起开发需求，本地启动apache或者nginx，将本地资源路径告知对应的开发人员，然后开始开发。</li>
+				<li>7.	开发完成后，和开发自主测试，基本确认可以提测。此时将主干代码合并至本地，第一次测试本次功能实现。此时资源代码是分支代码。</li>
+				<li>8.	测试期间如果有BUG和新修改，那么按照6-7再走一遍。</li>
+				<li>9.	第一次测试完成，功能测试完善后，将本地代码合并至主干，然后对代码检查，确认代码合并正确后，将代码压缩、版本控制，最后将测试测试服务器代码更新，告知测试可以测试功能等等。</li>
+				<li>10.	测试期间如果有BUG和新修改，那么按照6-9再走一遍。</li>
+				<li>11.	测试完成后，可以上线后，将主干BUILD代码复制一份，将复制包内的测试URL替换成正式环境的URL<http://xh.creditease.corp||http://static.xinghuo.com/等等>，然后将包提给测试上线人员，上线部署。</li>
+				<li>12.	上线完成后，通过相关人员使用正式环境无误后。可以关闭需求。分支代码可以删除。</li>
+			</ul>
+		</section>
+
+		<section class="row">
+			<h3 class="fn-ms">流程图:</h3>
+			<img src="" alt="流程图">
+		</section>
+	</div>
+
+</body>
+
+
+
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script type="text/javascript" src="./static/js/bootstrap.js"></script>
+
+</html>

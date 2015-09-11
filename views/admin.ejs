@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>博客管理系统</title>
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <!-- Styles -->
+    <link href=<%- '"'+viewList.basePath+'css/font-awesome.min.css"' %> rel="stylesheet">
+    <link href=<%- '"'+viewList.basePath+'css/bootstrap.min.css"' %> rel="stylesheet">
+	<link href=<%- '"'+viewList.basePath+'css/dataTables.bootstrap.css"' %> rel="stylesheet">
+	<link href=<%- '"'+viewList.basePath+'css/dataTables.responsive.css"' %>"" rel="stylesheet">
+    <link href=<%- '"'+viewList.basePath+'css/admin.css"' %> rel="stylesheet">
+    <link href=<%- '"'+viewList.basePath+'css/style.css"' %> rel="stylesheet">
+</head>
+<body>
+	<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand fn-ms" href="/">博客管理系统</a>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="/admin" class="fn-ms"><i class="fa fa-dashboard fa-fw"></i>&nbsp;&nbsp;控制面板</a>
+                        </li>
+                        <li>
+                            <a href="/admin" class="fn-ms active"><i class="fa fa-dashboard fa-fw"></i>&nbsp;&nbsp;文章管理</a>
+                        </li>
+                        <li>
+                            <a href="/admin/resource" class="fn-ms"><i class="fa fa-dashboard fa-fw"></i>&nbsp;&nbsp;资源管理</a>
+                        </li>
+                        <li>
+                            <a href="/admin/log" class="fn-ms"><i class="fa fa-dashboard fa-fw"></i>&nbsp;&nbsp;日志管理</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header fn-ms">文章管理</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row js_add_hide">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading fn-ms clearfix panel-heading-func">
+                                <div class="col-lg-6 col-xs-6">
+                                    <span class="panel-heading-title">文章集合</span>
+                                </div>
+                                <div class="col-lg-6 col-xs-6 ui_right">
+                                    <a href="javascript:;" class="btn btn-success btn-sm" id="js_add_new_article">发表新文章</a>
+                                </div>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover" id="js_dataTables">
+                                        <thead>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row js_add_show">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading fn-ms clearfix panel-heading-func">
+                                <div class="col-lg-6 col-xs-6">
+                                    <span class="panel-heading-title">发表新文章</span>
+                                </div>
+                                <div class="col-lg-6 col-xs-6 ui_right">
+                                    <a href="javascript:;" class="btn btn-success btn-sm" id="js_add_new_article_see">预览新文章</a>
+                                    <a href="javascript:;" class="btn btn-success btn-sm" id="js_add_new_article_save">保存新文章</a>
+                                    <a href="javascript:;" class="btn btn-success btn-sm js_cancel">取消</a>
+                                </div>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <form id="js_add_new_article_form" class="form-horizontal" action="" method="post">
+                                    <input type="hidden" id="js_artitle_id" value="0">
+                                    <div class="form-group col-lg-10">
+                                        <label for="" class="col-sm-2 control-label">文章标题：</label>
+                                        <div class="col-sm-10">
+                                            <input name="realName" type="text" class="form-control" id="js_artitle_title" placeholder="请输入文章标题">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-10">
+                                        <label for="" class="col-sm-2 control-label">文章分类：</label>
+                                        <div class="col-sm-10">
+                                            <input name="realName" type="text" class="form-control" id="js_artitle_category" placeholder="请输入文章分类">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-10">
+                                        <label for="" class="col-sm-2 control-label">文章内容：</label>
+                                        <div class="col-sm-10" id="js_edit_box">
+                                            <pre id="js_edit" style="height: 600px;"></pre>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+</body>
+<script type="text/javascript" src=<%- '"'+viewList.basePath+'js/src/cmd.js"' %>></script>
+<script type="text/javascript" src=<%- '"'+viewList.basePath+'js/apps/config.js"' %>></script>
+
+<script type="text/javascript" src=<%- '"'+viewList.basePath+'js/src/markdown.js"' %>></script>
+<script type="text/javascript" src=<%- '"'+viewList.basePath+'js/src/highlight.js"' %>></script>
+<script type="text/javascript" id="js_ace"></script>
+<script type="text/javascript">
+    seajs.use("apps/admin.js");
+</script>
+
+</html>

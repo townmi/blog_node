@@ -1,191 +1,117 @@
-var express = require('express');
+var router = require('express').Router();
+var app = require("express")();
+var log = require("../services/log.js");
 
-var Read = require("./readSQL.js");
-var mem = require("./mem.js");
+var queryArts = require("../services/queryArticles.js");
+var type = require("../libs/typeof.js")
 
-var app = express();
-var router = express.Router();
+// var md5 = require("../libs/md5.js");
+// var Arts = require("../models/arts.js");
 
 module.exports = router;
 
+
+// var title = "简洁、直观、强悍的前端开发框架，让web开发更迅速、简单";
+// var category = "mysql";
+// var titleHash = md5(title);
+
+
+// logger.info(titleHash);
+
+
+// Arts.sync({}).then(function () {
+// 	return Arts.build({TITLE: title, TITLE_HASH: titleHash, CATEGORY: category}).save()
+// }).then(
+// 	function (data) {
+// 		logger.info("成功读取数据库；共查找"+data.length+"条！");
+// 	},
+// 	function (err) {
+// 		logger.warn(err)
+// 	},
+// 	function (chunk) {
+// 		logger.info("body:"+chunk)
+// 	}
+// );
+
+
 // get index "/"
-router.get("/", function (req, res){
+router.get("/", function (req, res, next) {
 
-	var page_i = req.query.page;
+	var viewList = {};
 
-	if(!page_i) page_i = 0;
+	viewList.basePath = "http://10.106.89.64:3000/";
 
-	page_i = parseInt(page_i);
+	viewList.title = "首页";
 
-	var SQL = 'SELECT * FROM title; SELECT * FROM art ORDER BY art.borth_date DESC limit '+page_i*5+',5; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+	viewList.device = type.device(req.headers["user-agent"]);
 
-	var read = new Read(SQL);
-
-	read.get(function (rows){
-
-		var arts = [], ds = [];
-
-		rows[1].forEach(function (e, i){
-
-			arts[i] = {};
-			var date = new Date( e.borth_date );
-			arts[i].title = e.title
-			arts[i].title2 = e.title;
-			arts[i].categories = e.categories;
-			arts[i].body = e.body;
-			arts[i].id = e.id;
-			arts[i].borth_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
-		});
-
-		var date_collections = repeate(rows[2]);
-		var page = {page_all: Math.floor(rows[2].length/5), page_current: page_i, page_source: ""}
-
-		mem();
-
-		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, page: page,"login" : req.session.name, "simple" : true, title : "首页"});
-
+	var list = queryArts({
+		category: {order : 'ID asc', group: "CATEGORY", attributes: ["CATEGORY"]},
+		articles: {limit : 50, order : 'ID asc'}
 	});
 
-});
+	list.then(function(){
 
-// get /css ~~~~~
-router.get("/:id", function (req, res, next){
+		viewList.category = list._settledValue.queryData.categoryArray;
+		viewList.articles = list._settledValue.queryData.articleArray;
 
-	var id = key = req.params.id , page_i = req.query.page;
-
-	if(!page_i) page_i = 0;
-	page_i = parseInt(page_i);
-
-	if(key === "login" || key === "reg" || key === "edit" || key === "logout" || key === "topic" || key === "resm") return next();
-
-	var d = new Date(key), dd;
-
-	var d2 = d.getFullYear() +"-"+ (d.getMonth()+1) +"-"+ d.getDate();
-
-	if(d == "Invalid Date"){
-
-		key = 'categories="'+ key+'"';
-
-	}else{
-
-		var dd = d.getMonth() === 11 ? new Date( (d.getFullYear()+1)+"-"+(1) ) : new Date( d.getFullYear()+"-"+(d.getMonth()+2) );
-
-		key = 'borth_date BETWEEN "'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+'" AND "'+dd.getFullYear()+'-'+(dd.getMonth()+1)+'-'+dd.getDate()+'"';
-
-	}
-
-	var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE '+key+' ORDER BY art.borth_date DESC limit '+page_i*5+',5; SELECT borth_date FROM art ORDER BY art.borth_date DESC;  SELECT * FROM art WHERE '+key;
-
-	var read = new Read(SQL);
-
-	read.get(function (rows){
-
-		var arts = [];
-
-		rows[1].forEach(function (e, i){
-
-			arts[i] = {};
-			var date = new Date( e.borth_date );
-			arts[i].title = e.title
-			arts[i].title2 = e.title;
-			arts[i].categories = e.categories;
-			arts[i].body = e.body;
-			arts[i].id = e.id;
-			arts[i].borth_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-
-		});
-
-		var date_collections = repeate(rows[2]);
-
-		var all = rows[3].length/5 === Math.floor(rows[3].length/5) ? 0 : Math.floor(rows[3].length/5);
-
-		var page = {page_all: all, page_current: page_i}
-
-		mem();
-
-		if(d == "Invalid Date"){
-
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, page: page,"login" : req.session.name, "simple" : true, title : req.params.id});
-
-		}else{
-
-			res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, page: page,"login" : req.session.name, "simple" : true, title : d2});
-
-		}	
+		res.render("index", {viewList: viewList});
 
 	});
-
+	
 });
 
-// get like /css/xxxxxx   ~~~~~~
-router.get("/:id/:title", function (req, res){
+router.get("/category/:id", function (req, res, next) {
 
-	var id = req.params.id, title = req.params.title;
+	var category = req.params.id;
 
-	var SQL = 'SELECT * FROM title; SELECT * FROM art WHERE title ="'+title+'"; SELECT borth_date FROM art ORDER BY art.borth_date DESC';
+	var viewList = {};
 
-	var read = new Read(SQL);
+	viewList.basePath = "http://10.106.89.64:3000/";
 
-	read.get(function (rows){
+	viewList.title = category;
 
-		var arts = [];
+	viewList.device = type.device(req.headers["user-agent"]);
 
-		rows[1].forEach(function (e, i){
-
-			arts[i] = {};
-			var date = new Date( e.borth_date );
-			arts[i].title = e.title
-			arts[i].title2 = e.title;
-			arts[i].categories = e.categories;
-			arts[i].body = e.body;
-			arts[i].id = e.id;
-			arts[i].borth_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-			arts[i].music = e.music
-
-		});
-
-		var date_collections = repeate(rows[2]);
-
-		mem();
-
-		res.render("index",{"arts" : arts, "categories" : rows[0], "date" : date_collections, "login" : req.session.name, "simple" : false});
-
+	var list = queryArts({
+		category: {order : 'ID asc', group: "CATEGORY", attributes: ["CATEGORY"]},
+		articles: {where: {CATEGORY: category}, limit : 10, order : 'ID asc'}
 	});
 
+	list.then(function(){
+		viewList.category = list._settledValue.queryData.categoryArray;
+		viewList.articles = list._settledValue.queryData.articleArray;
+
+		res.render("index", {viewList: viewList});
+	});
+
+})
+
+
+router.get("/arts/:id", function (req ,res, next) {
+	
+	var titleHash = req.params.id;
+
+	var viewList = {};
+
+	viewList.basePath = "http://10.106.89.64:3000/";
+
+	viewList.device = type.device(req.headers["user-agent"]);
+
+	var list = queryArts({
+		category: {order : 'ID asc', group: "CATEGORY", attributes: ["CATEGORY"]},
+		articles: {where: {TITLE_HASH: titleHash}, limit : 1, order : 'ID asc'}
+	});
+
+	list.then(function(){
+		viewList.category = list._settledValue.queryData.categoryArray;
+		viewList.articles = list._settledValue.queryData.articleArray;
+
+		viewList.title = viewList.articles[0].TITLE;
+		console.log(viewList)
+
+		res.render("index", {viewList: viewList});
+	});
+
+
 });
-
-
-function repeate(arr){
-	var date = [];
-	for(var i=0; i<arr.length; i++){
-
-		var d = new Date( arr[i].borth_date );
-		var obj = {};
-		obj.date = d.getFullYear()+"-"+(d.getMonth()+1);
-		obj.num = 1;
-
-		for(var j=i+1; j<arr.length; j++){
-
-			var d1 = new Date( arr[j].borth_date );
-			var d2 = new Date( obj.date );
-			if( d1>=d2 ){
-				obj.num = obj.num + 1;
-			}else{
-				i=j-1;
-				break;
-			}
-
-		}
-
-		date.push(obj);
-
-		if(j == arr.length){
-
-			break;
-		}
-
-	}
-
-	return date
-}

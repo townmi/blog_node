@@ -1,375 +1,107 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-	<% include head_meta.ejs %>
-	<% if(!simple){ %>
-	<title><%- "townmi | "+arts[0].title %></title>
-	<% }else{ %>
-	<title><%- "townmi | "+title %></title>
-	<% } %>
-	<link rel="stylesheet" type="text/css" href="../css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../css/monokai.css">
+  <meta charset="utf-8">
+    <title>townmi-blog</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Styles -->
+    <!-- <link href="css/bootstrap.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href=<%- '"'+viewList.basePath+'css/reset.css"' %>>
+    <link rel="stylesheet" href=<%- '"'+viewList.basePath+'css/font-awesome.min.css"' %>>
+    <link rel="stylesheet" media="screen and (min-width: 768px)" href=<%- '"'+viewList.basePath+'css/style.css"' %>>
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href=<%- '"'+viewList.basePath+'css/small.css"' %>/>
+
 </head>
 <body>
 
-	<% include head.ejs %>
-	
-	<div class="ui_center clear js_center">
-		<div class="ui_article fl" id="js_article">
-			<ul class="ui_art_list">
-				<% arts.forEach(function (e){ %>
-				<li class="ui_art_list_one">
-					<div class="ui_art_head">
-						<h2 class="ui_art_title js_art_title"><a href=<%- '"/'+e.categories+"/"+e.title2+'"' %>><%= e.title %></a></h2>
-						<div class="clear ui_targets">
-							<a href=<%- '"/'+e.categories+'"' %> class="ui_target fl"><%= e.categories %></a>
-							<% if(!simple){ %>
-							<div class="ui_share fl js_share">
-								<span>分享</span>
-								<ol class="ui_share_list" tip=<%- '"'+e.categories+"/"+e.title2+'"' %>>
-									<li>QQ空间</li>
-									<li>微博</li>
-									<li>微信</li>
-								</ol>
-								<div id="js_code" class="ui_share_code" style="display: none;"></div>
-							</div>
-							<audio loop="loop" autoplay="autoplay" style="display: none;" id="js_music" src=<%- '"'+e.music+'"'%>></audio>
-							<a href="javascript:;" class="ui_target fl" style="margin-left: 15px;" id="js_ctrl_music" onoff="0">暂停</a>
-							<% } %>
-							<span class="ui_date fr">最后修改日期：<%= e.borth_date %></span>
-						</div>
-					</div>
-					<div style="display: none;"><%= e.body %></div>
-					<div class="js_body ui_art_body">
-					</div>
-					<div class="ui_art_foot">
-						<p class="clear">
-						<% if(!login){ %>
-						<div class="col-md-10"></div>
-						<% }else{%>
-						<a href="javascript:;" class="ui_func js_delete" key=<%- '"'+e.title+'"' %>>删除</a>
-						<a href=<%- '"/edit?key='+e.title+'"' %> class="ui_func js_change" key=<%- '"'+e.title+'"' %>>修改</a>
-						<% } %>
-						</p>
-					</div>
+  	<div id="container">
+        <div id="canvas">
+            <div id="nav">
+                <div class="ui_nav_block">
+                    <h2>文章分类</h2>
+                    <ul class="ui_nav_category">
+                        <% viewList.category.forEach(function (e) { %>
+                        <li><a href=<%- '"/category/'+e+'"' %> class="ui_link"><%= e %></a></li>
+                        <% }) %>
+                    </ul>
+                </div>
 
-				</li>
-				<% })%>
-			</ul>
-			<% if(!simple){ %>
-			<!-- 多说评论框 start -->
-			<style type="text/css">
-				#ds-thread #ds-reset #ds-hot-posts{
-					border-color: #333;
-				}
-				#ds-reset .ds-rounded{
-					border-radius: 5px;
-				}
-				#ds-thread #ds-reset .ds-header{
-					font-weight: 100;
-				}
-				#ds-thread #ds-reset .ds-account-control ul{
-					border-radius: 4px;
-				}
-				#ds-thread #ds-reset .ds-post-button{
-					width: 100px;
-					font-weight: 100;
-					font-size: 16px;
-					font-family: "Microsoft Yahei";
-				}
-				#ds-reset ul.ds-comments-tabs{
-					display: none;
-				}
-			</style>
-			<div class="ds-thread" data-thread-key=<%- '"'+arts[0].categories+'"' %> data-title=<%- '"'+arts[0].title+'"' %> data-url=<%- '"http://10.106.88.43:3000/'+arts[0].categories+"/"+arts[0].title+'"' %>></div>
-			<!-- 多说评论框 end -->
-			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-			<script type="text/javascript">
-				var duoshuoQuery = {short_name:"townmi"};
-				(function() {
-					var ds = document.createElement('script');
-					ds.type = 'text/javascript';ds.async = "async";
-					ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-					ds.charset = 'UTF-8';
-					(document.getElementsByTagName('head')[0] 
-					 || document.getElementsByTagName('body')[0]).appendChild(ds);
-				})();
-			</script>
-			<!-- 多说公共JS代码 end -->
-			<% }else{ %>
-				<% if(page.page_all>0){ %>
-					<div class="ui_pages js_pages clear">
-						<% if(page.page_current>0){ %>
-						<a class="ui_pages_prev fl" href=<%- '"?page='+(page.page_current-1)+'"' %>>上一页</a>
-						<% }%>
+                <h1 class="ui_share">
+                    <img src="http://fd.topit.me/d/d6/73/11049699480a673d6dl.jpg" alt="" width="200px">
+                    <a href="" class="ui_share_link"><i class="fa fa-github-square"></i></a>&nbsp;&nbsp;
+                    <a href="" class="ui_share_link"><i class="fa fa-facebook-square"></i></a>&nbsp;&nbsp;
+                    <a href="" class="ui_share_link"><i class="fa fa-twitter-square"></i></a>&nbsp;&nbsp;
+                    <a href="" class="ui_share_link"><i class="fa fa-weibo"></i></a>
+                    <p>powered by Townmi</p>
+                </h1>
+            </div>
+            <div id="marsk"></div>
+            <nav>
+                <div class="toggle_nav" id="js_toggle_nav">
+                    <div id="bars"></div>
+                </div>
+                <h1 class="ui_title"><%= viewList.title %></h1>
+            </nav>
+            <div class="content">
 
-						<% if(page.page_current<page.page_all){ %>
-						<a class="ui_pages_next fr" href=<%- '"?page='+(page.page_current+1)+'"' %>>下一页</a>
-						<% }%>
-					</div>
+                <section class="ui_content">
 
-				<% } %>
-			<% }%>
-		</div>
-		<div class="ui_sidebox fr">
-			<div class="ui_side js_side">
-				<ul class="ui_categories">
-					<li style="background:none; padding-left:0;">
-						<h3>文章分类</h3>
-					</li>
-					<% categories.forEach(function (e){%>
-					<li><a href=<%- '"/'+ e.title+'"' %>><%= e.title %><span>(<%= e.num %>)</span></a></li>
-					<% })%>
-				</ul>
-			</div>
-			<div class="ui_side js_side">
-				<ul class="ui_categories">
-					<li style="background:none; padding-left:0;">
-						<h3>文章归档</h3>
-					</li>
-					<% date.forEach(function (e){%>
-					<li><a href=<%- '"/'+ e.date+'"' %>><%= e.date %><span>(<%= e.num %>)</span></a></li>
-					<% })%>
-				</ul>
-				
-			</div>
-		</div>
-	</div>
-	
-	<% include foot.ejs %>
+                    <div class="ui_article_list">
+                        
+                        <% viewList.articles.forEach(function (e){ %>
+                        <div class="ui_article">
+                            <div class="ui_article_title">
+                                <h3><a href=<%- '"/arts/'+e.TITLE_HASH+'"' %>><%= e.TITLE %></a></h3>
+                            </div>
 
+                            <div class="ui_article_tags">
+                                <i class="fa fa-tags"></i><a href=<%- '"/category/'+e.CATEGORY+'"' %>><%= e.CATEGORY %></a>
+                                <i class="fa fa-calendar"></i><span>2015-09-10 10:20:20</span>
+
+                                <% if(!viewList.device) { %>
+                                <a href="javascript:;" class="js_weixin"><i class="fa fa-weixin"></i></a>
+                                <a href="javascript:;" class="js_weixin"><i class="fa fa-weibo"></i></a>
+                                <% } %>
+                            </div>
+
+                            <div class="ui_article_body">
+                                <div class="js_markdown"><%= e.BODY %></div>
+                            </div>
+                            <div class="ui_article_foot">
+                                <a href=<%- '"/arts/'+e.TITLE_HASH+'"' %>>阅读全文</a>
+                            </div>
+                        </div>
+                        <% }) %>
+
+                    </div>
+                    
+                </section>
+                
+            </div>
+
+            
+        </div>
+        
+    </div>
+
+    
 </body>
-<script type="text/javascript" src="../js/src/jquery.js"></script>
-<script type="text/javascript" src="../js/src/showdown.js"></script>
-<script type="text/javascript" src="../js/src/extensions/prettify.js"></script>
-<script type="text/javascript" src="../js/src/highlight.js"></script>
+    <!-- Scripts -->
+    <script src=<%- '"'+viewList.basePath+'js/jquery-2.1.4.min.js"' %>></script>
+    <script src=<%- '"'+viewList.basePath+'js/custom.js"' %>></script>
+    <script src=<%- '"'+viewList.basePath+'js/markdown.js"' %>></script>
+    <script src=<%- '"'+viewList.basePath+'js/highlight.js"' %>></script>
+    <script type="text/javascript">
 
-<% if(!simple){ %>
-<script type="text/javascript" src="../js/src/code.js"></script>
-<script type="text/javascript" src="../js/src/jquery.code.js"></script>
-<% } %>
+        $(document).ready(function() {
 
-<script type="text/javascript">
-	// markdown
-	var converter = new Showdown.converter({ extensions: ['prettify'] });
-	// 渲染文章
-	$(".js_body").each(function (e){
+            $(".js_markdown").html( marked($(".js_markdown").html()) ).find("pre code").each(function (i, block){
+                hljs.highlightBlock(block);
+            });
 
-		var html = $(this).prev().html();
+        })
+        
 
-		html = html.replace(/&lt;/g, "<");
-
-		html = html.replace(/&gt;/g, ">");
-
-		$(this).html( converter.makeHtml( html ) );
-
-		$(this).prev().remove();
-
-		$(this).find("p").has("img").css({"text-indent":0,"text-align":"center"});
-
-	});
-	// 对代码染色
-	$("code").each(function (i, block){
-		hljs.highlightBlock(block);
-	});
-
-	// 登出
-	$("#logout").on('click', function(){
-
-		$.ajax({
-			type: "post",
-			url: "/logout",
-			data: {
-			},
-
-			dataType: "json",
-
-			success: function (data){
-
-				if(!data.login){
-
-					window.location.reload();
-
-				}
-
-			},
-			error: function (msg){
-
-				console.log(msg)
-			   	
-			}
-		})
-
-	});
-
-	// 删除
-	$(".js_delete").on("click", function(){
-
-		var key = $(this).attr("key");
-
-		if( window.confirm('你确定要删除<<'+key+'>>吗？') ){
-
-			$.ajax({
-
-				type: "post",
-				url: "/delete",
-				data: {"key" : key},
-				dataType: "json",
-
-				success: function (data){
-					if(data.target){
-
-						window.location.reload();
-
-					}
-				},
-				error: function (msg){
-				   	
-				}
-
-			})
-
-
-		}else{
-			return
-		}
-
-	});
-
-	// 分享
-	$(".js_share").on("mouseover focus", function(){
-		$(this).find("ol").stop().show();
-	});
-	$(".js_share").on("mouseout blur", function(){
-		$(this).find("ol").stop().hide();
-	});
-	$(".js_share li").each(function(i){
-		// 分享配置
-		var basePath = "http://10.106.88.43:3000/";
-		var dir = basePath + $(this).parent().attr("tip");
-		var stitle_index= $(".js_art_title a").html();
-
-		function utf16to8(str) {  
-			var out, i, len, c;  
-			out = "";  
-			len = str.length;  
-			for(i = 0; i < len; i++) {
-				c = str.charCodeAt(i);  
-				if ((c >= 0x0001) && (c <= 0x007F)) {  
-					out += str.charAt(i);  
-				} else if (c > 0x07FF) {  
-					out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));  
-					out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));  
-					out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));  
-				} else {  
-					out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));  
-					out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));  
-				}  
-			}  
-			return out;  
-		}
-
-		if(i===0){
-			// QQ
-			$(this).on("click", function(){
-				hx_qqzone_index(dir, stitle_index, "", "")
-			});
-		}else if(i===1){
-			// weibo
-			$(this).on("click", function(){
-				hx_weibo_index(dir, stitle_index)
-			});
-		}else{
-			// 微信
-			$(this).on("mouseover", function(){
-
-				$("#js_code").show().qrcode({
-					"text" : utf16to8(dir),
-					"background" : "#ffffff",
-					"foreground" : "#ff6600",
-					"width" : 200,
-					"height" : 200
-
-				});
-			});
-			$(this).on("mouseout", function(){
-
-				$("#js_code").hide().html("");
-			});
-
-		}
-	});
-	
-	// var url_index = "http://xinghuo.yixin.com/";
-	//分享到QQ空间
-	function hx_qqzone_index(url_index, stitle_index, pics, summary){
-		window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+url_index+"&title="+stitle_index+"&pics="+pics+"&desc="+stitle_index+"&summary="+summary);
-	}
-	//分享到新浪微薄
-	function hx_weibo_index(url_index,stitle_index){
-		window.open("http://service.weibo.com/share/share.php?appkey=&title="+stitle_index+"&url="+url_index+"&searchPic=true");
-	}
-
-	// 播放音乐
-	$("#js_ctrl_music").on("click", function(){
-		if($(this).attr("onoff") === "0"){
-			$("#js_music")[0].pause();
-			$(this).attr("onoff","12");
-			$(this).html("播放");
-		}else{
-			$("#js_music")[0].play();
-			$(this).attr("onoff","0");
-			$(this).html("暂停");
-		}
-		
-	})
-</script>
-<script type="text/javascript">
-	
-	$(window).load(function(){
-
-		function reH(){
-
-			var TOBOOTOM =  $(window).height() - $("body").height();
-
-		    var w1 = $("#js_article").height();
-
-		    var w2 = $("#js_article").next().height();
-
-		    if(TOBOOTOM>0 && w2>w1){
-
-		    	$("#js_article").css({
-		    		"height" : TOBOOTOM+w2
-		    	});
-
-		    }else if(TOBOOTOM<0 && w2>w1){
-
-		    	$("#js_article").css({
-		    		"height" : w2
-		    	});
-
-		    }else if(TOBOOTOM>0){
-
-		    	$("#js_article").css({
-		    		"height" : TOBOOTOM+w1
-		    	});
-
-		    }
-
-		}
-
-		if($("#ds-thread").length){
-			// $("#ds-reset").load(function(){
-			// 	alert(1);
-				setTimeout(function(){
-					reH();
-				}, 100);
-			// })
-		}else{
-			// alert(1);
-			reH();
-		}
-
-	});
-</script>
+    </script>
 </html>

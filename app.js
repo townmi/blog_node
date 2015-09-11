@@ -7,10 +7,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var routes = require('./routes/index');
-var users = require('./routes/user');
-var edit = require('./routes/edit');
-var resm = require('./routes/resm');
+var logger = require("tracer").colorConsole();
+
+var log = require("./services/log.js");
+
+// var routes = require('./routes/index');
+// var users = require('./routes/user');
+// var edit = require('./routes/edit');
+// var resm = require('./routes/resm');
+
+var index = require("./routes/index");
+var admin = require("./routes/admin");
 
 var mem = require("./routes/mem.js");
 
@@ -21,6 +28,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.disable("x-powered-by");
 
+// logger.log('hello');
+// logger.trace('hello', 'world');
+// logger.debug('hello %s',  'world', 123);
+// logger.info('hello %s %d',  'world', 123, {foo:'bar'});
+// logger.warn('hello %s %d %j', 'world', 123, {foo:'bar'});
+// logger.error('hello %s %d %j', 'world', 123, {foo:'bar'}, [1, 2, 3, 4], Object);
 
 // set port
 app.set('port', process.env.PROT || 3000);
@@ -35,7 +48,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
 
 app.use(cookieParser('keyboard cat'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views/public')));
 
 // session
 app.use(session({ 
@@ -45,27 +58,12 @@ app.use(session({
 }));
 
 // favicon
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/views/public/favicon.ico'));
 
 // 路由分发
-app.get("/", routes);
-app.get("/:id", routes);
-app.get("/:id/:title", routes);
 
-app.get("/edit", edit);
-app.post("/edit", edit);
-app.post("/change", edit);
-app.post("/delete", edit);
-
-app.get("/reg", users);
-app.get("/login", users);
-app.post("/reg", users);
-app.post("/login", users);
-app.post("/logout", users);
-
-app.get("/resm", resm);
-app.post("/resm", resm);
-app.post("/deleteres", resm);
+app.use("/", index);
+app.use("/admin", admin);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -84,6 +82,8 @@ app.use(function (err, req, res, next) {
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-    console.log('Express server listening on port' + app.get('port'));
+    // console.log('Express server listening on port' + app.get('port'));
+    mem();
+    log.fatal('Express server listening on port' + app.get('port')+"<!log>");
 });
 
