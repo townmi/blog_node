@@ -1,3 +1,3 @@
 module.exports = {
-	basePath: "http://10.106.89.64:3000/"
+	basePath: "http://127.0.0.1:3000/"
 }

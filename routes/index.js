@@ -3,7 +3,9 @@ var app = require("express")();
 var log = require("../services/log.js");
 
 var queryArts = require("../services/queryArticles.js");
+
 var type = require("../libs/typeof.js")
+var config = require("../libs/config.js");
 
 // var md5 = require("../libs/md5.js");
 // var Arts = require("../models/arts.js");
@@ -39,7 +41,7 @@ router.get("/", function (req, res, next) {
 
 	var viewList = {};
 
-	viewList.basePath = "http://10.106.89.64:3000/";
+	viewList.basePath = config.basePath;
 
 	viewList.title = "首页";
 
@@ -67,7 +69,7 @@ router.get("/category/:id", function (req, res, next) {
 
 	var viewList = {};
 
-	viewList.basePath = "http://10.106.89.64:3000/";
+	viewList.basePath = config.basePath;
 
 	viewList.title = category;
 
@@ -94,7 +96,7 @@ router.get("/arts/:id", function (req ,res, next) {
 
 	var viewList = {};
 
-	viewList.basePath = "http://10.106.89.64:3000/";
+	viewList.basePath = config.basePath;
 
 	viewList.device = type.device(req.headers["user-agent"]);
 

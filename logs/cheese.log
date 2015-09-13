@@ -367,3 +367,29 @@
 [2015-09-11 17:06:42.843] [INFO] cheese - 成功读取数据库, 查找文章集合, 共查找文章2条信息<!log>
 [2015-09-11 17:06:51.467] [INFO] cheese - 成功读取数据库, 查找category|分类, 共查找分类22条信息<!log>
 [2015-09-11 17:06:51.473] [INFO] cheese - 成功读取数据库, 查找文章集合, 共查找文章10条信息<!log>
+[2015-09-13 14:02:16.772] [WARN] cheese - process: heapTotal 31.79MB heapUsed 20.48MB rss 44.17MB<!log>
+[2015-09-13 14:02:16.774] [FATAL] cheese - Express server listening on port3000<!log>
+[2015-09-13 14:02:57.260] [ERROR] cheese - SequelizeDatabaseError: ER_CANNOT_ADD_FOREIGN: Cannot add foreign key constraint<!log>
+[2015-09-13 14:02:57.266] [ERROR] cheese - SequelizeDatabaseError: ER_NO_SUCH_TABLE: Table 'blog.arts' doesn't exist<!log>
+[2015-09-13 14:04:10.262] [WARN] cheese - process: heapTotal 31.79MB heapUsed 20.57MB rss 44.96MB<!log>
+[2015-09-13 14:04:10.263] [FATAL] cheese - Express server listening on port3000<!log>
+[2015-09-13 14:04:13.343] [ERROR] cheese - SequelizeDatabaseError: ER_CANNOT_ADD_FOREIGN: Cannot add foreign key constraint<!log>
+[2015-09-13 14:04:13.349] [ERROR] cheese - SequelizeDatabaseError: ER_NO_SUCH_TABLE: Table 'blog.arts' doesn't exist<!log>
+[2015-09-13 14:06:47.070] [WARN] cheese - process: heapTotal 31.79MB heapUsed 20.09MB rss 44.52MB<!log>
+[2015-09-13 14:06:47.072] [FATAL] cheese - Express server listening on port3000<!log>
+[2015-09-13 14:06:50.506] [INFO] cheese - 成功读取数据库, 查找category|分类, 共查找分类0条信息<!log>
+[2015-09-13 14:06:50.512] [INFO] cheese - 成功读取数据库, 查找文章集合, 共查找文章0条信息<!log>
+[2015-09-13 14:07:28.613] [WARN] cheese - process: heapTotal 31.79MB heapUsed 20.12MB rss 44.66MB<!log>
+[2015-09-13 14:07:28.615] [FATAL] cheese - Express server listening on port3000<!log>
+[2015-09-13 14:08:13.781] [WARN] cheese - process: heapTotal 31.79MB heapUsed 20.12MB rss 44.88MB<!log>
+[2015-09-13 14:08:13.783] [FATAL] cheese - Express server listening on port3000<!log>
+[2015-09-13 14:11:23.273] [WARN] cheese - process: heapTotal 31.79MB heapUsed 20.15MB rss 44.48MB<!log>
+[2015-09-13 14:11:23.276] [FATAL] cheese - Express server listening on port3000<!log>
+[2015-09-13 14:15:09.196] [INFO] cheese - 成功读取数据库, 查找category|分类, 共查找分类0条信息<!log>
+[2015-09-13 14:15:09.198] [INFO] cheese - 成功读取数据库, 查找资源集合, 共查找资源0条信息<!log>
+[2015-09-13 14:15:41.546] [INFO] cheese - 文件上传成功，正在写入.......<!log>
+[2015-09-13 14:15:41.546] [INFO] cheese - 文件上传成功，写入成功！<!log>
+[2015-09-13 14:15:41.549] [WARN] cheese - 进入service/updateResource，目前是写入操作<!log>
+[2015-09-13 14:15:41.556] [INFO] cheese - 成功写入数据库, 写入资源, undefined条信息<!log>
+[2015-09-13 14:16:57.053] [INFO] cheese - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-09-13 14:16:57.054] [INFO] cheese - 成功读取数据库, 查找资源集合, 共查找资源1条信息<!log>
