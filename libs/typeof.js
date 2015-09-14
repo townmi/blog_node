@@ -24,4 +24,4 @@ module.exports = {
 	device: function (str) {
 		return /mobile/i.test(str);
 	}
-}
+};

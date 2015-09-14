@@ -14,6 +14,13 @@ define(function(require, exports, module){
 
     var tools = require("tools");
 
+    var color= {
+        "ERROR": "#FF5500",
+        "INFO": "#259812",
+        "FATAL": "#8A0BA9",
+        "WARN": "#9FA207"
+    };
+
     $(document).ready(function() {
 
         if(!$("#js_dialog").length){
@@ -21,7 +28,7 @@ define(function(require, exports, module){
                 "id": "js_dialog",
                 "class": "modal fade ui_modal_long",
                 "tabindex": "-1",
-            }).html('<div class="modal-dialog js_content"></div>'))
+            }).html('<div class="modal-dialog js_content"></div>'));
         }
 
         var draw = $('#js_dataTables').DataTable({
@@ -43,9 +50,21 @@ define(function(require, exports, module){
                 }
             },
             "columns": [
-                {"data": "type", "sTitle": "日志类型"},
-                {"data": "time", "sTitle": "日志时间"},
-                {"data": "info", "sTitle": "日志信息"}
+                {"data": "type", "sTitle": "日志类型",
+                    mRender: function (data, type, rowdata){
+                        return  '<span style="color:'+color[rowdata.type]+'">'+data+'<span>';
+                    }
+                },
+                {"data": "time", "sTitle": "日志时间",
+                    mRender: function (data, type, rowdata){
+                        return  '<span style="color:'+color[rowdata.type]+'">'+data+'<span>';
+                    }
+                },
+                {"data": "info", "sTitle": "日志信息",
+                    mRender: function (data, type, rowdata){
+                        return  '<span style="color:'+color[rowdata.type]+'">'+data+'<span>';
+                    }
+                }
             ],
             /**
              * [initComplete 表格初始化完成回掉]

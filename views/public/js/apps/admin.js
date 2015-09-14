@@ -12,6 +12,8 @@ define(function(require, exports, module){
     var datatables_ext = require("datatables_ext")($, datatables);
     var bootstrap = require("bootstrap")($);
 
+    var tools = require("tools");
+
     $(document).ready(function() {
 
         if(!$("#js_dialog").length){
@@ -20,7 +22,7 @@ define(function(require, exports, module){
                 "class": "modal fade",
                 "style": "top:10%;",
                 "tabindex": "-1",
-            }).html('<div class="modal-dialog js_content" style="transform:none;"></div>'))
+            }).html('<div class="modal-dialog js_content" style="transform:none;"></div>'));
         }
 
         if(!$("#js_dialog_confirm").length){
@@ -29,7 +31,7 @@ define(function(require, exports, module){
                 "class": "modal fade",
                 "style": "top:20%;",
                 "tabindex": "-1",
-            }).html('<div class="modal-dialog js_content" style="transform:none;"></div>'))
+            }).html('<div class="modal-dialog js_content" style="transform:none;"></div>'));
         }
 
         var defaultVal = $("#js_edit").html();
@@ -63,7 +65,7 @@ define(function(require, exports, module){
             "columns": [
 	            {"data": "TITLE", "sTitle": "文章标题",
                     mRender: function (data, type, rowdata){
-                        return '<a href="/arts/'+rowdata.TITLE_HASH+'" class="ui_ellipsis" style="width:130px;text-decoration:none;" data-toggle="tooltip" data-placement="top" title="'+data+'" target="_blank">'+data+'</a>'
+                        return '<a href="/arts/'+rowdata.TITLE_HASH+'" class="ui_ellipsis" style="width:130px;text-decoration:none;" data-toggle="tooltip" data-placement="top" title="'+data+'" target="_blank">'+data+'</a>';
                         
                     }
                 },
@@ -158,7 +160,7 @@ define(function(require, exports, module){
              * @return {[type]} [description]
              */
             drawCallback: function(){
-                $('[data-toggle="tooltip"]').tooltip({viewport: {selector: 'body', padding: 0, width: "auto"}})
+                $('[data-toggle="tooltip"]').tooltip({viewport: {selector: 'body', padding: 0, width: "auto"}});
             },
             // "order": data[dType]["order"],
             "ordering": false
@@ -195,12 +197,12 @@ define(function(require, exports, module){
                             '</div>',
                         '</div>',
                     '</section>'].join("");
-        }
+        };
 
         $("#js_add_new_article_see").on("click", function(){
             $("#js_dialog .js_content").html(previewTemplet($("#js_artitle_title").val(), marked(editor.getValue()))).find("pre code").each(function (i, block){
                 hljs.highlightBlock(block);
-            });;
+            });
 
             $("#js_dialog").modal("show");
         });
@@ -226,10 +228,10 @@ define(function(require, exports, module){
                 },
                 error: function (msg){
                 }
-            })
+            });
 
         });
 
     });
 
-})
+});
