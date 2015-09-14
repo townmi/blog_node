@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
 var settings = require("./settings.js");
-var Category = require("./category.js")
+// var Category = require("./category.js")
 
 var sequelize = new Sequelize(settings.db, settings.user, settings.password, {host : settings.host, port : settings.port, dialect : 'mysql'});
 
@@ -88,8 +88,8 @@ var Arts = sequelize.define('Arts', {
 });
 
 
-Arts.belongsTo(Category, {as: 'Category', foreignKey: 'CATEGORY'});
-Category.hasMany(Arts, {as: 'Arts', foreignKey: 'CATEGORY'});
+// Arts.belongsTo(Category, {as: 'Category', foreignKey: 'CATEGORY'});
+// Category.hasMany(Arts, {as: 'Arts', foreignKey: 'CATEGORY'});
 
 // 多表联查
 // Arts.findAll({limit : 10, order : 'ID asc', include: [{model: Category, as: "Category", attributes: ["NAME"]}]});

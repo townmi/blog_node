@@ -10,6 +10,7 @@ var queryResource = require("../services/queryResource.js");
 var updateResource = require("../services/updateResource.js");
 
 var md5 = require("../libs/md5.js");
+var config = require("../libs/config.js");
 var fs = require("fs");
 var path = require("path");
 
@@ -18,7 +19,7 @@ module.exports = router;
 
 router.get("/", function (req, res) {
 	var viewList = {};
-	viewList.basePath = "http://10.106.89.64:3000/";
+	viewList.basePath = config.basePath;
 	res.render("admin", {viewList: viewList});
 });
 
@@ -115,7 +116,7 @@ router.get("/resource", function (req, res, next) {
 
 	var viewList = {};
 
-	viewList.basePath = "http://10.106.89.64:3000/";
+	viewList.basePath = config.basePath;
 
 	res.render("admin_resource", {viewList: viewList});
 
@@ -167,7 +168,7 @@ router.post("/resource/add", function (req, res, next) {
 
     	var newPath = form.uploadDir + md5(config.name) + fileType;
 
-    	config.url = "http://10.106.89.64:3000/upload/" + md5(config.name) + fileType;
+    	config.url = config.basePath + "upload/" + md5(config.name) + fileType;
 
     	try {
     		log.info("文件上传成功，正在写入......."+"<!log>");
@@ -209,7 +210,7 @@ router.get("/log", function (req, res, next) {
 
 	var viewList = {};
 
-	viewList.basePath = "http://10.106.89.64:3000/";
+	viewList.basePath = config.basePath;
 
 	res.render("admin_log", {viewList: viewList});
 
