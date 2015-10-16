@@ -39,6 +39,12 @@ module.exports = router;
 // get index "/"
 router.get("/", function (req, res, next) {
 
+	console.log("\n\n\n\n\n\n\n\n");
+
+	// log.info(req.headers["user-agent"]);
+
+	console.log("\n\n\n\n\n\n\n\n");
+
 	var viewList = {};
 
 	viewList.basePath = config.basePath;

@@ -7,10 +7,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Styles -->
     <!-- <link href="css/bootstrap.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href=<%- '"'+viewList.basePath+'css/reset.css"' %>>
     <link rel="stylesheet" href=<%- '"'+viewList.basePath+'css/font-awesome.min.css"' %>>
-    <link rel="stylesheet" media="screen and (min-width: 768px)" href=<%- '"'+viewList.basePath+'css/style.css"' %>>
-    <link rel="stylesheet" media="screen and (max-width: 768px)" href=<%- '"'+viewList.basePath+'css/small.css"' %>/>
+    <link rel="stylesheet" type="text/css" href="http://10.106.89.64/GIT/blog_html/css/common.css">
 
 </head>
 <body>
@@ -28,10 +26,10 @@
                 </div>
 
                 <h1 class="ui_share">
-                    <img src="http://fd.topit.me/d/d6/73/11049699480a673d6dl.jpg" alt="" width="200px">
-                    <a href="" class="ui_share_link"><i class="fa fa-github-square"></i></a>&nbsp;&nbsp;
-                    <a href="" class="ui_share_link"><i class="fa fa-facebook-square"></i></a>&nbsp;&nbsp;
-                    <a href="" class="ui_share_link"><i class="fa fa-twitter-square"></i></a>&nbsp;&nbsp;
+                    <img src="http://fd.topit.me/d/d6/73/11049699480a673d6dl.jpg" alt="" width="170px">
+                    <a href="" class="ui_share_link"><i class="fa fa-github-square"></i></a>
+                    <a href="" class="ui_share_link"><i class="fa fa-facebook-square"></i></a>
+                    <a href="" class="ui_share_link"><i class="fa fa-twitter-square"></i></a>
                     <a href="" class="ui_share_link"><i class="fa fa-weibo"></i></a>
                     <p>powered by Townmi</p>
                 </h1>
@@ -41,7 +39,8 @@
                 <div class="toggle_nav" id="js_toggle_nav">
                     <div id="bars"></div>
                 </div>
-                <h1 class="ui_title"><%= viewList.title %></h1>
+                <h2 class="ui_title">BOOT</h2>
+                <!-- <h1 class="ui_title"><%= viewList.title %></h1> -->
             </nav>
             <div class="content">
 
@@ -54,7 +53,6 @@
                             <div class="ui_article_title">
                                 <h3><a href=<%- '"/arts/'+e.TITLE_HASH+'"' %>><%= e.TITLE %></a></h3>
                             </div>
-
                             <div class="ui_article_tags">
                                 <i class="fa fa-tags"></i><a href=<%- '"/category/'+e.CATEGORY+'"' %>><%= e.CATEGORY %></a>
                                 <i class="fa fa-calendar"></i><span>2015-09-10 10:20:20</span>

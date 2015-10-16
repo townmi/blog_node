@@ -338,7 +338,12 @@ nav .ui_title{
 .content{
     height: inherit;
     overflow-y: auto;
-    padding-top: 88px;
+    padding:  88px 0;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box
 }
 /**
  * ui_article_list

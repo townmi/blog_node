@@ -41,7 +41,9 @@ module.exports = function(iostream, callback) {
 		    callbackJson.msg = "文件写入失败，服务器程序报错！"
 		}
 
-		if(!callbackJson.success) return callback().apply(this, [callbackJson]);
+		if(!callbackJson.success) {
+			return callback().apply(this, [callbackJson]);
+		} 
 
 		var result = updateResource(config);
 

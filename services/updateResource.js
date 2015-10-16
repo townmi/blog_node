@@ -24,7 +24,7 @@ module.exports = function(settings){
 			function (err) {
 
 				log.error(err+"<!log>");
-				Resource.writeData = {success: false, code: 1, msg: "fail insert sql", data: data};
+				Resource.writeData = {success: false, code: 1, msg: "fail insert sql", data: {}};
 				return Resource;
 
 			}
@@ -33,5 +33,5 @@ module.exports = function(settings){
 
 	});
 
-}
+};
 	

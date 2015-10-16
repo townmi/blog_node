@@ -268,10 +268,10 @@ nav .ui_title{
     top: 50%;
     margin-top: -2px;
     -webkit-animation-timing-function: ease-in-out;
-    -o-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;
     -webkit-animation-duration: 300ms;
-    -o-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
     animation-duration: 300ms;
 }
 #bars:before, #bars:after {
@@ -283,10 +283,10 @@ nav .ui_title{
     left: 0;
     content: '';
     -webkit-animation-timing-function: ease-in-out;
-    -o-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;
     -webkit-animation-duration: 300ms;
-    -o-animation-duration: 300ms;
+    -moz-animation-duration: 300ms;
     animation-duration: 300ms;
 }
 
@@ -299,45 +299,45 @@ nav .ui_title{
 }
 #bars.to_arrow {
     -webkit-animation-name: bars;
-    -o-animation-name: bars;
+    -moz-animation-name: bars;
     animation-name: bars;
     -webkit-animation-fill-mode: forwards;
-    -o-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }
 
 #bars.to_arrow:before {
     -webkit-animation-name: bars_before;
-    -o-animation-name: bars_before;
+    -moz-animation-name: bars_before;
     animation-name: bars_before;
     -webkit-animation-fill-mode: forwards;
-    -o-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }
 
 #bars.to_arrow:after {
     -webkit-animation-name: bars_after;
-    -o-animation-name: bars_after;
+    -moz-animation-name: bars_after;
     animation-name: bars_after;
     -webkit-animation-fill-mode: forwards;
-    -o-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }
 
 #bars.from_arrow {
     -webkit-animation-name: bars_from;
-    -o-animation-name: bars_from;
+    -moz-animation-name: bars_from;
     animation-name: bars_from;
 }
 #bars.from_arrow:before {
     -webkit-animation-name: bars_before_from;
-    -o-animation-name: bars_before_from;
+    -moz-animation-name: bars_before_from;
     animation-name: bars_before_from;
 }
 
 #bars.from_arrow:after {
     -webkit-animation-name: bars_after_fromm;
-    -o-animation-name: bars_after_fromm;
+    -moz-animation-name: bars_after_fromm;
     animation-name: bars_after_fromm;
 }
 
@@ -383,8 +383,13 @@ nav .ui_title{
  */
 .content{
     height: inherit;
-    overflow-y: auto;
-    padding-top: 77px;
+    overflow: scroll;
+    padding: 77px 0 44px 0;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box
 }
 /**
  * ui_article_list
@@ -416,7 +421,7 @@ nav .ui_title{
     margin: 8px 0;
     font-weight: 400;
     line-height: 1.2;
-    font-size: 24px;
+    font-size: 18px;
 }
 .ui_article_title h3 a{
     text-decoration: none;

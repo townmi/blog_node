@@ -52,7 +52,7 @@ module.exports = function(settings){
 				function (err) {
 
 					log.error(err+"<!log>");
-					Arts.writeData = {success: false, code: 1, msg: "fail update sql", data: data};
+					Arts.writeData = {success: false, code: 1, msg: "fail update sql", data: {}};
 					return Arts;
 
 				}
@@ -62,5 +62,5 @@ module.exports = function(settings){
 		});
 	}
 
-}
+};
 	
