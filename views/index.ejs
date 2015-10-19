@@ -17,6 +17,17 @@
         <div id="canvas">
             <div id="nav">
                 <div class="ui_nav_block">
+                    <h2>文章归档</h2>
+                    <ul class="ui_nav_category">
+                        <% viewList.category.forEach(function (e) { %>
+                        <li><a href=<%- '"/category/'+e+'"' %> class="ui_link"><%= e %></a></li>
+                        <% }) %>
+                    </ul>
+                </div>
+                <div class="ui_nav_block">
+                    
+                </div>
+                <div class="ui_nav_block">
                     <h2>文章分类</h2>
                     <ul class="ui_nav_category">
                         <% viewList.category.forEach(function (e) { %>
@@ -26,7 +37,7 @@
                 </div>
 
                 <h1 class="ui_share">
-                    <img src="http://fd.topit.me/d/d6/73/11049699480a673d6dl.jpg" alt="" width="170px">
+                    <img src="http://fd.topit.me/d/d6/73/11049699480a673d6dl.jpg" alt="" width="170px"><br>
                     <a href="" class="ui_share_link"><i class="fa fa-github-square"></i></a>
                     <a href="" class="ui_share_link"><i class="fa fa-facebook-square"></i></a>
                     <a href="" class="ui_share_link"><i class="fa fa-twitter-square"></i></a>
@@ -39,7 +50,13 @@
                 <div class="toggle_nav" id="js_toggle_nav">
                     <div id="bars"></div>
                 </div>
-                <h2 class="ui_title">BOOT</h2>
+                <h1 class="ui_title">
+                    <a href="/" class="ui_index_target"><span>Towne/Townmi</span></a>
+                    <div class="search_group">
+                        <a href="javascript:;" class="ui_search_btn" id="js_search"><i class="fa fa-search"></i></a>&nbsp;
+                        <input type="text" id="js_search_key_word" class="ui_search_input" placeholder="Please enter key word...">
+                    </div>
+                </h1>
                 <!-- <h1 class="ui_title"><%= viewList.title %></h1> -->
             </nav>
             <div class="content">

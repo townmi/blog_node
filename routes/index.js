@@ -123,3 +123,9 @@ router.get("/arts/:id", function (req ,res, next) {
 
 
 });
+
+
+router.post("/search", function (req, res, next) {
+	var data = req.body;
+	console.log(data);
+})
