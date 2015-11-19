@@ -4,7 +4,7 @@ var log = require("../services/log.js");
 
 var queryArts = require("../services/queryArticles.js");
 
-var type = require("../libs/typeof.js")
+var type = require("../libs/typeof.js");
 var config = require("../libs/config.js");
 
 // var md5 = require("../libs/md5.js");
