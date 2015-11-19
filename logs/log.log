@@ -17,3 +17,9 @@
 [2015-11-19 17:29:28.565] [FATAL] log - Express server listening on port3000<!log>
 [2015-11-19 17:30:04.921] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
 [2015-11-19 17:30:04.923] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-19 17:47:59.868] [WARN] log - process: heapTotal 33.41MB heapUsed 18.97MB rss 46.17MB<!log>
+[2015-11-19 17:47:59.873] [FATAL] log - Express server listening on port3000<!log>
+[2015-11-19 17:48:03.140] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-19 17:48:03.147] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-19 17:48:17.836] [WARN] log - process: heapTotal 45.16MB heapUsed 34.55MB rss 75.58MB<!log>
+[2015-11-19 17:48:17.837] [FATAL] log - Express server listening on port3000<!log>

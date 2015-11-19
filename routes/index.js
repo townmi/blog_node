@@ -41,7 +41,7 @@ router.get("/", function (req, res, next) {
 	
 });
 
-router.get("/category/:id", function (req, res, next) {
+router.get("/category/:id", function (req, res) {
 
 	var category = req.params.id;
 
