@@ -1,16 +1,25 @@
+var formidable = require('formidable');
+
 var md5 = require("../libs/md5.js");
 var type = require("../libs/typeof.js");
 var basePath = require("../libs/config.js").basePath;
 
-var updateResource = require("./updateResource.js");
+// var updateResource = require("./updateResource.js");
+var Resource = require("../models/resource.js");
 
 var log = require("./log.js");
 
 var config = {}, callbackJson = {success: true, code: 0, msg: ""};
 
+
+
+
+var sql_resource = {};
+
 var form = new formidable.IncomingForm();
 
 form.uploadDir = "./views/public/upload/";
+
 
 module.exports = function(iostream, callback) {
 
@@ -18,15 +27,15 @@ module.exports = function(iostream, callback) {
 
 		var oldPath = files.resource.path;
 
-		config.category = files.resource.type;
+		sql_resource.category = files.resource.type;
 
-		config.name = files.resource.name.split(".");
-		var fileType = "."+config.name.pop();
-		config.name = config.name.join("");
+		sql_resource.name = files.resource.name.split(".");
+		var fileType = "."+sql_resource.name.pop();
+		sql_resource.name = sql_resource.name.join("");
 
-		var newPath = form.uploadDir + md5(config.name) + fileType;
+		var newPath = form.uploadDir + md5(sql_resource.name) + fileType;
 
-		config.url = basePath + "upload/" + md5(config.name) + fileType;
+		sql_resource.url = basePath + "upload/" + md5(sql_resource.name) + fileType;
 
 		try {
 			log.info("文件上传成功，正在写入......."+"<!log>");
@@ -47,7 +56,7 @@ module.exports = function(iostream, callback) {
 
 		var result = updateResource(config);
 
-		result.then(function(){
+		return result.then(function(){
 
 			var servicesResult = result._rejectionHandler0._settledValue.writeData;
 
@@ -62,7 +71,5 @@ module.exports = function(iostream, callback) {
 		});
 
 	});
-
-
 }
 

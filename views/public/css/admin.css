@@ -21,3 +21,8 @@
 #page-wrapper{
 	min-height: 90vh;
 }
+
+.tooltip-inner {
+	max-width: none;
+	width: auto;
+}

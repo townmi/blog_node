@@ -12,38 +12,10 @@ var config = require("../libs/config.js");
 
 module.exports = router;
 
-
-// var title = "简洁、直观、强悍的前端开发框架，让web开发更迅速、简单";
-// var category = "mysql";
-// var titleHash = md5(title);
-
-
-// logger.info(titleHash);
-
-
-// Arts.sync({}).then(function () {
-// 	return Arts.build({TITLE: title, TITLE_HASH: titleHash, CATEGORY: category}).save()
-// }).then(
-// 	function (data) {
-// 		logger.info("成功读取数据库；共查找"+data.length+"条！");
-// 	},
-// 	function (err) {
-// 		logger.warn(err)
-// 	},
-// 	function (chunk) {
-// 		logger.info("body:"+chunk)
-// 	}
-// );
-
-
 // get index "/"
 router.get("/", function (req, res, next) {
 
-	console.log("\n\n\n\n\n\n\n\n");
-
 	// log.info(req.headers["user-agent"]);
-
-	console.log("\n\n\n\n\n\n\n\n");
 
 	var viewList = {};
 

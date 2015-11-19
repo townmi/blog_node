@@ -33,8 +33,6 @@ define(function(require, exports, module){
             }).html('<div class="modal-dialog js_content" style="transform:none;"></div>'))
         }
 
-
-
         var draw = $('#js_dataTables').DataTable({
             "searching": false,
             "processing": true,
@@ -54,13 +52,17 @@ define(function(require, exports, module){
                 }
             },
             "columns": [
-                {"data": "NAME", "sTitle": "资源名称",
-                    mRender: function (data, type, rowdata){
-                        return '<a href="'+rowdata.URL+'" class="ui_ellipsis" style="max-width:130px;text-decoration:none;" data-toggle="tooltip" data-placement="top" title="'+data+'" target="_blank">'+data+'</a>'
+                {"data": "NAME", "sTitle": "资源名称", "sWidth": "80px",
+                    mRender: function (data, type, rowdata) {
+                        return '<div class="ui_center"><a href="'+rowdata.URL+'" class="ui_ellipsis" style="width:80px;text-decoration:none;" data-toggle="tooltip" data-placement="top" title="'+data+'" target="_blank">'+data+'</a></div>'
                         
                     }
                 },
-                {"data": "URL", "sTitle": "资源地址"},
+                {"data": "URL", "sTitle": "资源地址", "sWidth": "200px",
+                    mRender: function (data, type, rowdata) {
+                        return '<span class="ui_ellipsis" style="width:200px;" data-toggle="tooltip" data-placement="top" title="'+data+'">'+data+'</span>'
+                    }
+                },
                 {"data": "CATEGORY", "sTitle": "资源分类"},
                 {"data": "CREATEDAT", "sTitle": "创建时间",
                     mRender: function (data, type, rowdata) {
@@ -83,6 +85,7 @@ define(function(require, exports, module){
              * @return {[type]} [description]
              */
             initComplete: function(){
+
                 $("#js_dataTables").off("click");
 
                 /**
@@ -91,51 +94,18 @@ define(function(require, exports, module){
                  * @return {[type]}      [description]
                  */
                 $("#js_dataTables").on("click", ".js_article_delete", function(){
+
+                    var id = $(this).attr("key_id");
+
                     var showHtml = ['<div class="modal-content"><div class="modal-header">',
                         '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>',
                         '<h4 class="modal-title fn-ms">确认是否删除该文章</h4></div>',
-                        '<div class="modal-footer" style="text-align: center; border: none;"><button type="button" class="btn btn-success fn-ms" id="js_trade_status_update_sure">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+                        '<div class="modal-footer" style="text-align: center; border: none;"><button type="button" class="btn btn-success fn-ms" key_id="'+id+'" id="js_delete">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
                         '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary fn-ms" data-dismiss="modal">取消</button></div></div>'].join("");
 
                     $("#js_dialog_confirm .js_content").css({"width": 300}).html(showHtml);
 
                     $("#js_dialog_confirm").modal("show");
-
-                });
-
-                /**
-                 * [修改文章]
-                 * @param  {[String]} id [该文章在数据库的主键]
-                 * @return {[type]}      [description]
-                 */
-                $("#js_dataTables").on("click", ".js_article_update", function(){
-
-                    $.ajax({
-                        type: "post",
-                        url: "/admin/arts/toUpdate",
-                        data: {
-                            ID: $(this).attr("key_id")
-                        },
-                        dataType: "json",
-                        success: function (data){
-                            console.log(data);
-                            if(data.success){
-                                $(".js_add_hide").stop().hide();
-                                $(".js_add_show").stop().show();
-
-                                $("#js_artitle_id").val(data.data[0].ID);
-                                $("#js_artitle_title").val(data.data[0].TITLE);
-                                $("#js_artitle_category").val(data.data[0].CATEGORY);
-
-                                ace.require("ace/ext/chromevox");
-                                editor.setTheme("ace/theme/monokai");
-                                editor.setValue(data.data[0].BODY);
-                                editor.setHighlightActiveLine(true);
-                            }
-                        },
-                        error: function (msg){
-                        }
-                    })
 
                 });
 
@@ -151,7 +121,11 @@ define(function(require, exports, module){
             "ordering": false
         });
 
-
+        /**
+         * [添加新资源]
+         * @param  {Array}    [description]
+         * @return {[type]}     [description]
+         */
         $("#js_add_new_resource").on("click", function(){
             
             var showHtml = ['<div class="modal-content"><div class="modal-header">',
@@ -173,7 +147,12 @@ define(function(require, exports, module){
             $("#js_dialog").css({"top": "20%"}).modal({backdrop: 'static', keyboard: false});
 
         });
-
+        
+        /**
+         * [添加新资源/保存]
+         * @param  {Array}    [description]
+         * @return {[type]}     [description]
+         */
         $("#js_dialog").on("click", "#js_resource_add_sure", function(){
 
 
@@ -197,7 +176,32 @@ define(function(require, exports, module){
 
         });
 
+        /**
+         * [确认删除资源]
+         * @param  {Array}    [description]
+         * @return {[type]}     [description]
+         */
+        $("#js_dialog_confirm").on("click", "#js_delete", function () {
+
+            $.ajax({
+                type: "post",
+                url: "/admin/resource/delete",
+                data: {
+                    ID: $(this).attr("key_id")
+                },
+                dataType: "json",
+                success: function (data){
+                    console.log(data);
+                    if(data.success){
+                        
+                    }
+                },
+                error: function (msg){
+                }
+            });
+
+        });
+
     });
     
-
 });

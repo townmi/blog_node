@@ -9,6 +9,8 @@ var updateArts = require("../services/updateArticles.js");
 var queryResource = require("../services/queryResource.js");
 var updateResource = require("../services/updateResource.js");
 
+var addResource = require("../services/addResource.js");
+
 var md5 = require("../libs/md5.js");
 var config = require("../libs/config.js");
 var fs = require("fs");
@@ -16,15 +18,82 @@ var path = require("path");
 
 module.exports = router;
 
+/**
+ * [auth session]
+ * @param  {[Object]} req [description]
+ * @return {[Boolen]}     [description]
+ */
+var auth = function (req) {
+	
+	if(!req || !req.session || !req.session.auth || req.session.auth != md5(req.headers['user-agent'])){
+		return true
+	} else {
+		return false;
+	}
 
-router.get("/", function (req, res) {
+}
+
+/**
+ * [登陆]
+ * @param  {[type]} req   [description]
+ * @param  {[type]} res   [description]
+ * @return {[type]}       [description]
+ */
+router.get("/login", function (req, res, next) {
+
 	var viewList = {};
 	viewList.basePath = config.basePath;
-	res.render("admin", {viewList: viewList});
+
+	res.render("login", {viewList: viewList});
+
 });
 
+/**
+ * [登陆]
+ * @param  {[type]} req   [description]
+ * @param  {[type]} res   [description]
+ * @return {[type]}       [description]
+ */
+router.post("/login", function (req, res, next) {
+
+	var send = {success: false, code: 0, msg: null};
+	var username = req.body.username, password = req.body.password;
+
+	if (!username || !password) {
+		send.code = 1;
+		send.msg = "用户名或者密码不能为空！";
+	} else if (username === "admin"&&password === "admin") {
+		send.success = true;
+		req.session.auth = md5(req.headers['user-agent']);
+	} else {
+		send.code = 2;
+		send.msg = "用户名或者密码错误！ ";
+	}
+
+	res.send(send);
+
+});
+
+/**
+ * [description]
+ * @param  {[type]} req  [description]
+ * @param  {Object} res  [description]
+ * @return {[type]}      [description]
+ */
+router.get("/", function (req, res) {
+
+	if(auth(req)) res.redirect("admin/login");
+
+	var viewList = {};
+	viewList.basePath = config.basePath;
+
+	res.render("admin", {viewList: viewList});
+
+});
 
 router.post("/", function (req, res) {
+
+	if(auth(req)) res.redirect("admin/login");
 	
 	var page = req.body.start*1;
 	var limit = req.body.length*1;
@@ -53,6 +122,8 @@ router.post("/", function (req, res) {
 
 router.post("/arts/toUpdate", function (req, res, next) {
 
+	if(auth(req)) res.redirect("login");
+
 	var send = {success: true, code: 0, msg: ""};
 
 	var ID = req.body.ID;
@@ -74,6 +145,8 @@ router.post("/arts/toUpdate", function (req, res, next) {
 });
 
 router.post("/arts/edit", function (req, res, next) {
+
+	if(auth(req)) res.redirect("login");
 
 	var send = {success: true, code: 0, msg: ""};
 	
@@ -106,13 +179,11 @@ router.post("/arts/edit", function (req, res, next) {
 
 router.post("/arts/delete", function (req, res, next) {
 
-	
-
 });
 
-
-
 router.get("/resource", function (req, res, next) {
+
+	if(auth(req)) res.redirect("login");
 
 	var viewList = {};
 
@@ -150,25 +221,25 @@ router.post("/resource/add", function (req, res, next) {
 
 	var send = {success: true, code: 0, msg: ""};
 
-	var config = {};
+	var sql_resource = {};
 
 	var form = new formidable.IncomingForm();
 
 	form.uploadDir = "./views/public/upload/";
 
-    form.parse(req, function (err, fields, files){
+	form.parse(req, function (err, fields, files){
 
     	var oldPath = files.resource.path;
 
-    	config.category = files.resource.type;
+    	sql_resource.category = files.resource.type;
 
-    	config.name = files.resource.name.split(".");
-    	var fileType = "."+config.name.pop();
-    	config.name = config.name.join("");
+    	sql_resource.name = files.resource.name.split(".");
+    	var fileType = "."+sql_resource.name.pop();
+    	sql_resource.name = sql_resource.name.join("");
 
-    	var newPath = form.uploadDir + md5(config.name) + fileType;
+    	var newPath = form.uploadDir + md5(sql_resource.name) + fileType;
 
-    	config.url = config.basePath + "upload/" + md5(config.name) + fileType;
+    	sql_resource.url = config.basePath + "upload/" + md5(sql_resource.name) + fileType;
 
     	try {
     		log.info("文件上传成功，正在写入......."+"<!log>");
@@ -185,7 +256,7 @@ router.post("/resource/add", function (req, res, next) {
 
 		if(!send.success) return res.send(send);
 
-		var result = updateResource(config);
+		var result = updateResource(sql_resource);
 
 		result.then(function(){
 
@@ -202,7 +273,21 @@ router.post("/resource/add", function (req, res, next) {
 			res.send(send);
 		})
 
-    });
+	});
+	
+	addResource(req);
+
+});
+
+router.post("/resource/delete", function (req, res, next) {
+
+	var send = {success: true, code: 0, msg: ""};
+
+	console.log(req.body);
+
+
+
+	res.send(send);
 
 });
 

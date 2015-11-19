@@ -73,12 +73,12 @@ define(function(require, exports, module){
                 {"data": "CATEGORY", "sTitle": "文章分类"},
                 {"data": "CREATEDAT", "sTitle": "创建时间",
                     mRender: function (data, type, rowdata) {
-                        return new Date(data);
+                        return tools.toJSDate(data);
                     }
                 },
                 {"data": "UPDATEAT", "sTitle": "修改时间",
                     mRender: function (data, type, rowdata) {
-                        return new Date(data);
+                        return tools.toJSDate(data);
                     }
                 },
                 {"data": "ID", "sTitle": "操作",

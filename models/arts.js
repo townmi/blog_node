@@ -1,47 +1,8 @@
 var Sequelize = require("sequelize");
 var settings = require("./settings.js");
-// var Category = require("./category.js")
 
 var sequelize = new Sequelize(settings.db, settings.user, settings.password, {host : settings.host, port : settings.port, dialect : 'mysql'});
 
-
-// module.exports = sequelize.define('User', {
-// 	name: {
-// 		type: Sequelize.STRING(100),
-// 		allowNull: false,
-// 		comment: 'user name',
-// 	},
-// 	ip: {
-// 		type: Sequelize.STRING(64),
-// 		allowNull: false,
-// 		comment: 'user last request ip',
-// 	},
-// 	isNpmUser: {
-// 		field: 'npm_user',
-// 		type: Sequelize.BOOLEAN,
-// 		allowNull: false,
-// 		defaultValue: false,
-// 		comment: 'user sync from npm or not, 1: true, other: false',
-// 	}
-// 	}, {
-// 	tableName: 'user',
-// 	comment: 'user base info',
-// 	indexes: [
-// 		{
-// 		unique: true,
-// 		fields: ['name']
-// 		},
-// 		{
-// 		fields: ['gmt_modified']
-// 		}
-// 	],
-// 	createdAt: 'gmt_create',
-// 	updatedAt: 'gmt_modified',
-// 	charset: 'utf8',
-// 	collate: 'utf8_general_ci',
-// });
-// 
-// 
 var Arts = sequelize.define('Arts', {
 	ID: {
 		type: Sequelize.INTEGER(100),
