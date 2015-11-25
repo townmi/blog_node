@@ -1,0 +1,291 @@
+/**
+ * @author [townmi]
+ */
+
+html, body, ul, h1, h2, h3, h4, h5, h6, ol, p {
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6,strong,i,em{
+    font-weight: normal;
+    font-style: normal;
+}
+li{
+    padding: 0;
+    margin: 0;
+    list-style:none;
+}
+em{
+    font-style: normal;
+}
+body{
+    font-family: "arial";
+}
+input,button,select,textarea{
+    outline: none;
+    padding: 0;
+    border: none;
+}
+textarea{
+    resize: none
+}
+a{
+    text-decoration: none;
+}
+
+.clear:after{content: ''; display: block; clear: both;}
+.clear{zoom: 1;}
+
+@mixin border-radius ($px...) {
+    -moz-border-radius: $px;        /* Gecko browsers */
+    -webkit-border-radius: $px;     /* Webkit browsers */
+    -ms-border-radius: $px;         /* IE 9 */
+    -o-border-radius: $px;          /* Opera */
+    border-radius: $px;
+}
+
+@mixin transform ($content) {
+    -moz-transform: $content;        /* Gecko browsers */
+    -webkit-transform: $content;     /* Webkit browsers */
+    -ms-transform: $content;         /* IE 9 */
+    -o-transform: $content;          /* Opera */
+    transform: $content;
+}
+
+@mixin transform-origin ($content...) {
+    -moz-transform-origin: $content;        /* Gecko browsers */
+    -webkit-transform-origin: $content;     /* Webkit browsers */
+    -ms-transform-origin: $content;         /* IE 9 */
+    -o-transform-origin: $content;          /* Opera */
+    transform-origin: $content;
+}
+@mixin box-sizing ($type) {
+    -moz-box-sizing: $type;         /* Gecko browsers */
+    -webkit-box-sizing: $type;      /* Webkit browsers */
+    -ms-box-sizing: $type;          /* IE 9 */
+    -o-box-sizing: $type;           /* Opera */
+    box-sizing: $type;
+}
+
+@mixin box-shadow ($shadows...) {
+    -moz-box-shadow: $shadows;         /* Gecko browsers */
+    -webkit-box-shadow: $shadows;      /* Webkit browsers */
+    -ms-box-shadow: $shadows;          /* IE 9 */
+    -o-box-shadow: $shadows;           /* Opera */
+    box-shadow: $shadows;
+}
+
+
+@mixin transition ($transition...) {
+    -moz-transition: $transition;         /* Gecko browsers */
+    -webkit-transition: $transition;      /* Webkit browsers */
+    -ms-transition: $transition;          /* IE 9 */
+    -o-transition: $transition;           /* Opera */
+    transition: $transition;
+}
+
+@mixin animation-duration ($duration) {
+    -moz-animation-duration: $duration;         /* Gecko browsers */
+    -webkit-animation-duration: $duration;      /* Webkit browsers */
+    -ms-animation-duration: $duration;          /* IE 9 */
+    -o-animation-duration: $duration;           /* Opera */
+    animation-duration: $duration;
+}
+
+@mixin animation-name ($name) {
+    -moz-animation-name: $name;         /* Gecko browsers */
+    -webkit-animation-name: $name;      /* Webkit browsers */
+    -ms-animation-name: $name;          /* IE 9 */
+    -o-animation-name: $name;           /* Opera */
+    animation-name: $name;
+}
+
+@mixin animation-iteration-count ($count) {
+    -moz-animation-iteration-count: $count;         /* Gecko browsers */
+    -webkit-animation-iteration-count: $count;      /* Webkit browsers */
+    -ms-animation-iteration-count: $count;          /* IE 9 */
+    -o-animation-iteration-count: $count;           /* Opera */
+    animation-iteration-count: $count;
+}
+
+@mixin animation-timing-function ($function) {
+    -moz-animation-timing-function: $function;         /* Gecko browsers */
+    -webkit-animation-timing-function: $function;      /* Webkit browsers */
+    -ms-animation-timing-function: $function;          /* IE 9 */
+    -o-animation-timing-function: $function;           /* Opera */
+    animation-timing-function: $function;
+}
+
+@mixin animation-fill-mode ($mode) {
+    -moz-animation-fill-mode: $mode;         /* Gecko browsers */
+    -webkit-animation-fill-mode: $mode;      /* Webkit browsers */
+    -ms-animation-fill-mode: $mode;          /* IE 9 */
+    -o-animation-fill-mode: $mode;           /* Opera */
+    animation-fill-mode: $mode;
+}
+
+@mixin keyframes($name){
+    @-moz-keyframes #{$name} {
+        @content;
+    }                                 /* Gecko browsers */
+    @-webkit-keyframes #{$name} {
+        @content;
+    }                                 /* Webkit browsers */
+    @-ms-keyframes #{$name} {
+        @content;
+    }                                 /* IE 9 */
+    @-o-keyframes #{$name} {
+        @content;
+    }                                 /* Opera */
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+/**
+ * [CODE STYLE]
+ * Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
+ */
+
+pre, code {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: .6em;
+    font: 14px Courier, "Liberation Mono", Menlo, monospace;
+    background-color: #23241f;
+    @include border-radius(5px);
+    overflow-x: auto;
+}
+.prettyprint{
+    padding: 1px 4px;
+    color: #ffffff;
+    background-color: #23241f;
+}
+.hljs {
+    display: inline-block;
+    padding: 0.2em;
+    background: #23241f;
+    -webkit-text-size-adjust: none;
+}
+.hljs,
+.hljs-tag,
+.css .hljs-rules,
+.css .hljs-value,
+.css .hljs-function
+.hljs-preprocessor,
+.hljs-pragma {
+    color: #f8f8f2;
+}
+.hljs-strongemphasis,
+.hljs-strong,
+.hljs-emphasis {
+    color: #a8a8a2;
+}
+.hljs-bullet,
+.hljs-blockquote,
+.hljs-horizontal_rule,
+.hljs-number,
+.hljs-regexp,
+.alias .hljs-keyword,
+.hljs-literal,
+.hljs-hexcolor {
+    color: #ae81ff;
+}
+.hljs-tag .hljs-value,
+.hljs-code,
+.hljs-title,
+.css .hljs-class,
+.hljs-class .hljs-title:last-child {
+    color: #a6e22e;
+}
+.hljs-link_url {
+    font-size: 80%;
+}
+.hljs-strong,
+.hljs-strongemphasis {
+    font-weight: bold;
+}
+.hljs-emphasis,
+.hljs-strongemphasis,
+.hljs-class .hljs-title:last-child {
+    font-style: italic;
+}
+.hljs-keyword,
+.hljs-function,
+.hljs-change,
+.hljs-winutils,
+.hljs-flow,
+.nginx .hljs-title,
+.tex .hljs-special,
+.hljs-header,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-symbol .hljs-string,
+.hljs-tag .hljs-title,
+.hljs-value,
+.alias .hljs-keyword:first-child,
+.css .hljs-tag,
+.css .unit,
+.css .hljs-important {
+    color: #f92672;
+}
+.hljs-function .hljs-keyword,
+.hljs-class .hljs-keyword:first-child,
+.hljs-constant,
+.css .hljs-attribute {
+    color: #66d9ef;
+}
+.hljs-variable,
+.hljs-params,
+.hljs-class .hljs-title {
+    color: #f8f8f2;
+}
+.hljs-string,
+.css .hljs-id,
+.hljs-subst,
+.hljs-type,
+.ruby .hljs-class .hljs-parent,
+.hljs-built_in,
+.django .hljs-template_tag,
+.django .hljs-variable,
+.smalltalk .hljs-class,
+.django .hljs-filter .hljs-argument,
+.smalltalk .hljs-localvars,
+.smalltalk .hljs-array,
+.hljs-attr_selector,
+.hljs-pseudo,
+.hljs-addition,
+.hljs-stream,
+.hljs-envvar,
+.apache .hljs-tag,
+.apache .hljs-cbracket,
+.tex .hljs-command,
+.hljs-prompt,
+.hljs-link_label,
+.hljs-link_url {
+    color: #e6db74;
+}
+.hljs-comment,
+.hljs-javadoc,
+.hljs-annotation,
+.hljs-decorator,
+.hljs-template_comment,
+.hljs-pi,
+.hljs-doctype,
+.hljs-deletion,
+.hljs-shebang,
+.apache .hljs-sqbracket,
+.tex .hljs-formula {
+    color: #75715e;
+}
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata,
+.xml .php,
+.php .xml {
+    opacity: 1;
+}
