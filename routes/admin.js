@@ -1,4 +1,3 @@
-var fs = require("fs");
 var router = require('express').Router();
 var formidable = require('formidable');
 var log = require("../services/log.js");
@@ -13,6 +12,7 @@ var addResource = require("../services/addResource.js");
 
 var md5 = require("../libs/md5.js");
 var config = require("../libs/config.js");
+
 var fs = require("fs");
 var path = require("path");
 
