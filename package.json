@@ -17,8 +17,7 @@
 		"sequelize": "~3.5.0",
 		"formidable": "~1.0.17",
 		"tracer": "~0.8.0",
-		"log4js": "~0.6.0",
-		"eventproxy": "~0.3.0"
+		"log4js": "~0.6.0"
 	},
 	"devDependencies": {
 		"debug": "~2.1.0"
