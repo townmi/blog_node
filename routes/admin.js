@@ -21,7 +21,7 @@ module.exports = router;
 /**
  * [auth session]
  * @param  {[Object]} req [description]
- * @return {[Boolen]}     [description]
+ * @return {[Boolean]}     [description]
  */
 var auth = function (req) {
 	
@@ -39,7 +39,7 @@ var auth = function (req) {
  * @param  {[type]} res   [description]
  * @return {[type]}       [description]
  */
-router.get("/login", function (req, res, next) {
+router.get("/login", function (req, res) {
 
 	var viewList = {};
 	viewList.basePath = config.basePath;
@@ -54,7 +54,7 @@ router.get("/login", function (req, res, next) {
  * @param  {[type]} res   [description]
  * @return {[type]}       [description]
  */
-router.post("/login", function (req, res, next) {
+router.post("/login", function (req, res) {
 
 	var send = {success: false, code: 0, msg: null};
 	var username = req.body.username, password = req.body.password;
@@ -120,7 +120,7 @@ router.post("/", function (req, res) {
 	
 });
 
-router.post("/arts/toUpdate", function (req, res, next) {
+router.post("/arts/toUpdate", function (req, res) {
 
 	if(auth(req)) res.redirect("login");
 
@@ -144,7 +144,7 @@ router.post("/arts/toUpdate", function (req, res, next) {
 
 });
 
-router.post("/arts/edit", function (req, res, next) {
+router.post("/arts/edit", function (req, res) {
 
 	if(auth(req)) res.redirect("login");
 
@@ -177,11 +177,11 @@ router.post("/arts/edit", function (req, res, next) {
 
 });
 
-router.post("/arts/delete", function (req, res, next) {
+router.post("/arts/delete", function (req, res) {
 
 });
 
-router.get("/resource", function (req, res, next) {
+router.get("/resource", function (req, res) {
 
 	if(auth(req)) res.redirect("login");
 
@@ -193,7 +193,7 @@ router.get("/resource", function (req, res, next) {
 
 });
 
-router.post("/resource", function (req, res, next) {
+router.post("/resource", function (req, res) {
 
 	var page = req.body.start*1;
 	var limit = req.body.length*1;
@@ -217,7 +217,7 @@ router.post("/resource", function (req, res, next) {
 
 });
 
-router.post("/resource/add", function (req, res, next) {
+router.post("/resource/add", function (req, res) {
 
 	addResource(req, function (result) {
         log.info(result);
@@ -226,7 +226,7 @@ router.post("/resource/add", function (req, res, next) {
 
 });
 
-router.post("/resource/delete", function (req, res, next) {
+router.post("/resource/delete", function (req, res) {
 
 	var send = {success: true, code: 0, msg: ""};
 
@@ -234,7 +234,7 @@ router.post("/resource/delete", function (req, res, next) {
 
 });
 
-router.get("/log", function (req, res, next) {
+router.get("/log", function (req, res) {
 
 	var viewList = {};
 
@@ -244,15 +244,17 @@ router.get("/log", function (req, res, next) {
 
 });
 
-router.post("/log", function (req, res, next) {
+router.post("/log", function (req, res) {
 
-    var date = req.body.date;
-	var page = req.body.start*1;
-	var limit = req.body.length*1;
-	var startTime = req.body.startTime;
-	var endTime = req.body.endTime;
+    var query = {
+        date: req.body.date,
+        page: req.body.start*1,
+        limit: req.body.length*1,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime
+    };
 
-    queryLog({date: date, page: page, limit: limit, startTime: startTime, endTime: endTime}, function (result) {
+    queryLog(query, function (result) {
         res.send(result);
     });
 
