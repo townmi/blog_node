@@ -1,3 +1,4 @@
+'use strict';
 var path = require('path');
 var http = require('http');
 
@@ -7,19 +8,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var logger = require("tracer").colorConsole();
-
 var log = require("./services/log.js");
-
-// var routes = require('./routes/index');
-// var users = require('./routes/user');
-// var edit = require('./routes/edit');
-// var resm = require('./routes/resm');
 
 var index = require("./routes/index");
 var admin = require("./routes/admin");
-
-var mem = require("./routes/mem.js");
 
 var app = express();
 
@@ -75,7 +67,6 @@ app.use(function (err, req, res, next) {
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-    mem();
-    log.fatal('Express server listening on port' + app.get('port')+"<!log>");
+    log.fatal('Express server listening on port:http://localhost:' + app.get('port')+"<!log>");
 });
 
