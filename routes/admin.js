@@ -24,14 +24,8 @@ module.exports = router;
  * @return {[Boolean]}     [description]
  */
 var auth = function (req) {
-	
-	if(!req || !req.session || !req.session.auth || req.session.auth != md5(req.headers['user-agent'])){
-		return true
-	} else {
-		return false;
-	}
-
-}
+    return (!req || !req.session || !req.session.auth || req.session.auth != md5(req.headers['user-agent']));
+};
 
 /**
  * [登陆]
