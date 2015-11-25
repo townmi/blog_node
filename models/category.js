@@ -1,7 +1,9 @@
 var Sequelize = require("sequelize");
 var settings = require("./settings.js");
 
-var sequelize = new Sequelize(settings.db, settings.user, settings.password, {host : settings.host, port : settings.port, dialect : 'mysql'});
+var sequelize = new Sequelize(settings.db, settings.user, settings.password, {host : settings.host, port : settings.port, dialect : 'mysql', logging: function (str) {
+	log.info(str+"<!log>");
+}});
 
 var Category = sequelize.define('Category', {
 	ID: {

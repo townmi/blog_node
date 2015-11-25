@@ -13,6 +13,8 @@ log4js.configure({
     ]
 });
 
+
+
 var log = log4js.getLogger('log');
 
 

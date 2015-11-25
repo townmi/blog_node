@@ -322,7 +322,7 @@ router.post("/log", function (req, res, next) {
 	// })
 	// 
 
-	fs.readFile(path.join(__dirname, "../logs/cheese.log"), {encoding: "UTF-8" }, function (err, bytesRead) {
+	fs.readFile(path.join(__dirname, "../logs/log.log"), {encoding: "UTF-8" }, function (err, bytesRead) {
 
 		var oldLogArray = bytesRead.split("<!log>");
 		oldLogArray.pop();

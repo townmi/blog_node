@@ -75,3 +75,235 @@
 [2015-11-25 14:08:59.268] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
 [2015-11-25 14:09:07.608] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
 [2015-11-25 14:09:07.610] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:33:15.427] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 14:33:24.654] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 14:33:24.656] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:34:26.895] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 14:34:26.898] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:34:28.206] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 14:34:28.209] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:38:34.690] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 14:38:39.728] [INFO] log - arts.sync  ---> then
+[2015-11-25 14:38:39.732] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 14:38:39.736] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:43:41.571] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 14:43:50.483] [INFO] log - arts.sync  ---> then
+[2015-11-25 14:43:50.506] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 14:43:50.513] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:44:30.389] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 14:45:46.109] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 14:52:22.598] [INFO] log - arts.sync  ---> then
+[2015-11-25 14:53:24.699] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 14:53:30.889] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:54:04.208] [INFO] log - arts.sync  ---> then
+[2015-11-25 14:54:06.279] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 14:54:06.282] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 14:54:29.957] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 14:55:00.387] [INFO] log - arts.sync  ---> then
+[2015-11-25 15:12:12.224] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:13:13.951] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:13:46.494] [INFO] log - arts.sync  ---> then
+[2015-11-25 15:13:57.579] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:13:57.626] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:15:28.274] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:20:57.778] [INFO] log - arts.sync  ---> then
+[2015-11-25 15:21:15.017] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:21:23.939] [INFO] log - arts.sync  ---> then
+[2015-11-25 15:25:11.737] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:25:22.170] [ERROR] log - TypeError: options.logging.apply is not a function<!log>
+[2015-11-25 15:25:22.238] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:25:30.150] [ERROR] log - TypeError: options.logging.apply is not a function<!log>
+[2015-11-25 15:25:30.192] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:25:55.678] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:25:56.509] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 15:25:56.547] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:26:41.770] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:26:44.362] [INFO] log - arts.sync  ---> then
+[2015-11-25 15:26:49.415] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:26:59.553] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:27:10.076] [INFO] log - arts.sync  ---> then
+[2015-11-25 15:27:10.091] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:27:10.118] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:27:35.496] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:27:37.234] [INFO] log - arts.sync  ---> then
+[2015-11-25 15:27:37.249] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:27:37.275] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:28:26.365] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:28:29.429] [INFO] log - function
+[2015-11-25 15:28:29.476] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 15:28:29.514] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:31:45.304] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:32:03.551] [INFO] log - function
+[2015-11-25 15:32:03.592] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 15:32:03.637] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:32:27.186] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:34:34.448] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:37:26.393] [INFO] log - function
+[2015-11-25 15:37:29.509] [INFO] log - function
+[2015-11-25 15:37:29.554] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 15:37:29.559] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 15:37:29.605] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:37:29.645] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:38:09.269] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:38:11.104] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 15:38:11.153] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:38:55.713] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:38:56.764] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:38:56.791] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:40:36.605] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:40:42.341] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:40:42.366] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:40:53.035] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:40:53.058] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:40:59.078] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:41:00.835] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:41:00.864] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:43:26.596] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:43:50.524] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:44:18.773] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:44:18.806] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:46:12.586] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:47:46.311] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:47:46.356] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:47:57.542] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:47:57.599] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:52:55.302] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:52:55.346] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:54:14.981] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:54:15.030] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:54:20.691] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:54:49.258] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:54:49.307] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:54:54.079] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:55:17.899] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:55:17.934] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:55:24.759] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:55:31.664] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:55:31.704] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 15:55:38.417] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 15:55:57.726] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 15:55:57.768] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:05:13.791] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:05:20.831] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:05:20.850] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:07:22.382] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:07:25.607] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:07:25.666] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:08:08.572] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:08:12.969] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:08:13.016] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:10:18.849] [INFO] log - false
+[2015-11-25 16:10:19.033] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:10:41.296] [INFO] log - false
+[2015-11-25 16:10:41.473] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:10:46.713] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:10:46.743] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:10:56.251] [INFO] log - false
+[2015-11-25 16:10:56.431] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:13:09.007] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:13:12.282] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:13:12.299] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:13:24.720] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:13:24.903] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:13:24.912] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:14:31.321] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:14:31.331] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:14:43.132] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:14:43.320] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:14:43.331] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:16:48.312] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:16:48.321] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:31:51.245] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:31:53.662] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:31:53.671] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 16:37:35.521] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:37:39.302] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:37:39.332] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:38:02.607] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:38:02.634] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:38:15.858] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:38:15.883] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:39:43.562] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:39:55.124] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:39:56.010] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:39:56.033] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:41:56.008] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:41:56.031] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:50:53.945] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:54:10.256] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:54:46.449] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:54:49.545] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:54:53.742] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:54:56.787] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:55:05.293] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:55:11.482] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:55:18.563] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:55:18.689] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:55:18.713] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:55:22.846] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:55:22.870] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:55:26.996] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:55:27.020] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:55:31.521] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:55:32.808] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:55:32.834] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:56:30.320] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:56:30.485] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:56:30.513] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:57:12.986] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:57:30.996] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:57:31.022] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:57:41.538] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 16:57:45.366] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:57:45.426] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 16:57:45.439] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 16:57:45.460] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:00:17.012] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:00:17.947] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:00:17.972] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:01:36.592] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:01:39.530] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 17:01:39.538] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 17:02:22.931] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 17:02:22.941] [ERROR] log - TypeError: Cannot read property 'isLevelEnabled' of null<!log>
+[2015-11-25 17:02:26.449] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:02:26.600] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:02:26.625] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:02:41.051] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:02:41.076] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:03:26.243] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:04:06.664] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:04:06.685] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:04:08.526] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:04:08.550] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:04:11.464] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:04:13.945] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:04:13.975] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:04:14.883] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类0条信息<!log>
+[2015-11-25 17:04:14.908] [INFO] log - 成功读取数据库, 查找资源集合, 共查找资源0条信息<!log>
+[2015-11-25 17:11:35.771] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:11:39.973] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
+[2015-11-25 17:11:39.984] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`
+[2015-11-25 17:11:40.022] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` GROUP BY CATEGORY ORDER BY ID asc;
+[2015-11-25 17:11:40.037] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:11:40.038] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 50;
+[2015-11-25 17:11:40.060] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:12:21.857] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
+[2015-11-25 17:12:21.873] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`
+[2015-11-25 17:12:21.911] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;
+[2015-11-25 17:12:21.927] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:12:21.928] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;
+[2015-11-25 17:12:21.951] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:12:52.547] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:12:57.560] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:12:57.574] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:12:57.615] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` GROUP BY CATEGORY ORDER BY ID asc;<!log>
+[2015-11-25 17:12:57.631] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:12:57.632] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 50;<!log>
+[2015-11-25 17:12:57.657] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:13:05.016] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:13:05.032] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:13:05.074] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:13:05.089] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:13:05.090] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:13:05.115] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
