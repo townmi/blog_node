@@ -23,3 +23,15 @@
 [2015-11-19 17:48:03.147] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
 [2015-11-19 17:48:17.836] [WARN] log - process: heapTotal 45.16MB heapUsed 34.55MB rss 75.58MB<!log>
 [2015-11-19 17:48:17.837] [FATAL] log - Express server listening on port3000<!log>
+[2015-11-25 10:57:44.069] [WARN] log - process: heapTotal 32.43MB heapUsed 21.74MB rss 43.54MB<!log>
+[2015-11-25 10:57:44.072] [FATAL] log - Express server listening on port3000<!log>
+[2015-11-25 10:58:03.146] [ERROR] log - SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:3306<!log>
+[2015-11-25 10:58:03.157] [ERROR] log - SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:3306<!log>
+[2015-11-25 10:58:47.896] [ERROR] log - SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:3306<!log>
+[2015-11-25 10:58:47.897] [ERROR] log - SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:3306<!log>
+[2015-11-25 10:58:48.507] [ERROR] log - SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:3306<!log>
+[2015-11-25 10:58:48.512] [ERROR] log - SequelizeConnectionRefusedError: connect ECONNREFUSED 127.0.0.1:3306<!log>
+[2015-11-25 10:59:04.175] [WARN] log - process: heapTotal 32.43MB heapUsed 21.74MB rss 43.96MB<!log>
+[2015-11-25 10:59:04.178] [FATAL] log - Express server listening on port3000<!log>
+[2015-11-25 10:59:07.218] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类0条信息<!log>
+[2015-11-25 10:59:07.224] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章0条信息<!log>

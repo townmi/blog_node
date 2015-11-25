@@ -4,7 +4,7 @@
 	"description": "blog of towne",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"i": "npm install"
 	},
 	"dependencies": {
 		"express": "~4.2.0",
