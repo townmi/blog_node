@@ -1,20 +1,20 @@
 var router = require('express').Router();
-var formidable = require('formidable');
+//var formidable = require('formidable');
 var log = require("../services/log.js");
 
 var queryArts = require("../services/queryArticles.js");
 var updateArts = require("../services/updateArticles.js");
 
 var queryResource = require("../services/queryResource.js");
-var updateResource = require("../services/updateResource.js");
 
 var addResource = require("../services/addResource.js");
+
+var queryLog = require("../services/queryLog.js");
 
 var md5 = require("../libs/md5.js");
 var config = require("../libs/config.js");
 
-var fs = require("fs");
-var path = require("path");
+
 
 module.exports = router;
 
@@ -219,73 +219,16 @@ router.post("/resource", function (req, res, next) {
 
 router.post("/resource/add", function (req, res, next) {
 
-	var send = {success: true, code: 0, msg: ""};
-
-	var sql_resource = {};
-
-	var form = new formidable.IncomingForm();
-
-	form.uploadDir = "./views/public/upload/";
-
-	form.parse(req, function (err, fields, files){
-
-    	var oldPath = files.resource.path;
-
-    	sql_resource.category = files.resource.type;
-
-    	sql_resource.name = files.resource.name.split(".");
-    	var fileType = "."+sql_resource.name.pop();
-    	sql_resource.name = sql_resource.name.join("");
-
-    	var newPath = form.uploadDir + md5(sql_resource.name) + fileType;
-
-    	sql_resource.url = config.basePath + "upload/" + md5(sql_resource.name) + fileType;
-
-    	try {
-    		log.info("文件上传成功，正在写入......."+"<!log>");
-		    fs.renameSync(oldPath, newPath);
-
-		    log.info("文件上传成功，写入成功！"+"<!log>");
-		    
-		} catch(err) {
-		    log.info("文件上传成功，写入失败！"+"<!log>");
-		    send.success = false;
-		    send.code = 1;
-		    send.msg = "文件写入失败，服务器程序报错！"
-		}
-
-		if(!send.success) return res.send(send);
-
-		var result = updateResource(sql_resource);
-
-		result.then(function(){
-
-			var servicesResult = result._rejectionHandler0._settledValue.writeData;
-
-			if(servicesResult.success){
-				
-			}else{
-				send.success = false;
-				send.code = 2;
-				send.msg = "文件写入成功，但是数据库写入失败，服务器程序报错！"
-			}
-
-			res.send(send);
-		})
-
+	addResource(req, function (result) {
+        log.info(result);
+		res.send(result);
 	});
-	
-	addResource(req);
 
 });
 
 router.post("/resource/delete", function (req, res, next) {
 
 	var send = {success: true, code: 0, msg: ""};
-
-	console.log(req.body);
-
-
 
 	res.send(send);
 
@@ -303,73 +246,14 @@ router.get("/log", function (req, res, next) {
 
 router.post("/log", function (req, res, next) {
 
-	var send = {success: true, code: 0, msg: ""};
-
+    var date = req.body.date;
 	var page = req.body.start*1;
 	var limit = req.body.length*1;
 	var startTime = req.body.startTime;
 	var endTime = req.body.endTime;
 
-
-	// fs.open(path.join(__dirname, "../logs/cheese.log"),'r',function (err, fd) {
-	//     var buf = new Buffer(256);
-
-	//     fs.read(fd, buf, 0, 9, 3, function (err, bytesRead, buffer) {
-
-	//         console.log(buffer.length, bytesRead);
-
-	//     });
-	// })
-	// 
-
-	fs.readFile(path.join(__dirname, "../logs/log.log"), {encoding: "UTF-8" }, function (err, bytesRead) {
-
-		var oldLogArray = bytesRead.split("<!log>");
-		oldLogArray.pop();
-		var logArray = [];
-
-		oldLogArray.forEach(function (e) {
-
-			var string = e.replace(/^\s/gi, "").replace(/^\n/gi, "");
-
-			var type = string.split("] ")[1].replace(/\[/gi, "");;
-
-			var eTime = string.split("] ")[0].replace(/\[/gi, "");
-
-			if(startTime && (new Date(startTime).getTime()>new Date(eTime).getTime()) ) return;
-
-			if(endTime && !(new Date(endTime).getTime()>new Date(eTime).getTime()) ) return;
-
-			logArray.push({info: string, type: type, time: eTime});
-
-		});
-
-		send.data = [];
-
-		send.recordsFiltered = logArray.length;
-		send.recordsTotal = logArray.length;
-
-		send.data = logArray.splice(page,limit);
-
-		res.send(send);
-
-	});
-
-	// var send = {success: true, code: 0, draw: null};
-
-	// send.data = [];
-
-	// var result = queryResource({limit : limit, offset: page, order : 'ID asc'});
-
-	// result.then(function(){
-
-	// 	send.data = result._settledValue.queryData.resourceArray;
-
-	// 	send.recordsFiltered = result._settledValue.queryData.length;
-	// 	send.recordsTotal = result._settledValue.queryData.length;
-
-	// 	res.send(send);
-
-	// });
+    queryLog({date: date, page: page, limit: limit, startTime: startTime, endTime: endTime}, function (result) {
+        res.send(result);
+    });
 
 });

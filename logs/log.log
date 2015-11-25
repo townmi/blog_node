@@ -307,3 +307,157 @@
 [2015-11-25 17:13:05.089] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
 [2015-11-25 17:13:05.090] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
 [2015-11-25 17:13:05.115] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:24:06.609] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:26:00.223] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:26:03.142] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:26:03.145] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:26:03.153] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` GROUP BY CATEGORY ORDER BY ID asc;<!log>
+[2015-11-25 17:26:03.156] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:26:03.157] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 50;<!log>
+[2015-11-25 17:26:03.159] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:26:47.143] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:26:47.146] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:26:47.153] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:26:47.156] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:26:47.162] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:26:47.164] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:44:30.358] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:44:38.084] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:44:38.087] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:44:38.090] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:44:38.091] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:44:38.093] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:44:38.094] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:44:39.608] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:44:39.615] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:45:20.075] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:45:20.081] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:45:51.315] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:45:51.319] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:45:51.326] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:45:51.328] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:45:51.329] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:45:51.330] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:45:53.543] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:47:00.678] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:47:06.320] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:47:06.324] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:47:06.330] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:47:06.332] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:47:06.334] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:47:06.336] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:47:09.911] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:47:09.916] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:47:53.021] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:47:59.814] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:47:59.818] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:47:59.822] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:47:59.823] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:47:59.825] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:47:59.826] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:48:02.347] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:48:02.354] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:50:34.781] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:50:40.900] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:50:40.905] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:50:40.910] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:50:40.911] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:50:40.913] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:50:40.914] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:50:42.031] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:50:42.037] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:50:51.086] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 17:52:30.189] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:52:32.803] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:52:39.801] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:52:39.804] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:52:39.809] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:52:39.811] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:52:39.813] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:52:39.815] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:52:40.933] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:52:40.939] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:52:46.705] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 17:53:22.076] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:53:27.808] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:53:27.811] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:53:27.817] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:53:27.818] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:53:27.819] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:53:27.820] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:53:29.000] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:53:29.005] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:53:33.769] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 17:53:33.769] [INFO] log - 文件上传成功，写入失败！<!log>
+[2015-11-25 17:53:36.479] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:53:36.485] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:54:19.960] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:54:26.069] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:54:26.072] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:54:26.078] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:54:26.080] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:54:26.081] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:54:26.083] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:54:28.093] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:54:28.100] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:54:32.601] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 17:54:32.602] [INFO] log - 文件上传成功，写入失败！<!log>
+[2015-11-25 17:55:42.668] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 17:55:50.198] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 17:55:50.203] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 17:55:50.207] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 17:55:50.209] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 17:55:50.210] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 17:55:50.212] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 17:55:51.484] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:55:51.490] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 17:55:57.495] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 17:55:57.496] [INFO] log - 文件上传成功，写入失败！<!log>
+[2015-11-25 18:00:05.808] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 18:00:05.808] [INFO] log - 文件上传成功，写入失败！<!log>
+[2015-11-25 18:00:05.809] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 18:00:05.810] [INFO] log - 文件上传成功，写入失败！<!log>
+[2015-11-25 18:01:36.361] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 18:01:45.566] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:01:45.570] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 18:01:45.573] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 18:01:45.574] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 18:01:45.576] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 18:01:45.577] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 18:01:46.572] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 18:01:46.577] [ERROR] log - ReferenceError: log is not defined<!log>
+[2015-11-25 18:01:51.374] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 18:01:51.375] [INFO] log - 文件上传成功，写入成功！<!log>
+[2015-11-25 18:02:31.881] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 18:02:31.920] [INFO] log - 文件上传成功，正在写入.......<!log>
+[2015-11-25 18:02:31.920] [INFO] log - 文件上传成功，写入成功！<!log>
+[2015-11-25 18:02:31.935] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Resources` (`ID` INTEGER(100) auto_increment , `NAME` VARCHAR(50) DEFAULT NULL, `URL` VARCHAR(100) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:02:31.937] [INFO] log - Executing (default): SHOW INDEX FROM `Resources`<!log>
+[2015-11-25 18:02:31.939] [WARN] log - 进入service/updateResource，目前是写入操作<!log>
+[2015-11-25 18:02:31.944] [INFO] log - Executing (default): INSERT INTO `Resources` (`ID`,`NAME`,`URL`,`CATEGORY`,`UPDATEAT`,`CREATEDAT`) VALUES (DEFAULT,'riches_logo','http://10.106.89.64:3000/upload/049a57958cca42f8e2de13e585ed38b4.png','image/png','2015-11-25 10:02:31','2015-11-25 10:02:31');<!log>
+[2015-11-25 18:02:31.997] [INFO] log - 成功写入数据库, 写入资源, undefined条信息<!log>
+[2015-11-25 18:02:38.002] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:02:38.012] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 18:02:38.018] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 18:02:38.019] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 18:02:38.021] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 18:02:38.023] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 18:02:46.490] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Resources` (`ID` INTEGER(100) auto_increment , `NAME` VARCHAR(50) DEFAULT NULL, `URL` VARCHAR(100) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:02:46.493] [INFO] log - Executing (default): SHOW INDEX FROM `Resources`<!log>
+[2015-11-25 18:02:46.498] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Resources` AS `Resource` ORDER BY ID asc;<!log>
+[2015-11-25 18:02:46.500] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 18:02:46.503] [INFO] log - Executing (default): SELECT `ID`, `NAME`, `URL`, `CATEGORY`, `CREATEDAT`, `UPDATEAT` FROM `Resources` AS `Resource` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 18:02:46.506] [INFO] log - 成功读取数据库, 查找资源集合, 共查找资源1条信息<!log>
+[2015-11-25 18:03:22.223] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Resources` (`ID` INTEGER(100) auto_increment , `NAME` VARCHAR(50) DEFAULT NULL, `URL` VARCHAR(100) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:03:22.227] [INFO] log - Executing (default): SHOW INDEX FROM `Resources`<!log>
+[2015-11-25 18:03:22.234] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Resources` AS `Resource` ORDER BY ID asc;<!log>
+[2015-11-25 18:03:22.236] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 18:03:22.238] [INFO] log - Executing (default): SELECT `ID`, `NAME`, `URL`, `CATEGORY`, `CREATEDAT`, `UPDATEAT` FROM `Resources` AS `Resource` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 18:03:22.244] [INFO] log - 成功读取数据库, 查找资源集合, 共查找资源1条信息<!log>
+[2015-11-25 18:04:14.834] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Resources` (`ID` INTEGER(100) auto_increment , `NAME` VARCHAR(50) DEFAULT NULL, `URL` VARCHAR(100) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:04:14.840] [INFO] log - Executing (default): SHOW INDEX FROM `Resources`<!log>
+[2015-11-25 18:04:14.842] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Resources` AS `Resource` ORDER BY ID asc;<!log>
+[2015-11-25 18:04:14.843] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 18:04:14.844] [INFO] log - Executing (default): SELECT `ID`, `NAME`, `URL`, `CATEGORY`, `CREATEDAT`, `UPDATEAT` FROM `Resources` AS `Resource` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 18:04:14.845] [INFO] log - 成功读取数据库, 查找资源集合, 共查找资源1条信息<!log>
+[2015-11-25 18:25:00.771] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
