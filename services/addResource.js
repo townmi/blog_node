@@ -17,6 +17,11 @@ var form = new formidable.IncomingForm();
 
 form.uploadDir = "./views/public/upload/";
 
+/**
+ * [添加资源]
+ * @param iostream [req]
+ * @param callback
+ */
 module.exports = function(iostream, callback) {
 
 	form.parse(iostream, function (err, fields, files){

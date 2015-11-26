@@ -27,12 +27,6 @@ var auth = function (req) {
     return (!req || !req.session || !req.session.auth || req.session.auth != md5(req.headers['user-agent']));
 };
 
-/**
- * [登陆]
- * @param  {[type]} req   [description]
- * @param  {[type]} res   [description]
- * @return {[type]}       [description]
- */
 router.get("/login", function (req, res) {
 
 	var viewList = {};
@@ -42,12 +36,6 @@ router.get("/login", function (req, res) {
 
 });
 
-/**
- * [登陆]
- * @param  {[type]} req   [description]
- * @param  {[type]} res   [description]
- * @return {[type]}       [description]
- */
 router.post("/login", function (req, res) {
 
 	var send = {success: false, code: 0, msg: null};
@@ -84,6 +72,7 @@ router.get("/", function (req, res) {
 	res.render("admin", {viewList: viewList});
 
 });
+
 
 router.post("/", function (req, res) {
 

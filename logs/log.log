@@ -461,3 +461,16 @@
 [2015-11-25 18:04:14.844] [INFO] log - Executing (default): SELECT `ID`, `NAME`, `URL`, `CATEGORY`, `CREATEDAT`, `UPDATEAT` FROM `Resources` AS `Resource` ORDER BY ID asc LIMIT 10;<!log>
 [2015-11-25 18:04:14.845] [INFO] log - 成功读取数据库, 查找资源集合, 共查找资源1条信息<!log>
 [2015-11-25 18:25:00.771] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 18:42:14.317] [FATAL] log - Express server listening on port:http://localhost:3000<!log>
+[2015-11-25 18:42:24.832] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Arts` (`ID` INTEGER(100) auto_increment , `TITLE` VARCHAR(300) DEFAULT NULL, `TITLE_HASH` VARCHAR(50) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `BODY` TEXT DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:42:24.835] [INFO] log - Executing (default): SHOW INDEX FROM `Arts`<!log>
+[2015-11-25 18:42:24.838] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Arts` AS `Arts` ORDER BY ID asc;<!log>
+[2015-11-25 18:42:24.840] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 18:42:24.841] [INFO] log - Executing (default): SELECT `ID`, `TITLE`, `TITLE_HASH`, `CATEGORY`, `BODY`, `CREATEDAT`, `UPDATEAT` FROM `Arts` AS `Arts` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 18:42:24.842] [INFO] log - 成功读取数据库, 查找文章集合, 共查找文章1条信息<!log>
+[2015-11-25 18:42:26.159] [INFO] log - Executing (default): CREATE TABLE IF NOT EXISTS `Resources` (`ID` INTEGER(100) auto_increment , `NAME` VARCHAR(50) DEFAULT NULL, `URL` VARCHAR(100) DEFAULT NULL, `CATEGORY` VARCHAR(50) DEFAULT NULL, `CREATEDAT` DATETIME, `UPDATEAT` DATETIME, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;<!log>
+[2015-11-25 18:42:26.165] [INFO] log - Executing (default): SHOW INDEX FROM `Resources`<!log>
+[2015-11-25 18:42:26.168] [INFO] log - Executing (default): SELECT `CATEGORY` FROM `Resources` AS `Resource` ORDER BY ID asc;<!log>
+[2015-11-25 18:42:26.169] [INFO] log - 成功读取数据库, 查找category|分类, 共查找分类1条信息<!log>
+[2015-11-25 18:42:26.169] [INFO] log - Executing (default): SELECT `ID`, `NAME`, `URL`, `CATEGORY`, `CREATEDAT`, `UPDATEAT` FROM `Resources` AS `Resource` ORDER BY ID asc LIMIT 10;<!log>
+[2015-11-25 18:42:26.171] [INFO] log - 成功读取数据库, 查找资源集合, 共查找资源1条信息<!log>
