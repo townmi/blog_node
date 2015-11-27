@@ -7,7 +7,7 @@ var Resource = require("../models/resource.js");
 
 module.exports = function(settings){
 
-	return Resource.sync({}).then(function () {
+	return Resource.sync({logging: false}).then(function () {
 
 		log.warn("进入service/updateResource，目前是写入操作"+"<!log>");
 

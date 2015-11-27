@@ -9,7 +9,7 @@ var Arts = require("../models/arts.js");
 module.exports = function(settings){
 
 	if(!settings.id || settings.id == "0"){
-		return Arts.sync({}).then(function () {
+		return Arts.sync({loggging: false}).then(function () {
 
 			log.warn("进入service，目前是写入操作"+"<!log>");
 

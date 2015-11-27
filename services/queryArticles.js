@@ -11,7 +11,7 @@ var articleArray = null;
 
 module.exports = function(select){
 
-	return Arts.sync().then(function () {
+	return Arts.sync({logging: false}).then(function () {
 
 		if(!select.category || ! type.isJson(select.category)) return Arts;
 		return Arts.findAll(select.category);

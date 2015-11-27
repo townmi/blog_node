@@ -11,7 +11,7 @@ var resourceArray = null;
 
 module.exports = function(select){
 
-	return Resource.sync({}).then(function () {
+	return Resource.sync({logging: false}).then(function () {
 		return Resource.findAll({order : 'ID asc', attributes: ["CATEGORY"]});
 	}).then(
 		function (data) {

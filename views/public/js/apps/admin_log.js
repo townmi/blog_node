@@ -14,7 +14,7 @@ define(function(require, exports, module){
 
     var tools = require("tools");
 
-    var color= {
+    var color = {
         "ERROR": "#FF5500",
         "INFO": "#259812",
         "FATAL": "#8A0BA9",
@@ -35,7 +35,7 @@ define(function(require, exports, module){
             "searching": false,
             "processing": true,
             "serverSide": true,
-            "scrollX": false,
+            "scrollX": true,
             "ajax": {
                 "url": "/admin/log",
                 "type": "post",
@@ -50,14 +50,14 @@ define(function(require, exports, module){
                 }
             },
             "columns": [
-                {"data": "type", "sTitle": "日志类型",
-                    mRender: function (data, type, rowdata){
-                        return  '<span style="color:'+color[rowdata.type]+'">'+data+'<span>';
+                {"data": "type", "sTitle": "日志类型", "sWidth": "58px",
+                    mRender: function (data, type, rowdata) {
+                        return  '<div class="ui_center"><span style="color:'+color[rowdata.type]+'">'+data+'</span></div>';
                     }
                 },
-                {"data": "time", "sTitle": "日志时间",
+                {"data": "time", "sTitle": "日志时间", "sWidth": "120px",
                     mRender: function (data, type, rowdata){
-                        return  '<span style="color:'+color[rowdata.type]+'">'+data+'<span>';
+                        return  '<span style="color:'+color[rowdata.type]+'">'+tools.toJSDate(data)+'<span>';
                     }
                 },
                 {"data": "info", "sTitle": "日志信息",

@@ -19,6 +19,10 @@ router.get("/", function (req, res, next) {
 
 	var viewList = {};
 
+	var ip = req.connection.remoteAddress;
+
+    log.info(ip+"用户正在访问<!log>");
+
 	viewList.basePath = config.basePath;
 
 	viewList.title = "首页";
