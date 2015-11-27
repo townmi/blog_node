@@ -14,14 +14,17 @@ var queryLog = require("../services/queryLog.js");
 var md5 = require("../libs/md5.js");
 var config = require("../libs/config.js");
 
-
-
+/**
+ * @typedef {object} router
+ * @property {function} get
+ * @property {function} post
+ */
 module.exports = router;
 
 /**
  * [auth session]
- * @param  {[Object]} req [description]
- * @return {[Boolean]}     [description]
+ * @param  {[object]} req [description]
+ * @return {[boolean]}    [description]
  */
 var auth = function (req) {
     return (!req || !req.session || !req.session.auth || req.session.auth != md5(req.headers['user-agent']));
@@ -85,6 +88,10 @@ router.post("/", function (req, res) {
 
 	send.data = [];
 
+    /**
+     * @typedef {object} list
+     * @property {function} then
+     */
 	var list = queryArts({
 		category: {order : 'ID asc', attributes: ["CATEGORY"]},
 		articles: {limit : limit, offset: page, order : 'ID asc'}
@@ -140,7 +147,10 @@ router.post("/arts/edit", function (req, res) {
 		body: req.body.body
 	};
 
-
+    /**
+     * @typedef {object} result
+     * @property {function} then
+     */
 	var result = updateArts(config);
 
 	result.then(
@@ -162,6 +172,8 @@ router.post("/arts/edit", function (req, res) {
 
 router.post("/arts/delete", function (req, res) {
 
+	if(auth(req)) res.redirect("admin/login");
+
 });
 
 router.get("/resource", function (req, res) {
@@ -177,6 +189,8 @@ router.get("/resource", function (req, res) {
 });
 
 router.post("/resource", function (req, res) {
+
+    if(auth(req)) res.redirect("admin/login");
 
 	var page = req.body.start*1;
 	var limit = req.body.length*1;
@@ -202,6 +216,8 @@ router.post("/resource", function (req, res) {
 
 router.post("/resource/add", function (req, res) {
 
+    if(auth(req)) res.redirect("admin/login");
+
 	addResource(req, function (result) {
         log.info(result);
 		res.send(result);
@@ -211,6 +227,8 @@ router.post("/resource/add", function (req, res) {
 
 router.post("/resource/delete", function (req, res) {
 
+    if(auth(req)) res.redirect("admin/login");
+
 	var send = {success: true, code: 0, msg: ""};
 
 	res.send(send);
@@ -218,6 +236,8 @@ router.post("/resource/delete", function (req, res) {
 });
 
 router.get("/log", function (req, res) {
+
+    if(auth(req)) res.redirect("admin/login");
 
 	var viewList = {};
 
@@ -228,6 +248,8 @@ router.get("/log", function (req, res) {
 });
 
 router.post("/log", function (req, res) {
+
+    if(auth(req)) res.redirect("admin/login");
 
     var query = {
         date: req.body.date,

@@ -12,16 +12,16 @@ var config = require("../libs/config.js");
 
 module.exports = router;
 
-// get index "/"
+/**
+ * [index]
+ * @method [get]
+ */
 router.get("/", function (req, res, next) {
-
-	// log.info(req.headers["user-agent"]);
 
 	var viewList = {};
 
-	var ip = req.connection.remoteAddress;
-
-    log.info(ip+"用户正在访问<!log>");
+	var ip = req.connection.remoteAddress.split(":").pop();
+    log.fatal(ip+" 用户正在访问,{'url': '/', 'methtod': 'get'}, controller in<!log>");
 
 	viewList.basePath = config.basePath;
 
@@ -40,14 +40,22 @@ router.get("/", function (req, res, next) {
 		viewList.articles = list._settledValue.queryData.articleArray;
 
 		res.render("index", {viewList: viewList});
+        log.fatal(ip+" 用户正在访问,{'url': '/', 'methtod': 'get'}, controller out<!log>");
 
 	});
 	
 });
 
+/**
+ * [article]
+ * @method [get]
+ */
 router.get("/category/:id", function (req, res) {
 
 	var category = req.params.id;
+
+    var ip = req.connection.remoteAddress.split(":").pop();
+    log.fatal(ip+" 用户正在访问,{'url': '/category/"+category+"', 'methtod': 'get', 'argvs': {'id': '"+category+"'}}, controller in <!log>");
 
 	var viewList = {};
 
@@ -67,14 +75,19 @@ router.get("/category/:id", function (req, res) {
 		viewList.articles = list._settledValue.queryData.articleArray;
 
 		res.render("index", {viewList: viewList});
+        log.fatal(ip+" 用户正在访问,{'url': '/category/"+category+"', 'methtod': 'get', 'argvs': {'id': '"+category+"'}}, controller out <!log>");
+
 	});
 
-})
+});
 
 
 router.get("/arts/:id", function (req ,res, next) {
 	
 	var titleHash = req.params.id;
+
+    var ip = req.connection.remoteAddress.split(":").pop();
+    log.fatal(ip+" 用户正在访问,{'url': '/arts/"+titleHash+"', 'methtod': 'get', 'argvs': {'id': '"+titleHash+"'}}, controller in <!log>");
 
 	var viewList = {};
 
@@ -88,20 +101,41 @@ router.get("/arts/:id", function (req ,res, next) {
 	});
 
 	list.then(function(){
+
 		viewList.category = list._settledValue.queryData.categoryArray;
 		viewList.articles = list._settledValue.queryData.articleArray;
 
 		viewList.title = viewList.articles[0].TITLE;
-		console.log(viewList)
 
 		res.render("index", {viewList: viewList});
-	});
+        log.fatal(ip+" 用户正在访问,{'url': '/arts/"+titleHash+"', 'methtod': 'get', 'argvs': {'id': '"+titleHash+"'}}, controller out <!log>");
 
+	});
 
 });
 
+router.post("/search", function (req, res) {
 
-router.post("/search", function (req, res, next) {
-	var data = req.body;
-	console.log(data);
-})
+	var keyword = req.body.key;
+
+    var ip = req.connection.remoteAddress.split(":").pop();
+    log.fatal(ip+" 用户正在访问,{'url': '/search', 'methtod': 'post', 'argvs': {'key': '"+keyword+"'}}, controller in <!log>");
+
+    var send = {success: true, code: 0};
+
+    var list = queryArts({
+        category: null,
+        articles: {limit : 10, offset: 10, order : 'ID asc', where: {"TITLE": {$like: "%"+keyword+"%"}}}
+    });
+
+    list.then(function(){
+
+        send.category = null;
+        send.articles = list._settledValue.queryData.articleArray;
+
+        res.send(send);
+        log.fatal(ip+" 用户正在访问,{'url': '/search', 'methtod': 'post', 'argvs': {'key': '"+keyword+"'}}, controller out <!log>");
+
+    });
+
+});

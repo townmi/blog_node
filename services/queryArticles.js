@@ -13,13 +13,13 @@ module.exports = function(select){
 
 	return Arts.sync({logging: false}).then(function () {
 
-		if(!select.category || ! type.isJson(select.category)) return Arts;
+		if(!select.category || !type.isJson(select.category)) return Arts;
 		return Arts.findAll(select.category);
 
 	}).then(
 		function (data) {
 
-			if(!select.category || ! type.isJson(select.category)) return Arts;
+			if(!select.category || !type.isJson(select.category)) return Arts;
 
 			log.info("成功读取数据库, 查找category|分类, 共查找分类"+data.length+"条信息"+"<!log>");
 			categoryArray = [];
@@ -30,7 +30,7 @@ module.exports = function(select){
 
 		},
 		function (err) {
-			if(!select.category || ! type.isJson(select.category)) return Arts;
+			if(!select.category || !type.isJson(select.category)) return Arts;
 
 			log.error(err+"<!log>");
 			return Arts;
