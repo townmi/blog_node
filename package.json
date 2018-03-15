@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate"
+    "new": "hexo new [post] 'name'",
+    "build": "hexo generate",
+    "deploy": "hexo deploy"
   },
   "hexo": {
     "version": "3.6.0"

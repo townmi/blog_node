@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: Blog of Harry.tang 
+subtitle: 
 description:
-author: John Doe
+author: Harry.Tang
 language:
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.goubaa.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,5 +78,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 	type: git
-	repository: git@github.com:EZLippi/EZLippi.github.io.git
+	repository: https://git.coding.net/Harry_Tang/blog.git
 	branch: master
