@@ -68,7 +68,7 @@ NexT.utils = NexT.$u = {
       'music.163.com',
       'www.tudou.com'
     ];
-    var pattern = new RegExp( SUPPORTED_PLAYERS.join('|') );
+    var pattern = new RegExp(SUPPORTED_PLAYERS.join('|'));
 
     $iframes.each(function () {
       var iframe = this;
@@ -109,7 +109,7 @@ NexT.utils = NexT.$u = {
         if (this.src.search('music.163.com') > 0) {
           newDimension = getDimension($iframe);
           var shouldRecalculateAspect = newDimension.width > oldDimension.width ||
-                                        newDimension.height < oldDimension.height;
+            newDimension.height < oldDimension.height;
 
           // 163 Music Player has a fixed height, so we need to reset the aspect radio
           if (shouldRecalculateAspect) {

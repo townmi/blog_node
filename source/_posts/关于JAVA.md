@@ -2,8 +2,10 @@
 layout: '[post]'
 title: 关于JAVA
 date: 2018-03-15 16:37:02
-tags: java
-categories: java
+tags:
+- java
+categories:
+- java
 ---
 
 ## Quick Start

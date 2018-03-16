@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Blog of Harry.tang 
+title: Harry.Tang 
 subtitle: 
-description:
+description: 
 author: Harry.Tang
-language:
-timezone:
+language: zh-Hans
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.goubaa.com
+url: https://blog.goubaa.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

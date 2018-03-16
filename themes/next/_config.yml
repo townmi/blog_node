@@ -42,7 +42,7 @@ menu:
   tags: /tags
   about: /about
   #sitemap: /sitemap.xml
-  #commonweal: /404.html
+  # commonweal: /404.html
 
 #swiftype_key: F1mVLd_RPaPM-WhSr4A4 
   
@@ -86,28 +86,23 @@ scheme: Mist
 # ---------------------------------------------------------------
 font:
   enable: true
-
   # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
   host:
-
   # Global font settings used on <body> element.
   global:
     # external: true will load this font family from host.
     external: true
     family: Monda
-
   # Font settings for Headlines (h1, h2, h3, h4, h5, h6)
   # Fallback to `global` font settings.
   headings:
     external: true
     family: Roboto Slab
-
   # Font settings for posts
   # Fallback to `global` font settings.
   posts:
     external: true
     family:
-
   # Font settings for Logo
   # Fallback to `global` font settings.
   # The `size` option use `px` as unit
@@ -115,20 +110,15 @@ font:
     external: true
     family: Lobster Two
     size: 24
-
   # Font settings for <code> and code blocks.
   codes:
     external: true
     family: consolas
     size:
 
-
-
-
 # ---------------------------------------------------------------
 # Sidebar Settings
 # ---------------------------------------------------------------
-
 
 # Social Links
 # Key is the link label showing to end users.
@@ -272,7 +262,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night blue 
 
 
 # ---------------------------------------------------------------

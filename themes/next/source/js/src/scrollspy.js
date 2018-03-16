@@ -21,21 +21,21 @@
   // ==========================
 
   function ScrollSpy(element, options) {
-    this.$body          = $(document.body)
+    this.$body = $(document.body)
     this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
-    this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
-    this.selector       = (this.options.target || '') + ' .nav li > a'
-    this.offsets        = []
-    this.targets        = []
-    this.activeTarget   = null
-    this.scrollHeight   = 0
+    this.options = $.extend({}, ScrollSpy.DEFAULTS, options)
+    this.selector = (this.options.target || '') + ' .nav li > a'
+    this.offsets = []
+    this.targets = []
+    this.activeTarget = null
+    this.scrollHeight = 0
 
     this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
     this.refresh()
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.2'
+  ScrollSpy.VERSION = '3.3.2'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -46,24 +46,24 @@
   }
 
   ScrollSpy.prototype.refresh = function () {
-    var that          = this
-    var offsetMethod  = 'offset'
-    var offsetBase    = 0
+    var that = this
+    var offsetMethod = 'offset'
+    var offsetBase = 0
 
-    this.offsets      = []
-    this.targets      = []
+    this.offsets = []
+    this.targets = []
     this.scrollHeight = this.getScrollHeight()
 
     if (!$.isWindow(this.$scrollElement[0])) {
       offsetMethod = 'position'
-      offsetBase   = this.$scrollElement.scrollTop()
+      offsetBase = this.$scrollElement.scrollTop()
     }
 
     this.$body
       .find(this.selector)
       .map(function () {
-        var $el   = $(this)
-        var href  = $el.data('target') || $el.attr('href')
+        var $el = $(this)
+        var href = $el.data('target') || $el.attr('href')
         var $href = /^#./.test(href) && $(NexT.utils.escapeSelector(href)) // Need to escape selector.
 
         return ($href
@@ -81,11 +81,11 @@
   }
 
   ScrollSpy.prototype.process = function () {
-    var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+    var scrollTop = this.$scrollElement.scrollTop() + this.options.offset
     var scrollHeight = this.getScrollHeight()
-    var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
-    var offsets      = this.offsets
-    var targets      = this.targets
+    var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height()
+    var offsets = this.offsets
+    var targets = this.targets
     var activeTarget = this.activeTarget
     var i
 
@@ -145,8 +145,8 @@
 
   function Plugin(option) {
     return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.scrollspy')
+      var $this = $(this)
+      var data = $this.data('bs.scrollspy')
       var options = typeof option == 'object' && option
 
       if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
@@ -156,7 +156,7 @@
 
   var old = $.fn.scrollspy
 
-  $.fn.scrollspy             = Plugin
+  $.fn.scrollspy = Plugin
   $.fn.scrollspy.Constructor = ScrollSpy
 
 

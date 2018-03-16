@@ -54,22 +54,22 @@ $(document).ready(function () {
   var sidebarToggleLine1st = new SidebarToggleLine({
     el: '.sidebar-toggle-line-first',
     status: {
-      arrow: {width: '50%', rotateZ: '-45deg', top: '2px'},
-      close: {width: '100%', rotateZ: '-45deg', top: '5px'}
+      arrow: { width: '50%', rotateZ: '-45deg', top: '2px' },
+      close: { width: '100%', rotateZ: '-45deg', top: '5px' }
     }
   });
   var sidebarToggleLine2nd = new SidebarToggleLine({
     el: '.sidebar-toggle-line-middle',
     status: {
-      arrow: {width: '90%'},
-      close: {opacity: 0}
+      arrow: { width: '90%' },
+      close: { opacity: 0 }
     }
   });
   var sidebarToggleLine3rd = new SidebarToggleLine({
     el: '.sidebar-toggle-line-last',
     status: {
-      arrow: {width: '50%', rotateZ: '45deg', top: '-2px'},
-      close: {width: '100%', rotateZ: '45deg', top: '-5px'}
+      arrow: { width: '50%', rotateZ: '45deg', top: '-2px' },
+      close: { width: '100%', rotateZ: '45deg', top: '-5px' }
     }
   });
 
@@ -92,7 +92,7 @@ $(document).ready(function () {
       $(document)
         .on('sidebar.isShowing', function () {
           NexT.utils.isDesktop() && $('body').velocity('stop').velocity(
-            {paddingRight: SIDEBAR_WIDTH},
+            { paddingRight: SIDEBAR_WIDTH },
             SIDEBAR_DISPLAY_DURATION
           );
         })
@@ -121,8 +121,8 @@ $(document).ready(function () {
       sidebarToggleLines.close();
 
       this.sidebarEl.velocity('stop').velocity({
-          width: SIDEBAR_WIDTH
-        }, {
+        width: SIDEBAR_WIDTH
+      }, {
           display: 'block',
           duration: SIDEBAR_DISPLAY_DURATION,
           begin: function () {
@@ -147,9 +147,9 @@ $(document).ready(function () {
       this.sidebarEl.trigger('sidebar.isShowing');
     },
     hideSidebar: function () {
-      NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
+      NexT.utils.isDesktop() && $('body').velocity('stop').velocity({ paddingRight: 0 });
       this.sidebarEl.find('.motion-element').velocity('stop').css('display', 'none');
-      this.sidebarEl.velocity('stop').velocity({width: 0}, {display: 'none'});
+      this.sidebarEl.velocity('stop').velocity({ width: 0 }, { display: 'none' });
 
       sidebarToggleLines.init();
 
@@ -184,7 +184,7 @@ $(document).ready(function () {
     }
   };
 
-  NexT.motion.middleWares =  {
+  NexT.motion.middleWares = {
     logo: function (integrator) {
       var sequence = [];
       var $brand = $('.brand');
@@ -195,26 +195,26 @@ $(document).ready(function () {
 
       $brand.size() > 0 && sequence.push({
         e: $brand,
-        p: {opacity: 1},
-        o: {duration: 200}
+        p: { opacity: 1 },
+        o: { duration: 200 }
       });
 
       NexT.utils.isMist() && hasElement([$logoLineTop, $logoLineBottom]) &&
-      sequence.push(
-        getMistLineSettings($logoLineTop, '100%'),
-        getMistLineSettings($logoLineBottom, '-100%')
-      );
+        sequence.push(
+          getMistLineSettings($logoLineTop, '100%'),
+          getMistLineSettings($logoLineBottom, '-100%')
+        );
 
       hasElement($title) && sequence.push({
         e: $title,
-        p: {opacity: 1, top: 0},
+        p: { opacity: 1, top: 0 },
         o: { duration: 200 }
       });
 
       hasElement($subtitle) && sequence.push({
         e: $subtitle,
-        p: {opacity: 1, top: 0},
-        o: {duration: 200}
+        p: { opacity: 1, top: 0 },
+        o: { duration: 200 }
       });
 
       if (sequence.length > 0) {
@@ -227,10 +227,10 @@ $(document).ready(function () {
       }
 
 
-      function getMistLineSettings (element, translateX) {
+      function getMistLineSettings(element, translateX) {
         return {
           e: $(element),
-          p: {translateX: translateX},
+          p: { translateX: translateX },
           o: {
             duration: 500,
             sequenceQueue: false
@@ -243,7 +243,7 @@ $(document).ready(function () {
        * @param {jQuery|Array} $elements
        * @returns {boolean}
        */
-      function hasElement ($elements) {
+      function hasElement($elements) {
         $elements = Array.isArray($elements) ? $elements : [$elements];
         return $elements.every(function ($element) {
           return $.isFunction($element.size) && $element.size() > 0;
@@ -267,11 +267,11 @@ $(document).ready(function () {
 
       hasPost ? postMotion() : integrator.next();
 
-      function postMotion () {
+      function postMotion() {
         var postMotionOptions = window.postMotionOptions || {
-            stagger: 100,
-            drag: true
-          };
+          stagger: 100,
+          drag: true
+        };
         postMotionOptions.complete = function () {
           integrator.next();
         };
