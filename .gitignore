@@ -8,5 +8,11 @@ yarn-error.log*
 .idea
 
 node_modules/
+
 jspm_packages/
+
 public/
+
+.deploy_git
+
+.deploy_git/

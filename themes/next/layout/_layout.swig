@@ -10,13 +10,9 @@
   {% include '_partials/head.swig' %}
   <title>{% block title %}{% endblock %}</title>
 </head>
-{% if theme.leancloud_visitors.enable %}
-  	 {% include '_scripts/lean-analytics.swig' %}
-  {%  endif %}
 <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang || page.language || config.language }}">
 
   {% include '_scripts/third-party/analytics.swig' %}
-
   {% set container_class = "container one-collumn " %}
   {% if theme.sidebar.position %}
     {% set container_class = container_class + 'sidebar-position-' + theme.sidebar.position %}
@@ -59,7 +55,9 @@
 
   {% include '_scripts/vendors.swig' %}
   {% include '_scripts/commons.swig' %}
-
+  {% if theme.leancloud_visitors.enable %}
+  	{% include '_scripts/lean-analytics.swig' %}
+  {%  endif %}
   {% set scheme_script = '_scripts/schemes/' + theme.scheme | lower + '.swig' %}
   {% include scheme_script %}
 
@@ -71,11 +69,8 @@
   {% include '_scripts/third-party/tinysou.swig' %}
   {% include '_scripts/third-party/localsearch.swig' %}
   {% include '_scripts/third-party/mathjax.swig' %}
-  {% include '_scripts/third-party/lean-analytics.swig' %}
   {% include '_scripts/baidu-push.swig' %}
   {% include '_components/algolia-search/assets.swig' %}
-	<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
-
+  
 </body>
 </html>
