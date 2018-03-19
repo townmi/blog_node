@@ -1,10 +1,10 @@
 ---
-title: about
+title: 关于我
 date: 2018-03-16 13:52:53
 comments: false
 ---
 
-## Quick Start
+## 技术
 
 ### Create a new post
 
