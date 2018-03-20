@@ -10,6 +10,7 @@
 
   <article class="{{ post_class }}" itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="{{ theme.author }}">

@@ -163,7 +163,7 @@ toc:
 # Creative Commons 4.0 International License.
 # http://creativecommons.org/
 # Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-#creative_commons: by-nc-sa
+creative_commons: by-nc-sa
 #creative_commons:
 
 
@@ -288,7 +288,7 @@ mathjax:
 #duoshuo_shortname: ezlippi 
 #Disqus
 #disqus_shortname: lippi
-livere_uid: MTAyMC8zMjI4My84ODQ3
+# livere_uid: MTAyMC8zMjI4My84ODQ3
 
 
 #Hypercomments
@@ -300,6 +300,7 @@ livere_uid: MTAyMC8zMjI4My84ODQ3
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
 #youyan_uid: your uid
+youyan_uid: 2159521
 
 # Baidu Share
 # Available value:

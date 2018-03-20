@@ -23,6 +23,9 @@ PWA 的全拼是 Progressive Web Apps, 意思就是渐进式的网页应用。�
 3. 80%的Native APP 无人问津
 
 在这样的情况下 W3C和Google开始推出**PWA**技术, PWA应用就是为了提升Web APP 的用户体验，结合 Web APP 和 Native APP 的优点. 
+
+<!--more-->
+
 总的来说PWA App 有以下特点:
 
 1. 安全的(基于HTTPS)
