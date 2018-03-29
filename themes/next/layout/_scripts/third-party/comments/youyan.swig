@@ -25,16 +25,18 @@
     var clientId = '03a91c17261c902d6173';
     var clientSecret = '03ca14a8e211364001023781c19667e84ce65d64';
     var paths = decodeURIComponent(window.location.pathname).split("/")
-    var gitment = new Gitment({
-      id:  paths.length - 2 > -1 ? paths[paths.length - 2] : paths[paths.length - 1],
-      owner: 'townmi',
-      repo: 'blog_node',
-      oauth: {
-        client_id: clientId,
-        client_secret: clientSecret,
-      },
-    })
-
-    gitment.render('comments')
+    try {
+      var gitment = new Gitment({
+        id:  paths.length - 2 > -1 ? paths[paths.length - 2] : paths[paths.length - 1],
+        owner: 'townmi',
+        repo: 'blog_node',
+        oauth: {
+          client_id: clientId,
+          client_secret: clientSecret,
+        },
+      });
+      gitment.render('comments');
+    } catch(e) {
+    }
   </script>
 {% endif %}

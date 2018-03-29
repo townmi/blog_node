@@ -390,7 +390,6 @@ busuanzi_count:
 # Tencent analytics ID
 # tencent_analytics:
 
-
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: false
 
@@ -410,6 +409,13 @@ calendar:
   showDeleted: false
   singleEvents: true
   maxResults: 250
+
+# mermaid chart
+mermaid: ## mermaid url https://github.com/knsv/mermaid
+  enable: true  # default true
+  version: "7.1.2" # default v7.1.2
+  options:  # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
+    #startOnload: true  // default true
 
 # Algolia Search
 algolia_search:

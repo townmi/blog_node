@@ -11,6 +11,9 @@
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang || page.language || config.language }}">
+  <div style="width: 0; height: 0; overflow: hidden">
+    <img src="/images/avatar.jpg" /> 
+  </div>
 
   {% include '_scripts/third-party/analytics.swig' %}
   {% set container_class = "container one-collumn " %}

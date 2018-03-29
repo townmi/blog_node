@@ -70,7 +70,7 @@
     fb_app_id: theme.fb_app_id
   })
 }}
-
+<meta property="og:image" content="/images/avatar.jpg">
 
 {# Export some HEXO Configurations to Front-End #}
 <script type="text/javascript" id="hexo.configurations">

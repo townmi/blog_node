@@ -20,6 +20,15 @@
   {% set js_vendors.canvas_nest  = 'canvas-nest/canvas-nest.min.js' %}
 {% endif %}
 
+{% if theme.mermaid.enable %}
+<script src='https://unpkg.com/mermaid@{{ theme.mermaid.version  }}/dist/mermaid.min.js'></script>
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({theme: 'forest'});
+  }
+</script>
+{% endif %}
+
 {% for name, internal in js_vendors %}
   {% set internal_script = url_for(theme.vendors._internal) + '/' + internal %}
   <script type="text/javascript" src="{{ theme.vendors[name] | default(internal_script) }}"></script>
