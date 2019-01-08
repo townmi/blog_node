@@ -180,7 +180,7 @@
 		  
 
           {# LeanCould PageView #}
-          <!--
+
           {% if theme.leancloud_visitors.enable %}
             <span id="{{ url_for(post.path) }}" class="leancloud_visitors" data-flag-title="{{ post.title }}">
               <span class="post-meta-divider">|</span>
@@ -201,55 +201,48 @@
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>{{ theme.busuanzi_count.page_pv_footer }}
             </span>
           {% endif %}
-        
 
-          
           {% if theme.post_wordcount.wordcount or theme.post_wordcount.min2read %}
-                <div class="post-wordcount">
-                  {% if theme.post_wordcount.wordcount %}
-                    <span class="post-meta-item-icon">
-                      <i class="fa fa-file-word-o"></i>
-                    </span>
-                    {% if theme.post_wordcount.item_text %}
-                      <span class="post-meta-item-text">{{ __('post.wordcount') }}</span>
-                    {% endif %}
-                    <span title="{{ __('post.wordcount') }}">
-                      {{ wordcount(post.content) }}
-                    </span>
-                  {% endif %}
-
-                  {% if theme.post_wordcount.wordcount and theme.post_wordcount.min2read %}
-                    <span class="post-meta-divider">|</span>
-                  {% endif %}
-
-                  {% if theme.post_wordcount.min2read %}
-                    <span class="post-meta-item-icon">
-                      <i class="fa fa-clock-o"></i>
-                    </span>
-                    {% if theme.post_wordcount.item_text %}
-                      <span class="post-meta-item-text">{{ __('post.min2read') }}</span>
-                    {% endif %}
-                    <span title="{{ __('post.min2read') }}">
-                      {{ min2read(post.content) }}
-                    </span>
-                  {% endif %}
-                </div>
+            <div class="post-wordcount">
+              {% if theme.post_wordcount.wordcount %}
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                {% if theme.post_wordcount.item_text %}
+                  <span class="post-meta-item-text">{{ __('post.wordcount') }}</span>
+                {% endif %}
+                <span title="{{ __('post.wordcount') }}">
+                  {{ wordcount(post.content) }}
+                </span>
               {% endif %}
-          
-              {% if post.description and (not theme.excerpt_description or not is_index) %}
-                  <div class="post-description">
-                      {{ post.description }}
-                  </div>
+
+              {% if theme.post_wordcount.wordcount and theme.post_wordcount.min2read %}
+                <span class="post-meta-divider">|</span>
               {% endif %}
-    
-            
 
-
+              {% if theme.post_wordcount.min2read %}
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                {% if theme.post_wordcount.item_text %}
+                  <span class="post-meta-item-text">{{ __('post.min2read') }}</span>
+                {% endif %}
+                <span title="{{ __('post.min2read') }}">
+                  {{ min2read(post.content) }}
+                </span>
+              {% endif %}
             </div>
-          </header>
           {% endif %}
-          -->
+      
+          {% if post.description and (not theme.excerpt_description or not is_index) %}
+              <div class="post-description">
+                  {{ post.description }}
+              </div>
+          {% endif %}
 
+        </div>
+      </header>
+      {% endif %}
 
     <div class="post-body" itemprop="articleBody">
 

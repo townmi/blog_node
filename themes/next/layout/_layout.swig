@@ -58,9 +58,8 @@
 
   {% include '_scripts/vendors.swig' %}
   {% include '_scripts/commons.swig' %}
-  {% if theme.leancloud_visitors.enable %}
-  	{% include '_scripts/lean-analytics.swig' %}
-  {%  endif %}
+  {% include '_scripts/third-party/lean-analytics.swig' %}
+
   {% set scheme_script = '_scripts/schemes/' + theme.scheme | lower + '.swig' %}
   {% include scheme_script %}
 
