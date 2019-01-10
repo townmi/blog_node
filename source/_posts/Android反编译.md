@@ -13,13 +13,12 @@ categories:
 * [dex2jar](https://github.com/pxb1988/dex2jar)
 * [jd-gui](http://jd.benow.ca/)
 
+<!-- more -->
 ### 环境配置
 #### 安装`java`环境
  正确安装好java环境后，可以使用`java -version` 查看环境配置是否正常
 
 ![java -version](/uploads/20190109/1.png)
-
-<!-- more -->
 
 #### 设置`apktool`脚本
  [参考](https://ibotpeaches.github.io/Apktool/install/) 下面是mac os 配置的案例
