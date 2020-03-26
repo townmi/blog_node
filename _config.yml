@@ -78,5 +78,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 	type: git
-	repository: https://git.coding.net/Harry_Tang/blog.git
-	branch: master
+	repository: git@github.com:townmi/blog_node.git
+  branch: gh-pages
