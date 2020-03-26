@@ -3,7 +3,7 @@
   <title>Harry.Tang</title>
   
   
-  <link href="/atom.xml" rel="self"/>
+  <link href="/blog_node/atom.xml" rel="self"/>
   
   <link href="https://blog.goubaa.com/"/>
   <updated>2020-03-26T12:16:20.957Z</updated>
@@ -113,9 +113,9 @@
       <category term="前端" scheme="https://blog.goubaa.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="JS" scheme="https://blog.goubaa.com/tags/JS/"/>
-    
       <category term="Electron" scheme="https://blog.goubaa.com/tags/Electron/"/>
+    
+      <category term="JS" scheme="https://blog.goubaa.com/tags/JS/"/>
     
   </entry>
   
