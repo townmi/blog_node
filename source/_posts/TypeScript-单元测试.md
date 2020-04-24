@@ -11,6 +11,7 @@ categories:
 ---
 
 今天，我们将研究如何使用TypeScript进行单元测试以及流行的框架：Mocha / Chai，Jasmine或Jest。 我们已经知道目前流行的框架，并希望在TypeScript中编写单元测试！ 我们将介绍在TypeScript中支持单元测试所需的更改。 如果没有，可以参考每个库的文档。 在TypeScript中编写测试用例与在JavaScript中编写测试用例非常相似。 最重要的部分是进行设置，以便使用此库可以执行用TypeScript编写的测试用例。
+
 <!-- more -->
 源代码可从[https://github.com/chiragrupani/TSUnitTestsSetup](https://github.com/chiragrupani/TSUnitTestsSetup)获得。 它包含每个框架的设置和示例。
 

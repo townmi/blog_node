@@ -15,7 +15,9 @@ categories:
 1. `function`关键字与函数名之间有个星号；
 2. 函数体内使用`yield`表达式，定义不同状态；
 3. 通过调用`next`方法，将指针移向下一个状态，直到遇到下一个`yield`表达式（或`return`语句）为止。简单理解，`Generator`函数分段执行，`yield`表达式是暂停执行的标记，而`next`恢复执行。
+
 <!-- more -->
+
 ```js
   function * f (){
     yield 'hi';

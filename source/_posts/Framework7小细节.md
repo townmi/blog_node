@@ -14,6 +14,7 @@ categories:
 2. 页面切换需要地址栏的地址也一起变动, 需要设置`pushState`， 注意 `pushState`也需要在view这个配置里面添加，才能有效
 3. 默认的路由分割符号是`#!`,我们可以通过`pushStateSeparator`，来修改, 可以指定`''`, 这个参数也是必须在`view` 里面设置才有效.
 4. 当然设置`pushStateSeparator`为`''`的情况下，需要指定`pushStateRoot`,这个参数也是必须在`view` 里面设置才有效.
+
 <!-- more -->
 参考下面的配置:
 ```js

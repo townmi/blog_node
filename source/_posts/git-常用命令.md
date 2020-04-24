@@ -14,6 +14,7 @@ categories:
 
 * `args1` 代表项目的地址，可以是https模式: `https://github.com/facebook/react.git` 或者是git模式 `git@github.com:facebook/react.git` 
 * `args2` 如果没有这个参数那么拉下来的项目名称就是`args1`参数里的默认名称，上面的案例的就是`react`, 如果有参数, 项目的名称就是`args2`
+
 <!-- more --->
 ### 更新
 

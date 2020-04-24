@@ -19,7 +19,9 @@ Object.is() 是判断两个值是否严格相等，ES5有`==`和`===`，但是�
   Object.is(NAN, NAN) // true
   Object.is(+0, -0) // false
 ```
+
 <!-- more -->
+
 #### Object.assign()
 Object.assign()方法用于对象的合并，将原对象的所有可枚举属性复制到目标对象。
 1. 基本用法，

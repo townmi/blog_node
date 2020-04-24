@@ -20,6 +20,7 @@ Symbol作为一种新的原始数据类型，表示独一无二的值，主要�
   // 有参数
   Symbol('abc') === Symbol('abc');// false 
 ```
+
 <!-- more --->
 - Symbol 不是字符串，它不能和其他类型的值计算
 ```js

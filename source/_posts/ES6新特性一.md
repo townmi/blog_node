@@ -22,6 +22,7 @@ le和const不再像var那样有变量提升的情况，相同作用域下不可�
   const {c} = {b: 1}
   console.log(c) // undefined
 ```
+
 <!-- more -->
 
 如果解构，右边的模式和左边的不同，则会报错
