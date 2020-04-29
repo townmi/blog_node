@@ -1,6 +1,6 @@
 ---
 title: Webpack提高编译性能
-date: 2019-11-29 22:31:56
+date: 2019-12-02 22:31:56
 tags:
 - JS
 categories:
@@ -15,6 +15,7 @@ categories:
 
 #### 检查webpack性能相关的工具
 - `webpack-dashboard` 开发过程中，可以及时查看某些模块出现的问题，及时调整
+![webpack-dashboard](/uploads/20191129/1.png)
 ```js
   // webpack.config.js
   module.exports = {
