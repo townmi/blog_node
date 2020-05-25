@@ -82,9 +82,17 @@ origin  git@github.com:townmi/splayerx.git (push)
 
 
 #### git log
+> `git log` 查看最新的日志，按`q`推出
 
 
 ### 操作
+#### git branch
+> `git branch` 查看仓库的分支
+> `git branch -D xxx` 删除本地xxx分支
+
+#### git checkout 
+> `git checkout -b xx` 以当前分支，创建一个本地分支xx 
+
 #### git add
 > `git add`
 
@@ -94,7 +102,6 @@ origin  git@github.com:townmi/splayerx.git (push)
 #### git reset
 
 #### git merge
-
 
 #### git rebase
 

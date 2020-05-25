@@ -166,6 +166,60 @@ categories:
 5. ^~ 类似于无修饰符的行为，也是以指定模式开始，不同的是，如果模式匹配，那么就停止搜索其他模式了
 6. @ ：定义命名location区段，这些区段客户段不能访问，只可以由内部产生的请求来访问，如try_files或error_page等
 
+```apacheconf
+  location  = / {
+    # 精确匹配 / ，主机名后面不能带任何字符串
+    [ configuration A ] 
+  }
+
+  location  / {
+    # 因为所有的地址都以 / 开头，所以这条规则将匹配到所有请求
+    # 但是正则和最长字符串会优先匹配
+    [ configuration B ] 
+  }
+
+  location /documents/ {
+    # 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索
+    # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条
+    [ configuration C ] 
+  }
+
+  location ~ /documents/Abc {
+    # 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索
+    # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条
+    [ configuration CC ] 
+  }
+
+  location ^~ /images/ {
+    # 匹配任何以 /images/ 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。
+    [ configuration D ] 
+  }
+
+  location ~* \.(gif|jpg|jpeg)$ {
+    # 匹配所有以 gif,jpg或jpeg 结尾的请求
+    # 然而，所有请求 /images/ 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则
+    [ configuration E ] 
+  }
+
+  location /images/ {
+    # 字符匹配到 /images/，继续往下，会发现 ^~ 存在
+    [ configuration F ] 
+  }
+
+  location /images/abc {
+    # 最长字符匹配到 /images/abc，继续往下，会发现 ^~ 存在
+    # F与G的放置顺序是没有关系的
+    [ configuration G ] 
+  }
+
+  location ~ /images/abc/ {
+    # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用
+    [ configuration H ] 
+  }
+
+  location ~* /js/.*/\.js
+```
+
 #### root和alias的区别
 ```apacheconf
   location /img/ {
@@ -181,3 +235,27 @@ categories:
 若按照这种配置的话，则访问/img/目录下的文件时，nginx会去/var/www/image/img/目录下找文件。
 alias是一个目录别名的定义，root则是最上层目录的定义。
 还有一个重要的区别是alias后面必须要用“/”结束，否则会找不到文件的。。。而root则可有可无~~
+
+#### 通过nginx代理转发配置实现跨域
+```apacheconf
+  server {
+    listen 7099;
+    server_name _ localhost 127.0.0.1 0.0.0.0;
+    root ~/www/;
+    location / {
+      try_files $uri $uri/ /index.html;
+    }
+    location ^~ /api/a {
+      rewrite ^/api/a/(.*) /$1 break;
+      proxy_pass http://127.0.0.1:3000;
+      proxy_set_header Host      $host:$server_port;
+      proxy_set_header X-Real-IP $remote_addr;
+    }
+    location ^~ /api/b {
+      rewrite ^/api/b/(.*) /$1 break;
+      proxy_pass http://127.0.0.1:3000;
+      proxy_set_header Host      $host:$server_port;
+      proxy_set_header X-Real-IP $remote_addr;
+    }
+  }
+```
