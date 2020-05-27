@@ -61,6 +61,8 @@ categories:
     docker stop 1231241
     docker stop $(docker ps -q -f name=www)
     # 停掉 name是www的容器
+    docker ps -q --filter "name=www" | grep -q . && docker stop www && docker rm www || echo Not Found Container skip
+    # 如果有www容器就停掉并删除，这个命令在CI/CD工具里面不会应为没有镜像而中断
   ```
 
 8. `docker rm` 删除容器
@@ -96,6 +98,8 @@ categories:
   # 打包一个镜像，名字xxx, tag是1.0.0 使用当前路径下的Dockerfile
   docker build -t xxx2 - < tttt
   # 打包一个镜像，名字xxx2, tag是latest 使用ttt为Dockerfile
+  docker build --no-cache -t xxxx
+  # --no-cache 去除缓存构建
 ```
 
 #### Dockerfile一些指令

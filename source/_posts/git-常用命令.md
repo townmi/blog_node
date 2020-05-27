@@ -6,6 +6,11 @@ tags:
 categories:
 - 工具
 ---
+### git 常用命令
+
+![git status](/uploads/20190202/3.png)
+
+<!-- more --->
 
 ###  拉取项目
 
@@ -15,7 +20,6 @@ categories:
 * `args1` 代表项目的地址，可以是https模式: `https://github.com/facebook/react.git` 或者是git模式 `git@github.com:facebook/react.git` 
 * `args2` 如果没有这个参数那么拉下来的项目名称就是`args1`参数里的默认名称，上面的案例的就是`react`, 如果有参数, 项目的名称就是`args2`
 
-<!-- more --->
 ### 更新
 
 #### git fetch
@@ -94,12 +98,20 @@ origin  git@github.com:townmi/splayerx.git (push)
 > `git checkout -b xx` 以当前分支，创建一个本地分支xx 
 
 #### git add
-> `git add`
+> `git add` 
 
 #### git commit
 > `git commit`
 
 #### git reset
+> `git reset` 版本切换， 有三种参数
+1. --hard是最强的选项，将当前版本设置为某个历史版本后（通过修改引用文件/refs/heads/master来实现），staging和working area的内容也和那个历史版本完全一致。这就意味着你的某些文件可能就失踪了
+2. --mixed是默认选项，它修改引用文件，不改变working area的文件，但是staging 内容已经和历史版本一致
+3. --soft是最弱选项，它只修改引用文件，不改变staging和working area的文件
+```bash
+  git reset --hard hash
+  # 切换到{hash}对应的版本
+```
 
 #### git merge
 
