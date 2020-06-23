@@ -14,6 +14,8 @@ categories:
 <!-- more -->
 
 #### `Kong` 是啥
+![Kong概念](/uploads/20200621/1.png)
+
 `Kong`是使用`Lua`编写的，被广泛采用的开源API网关。它利用`OpenResty`框架在`Nginx`之上运行，并提供了一个简单的`RESTful API`，可用于以动态方式配置您的基础架构
 
 #### `Konga` 是啥
@@ -95,7 +97,8 @@ categories:
 ```
 然后打开`http://本地主机:1337`, 先注册管理员账户，然后就可以使用`Konga`来管理`Kong Admin API`了
 
-#### 通过docker compose启动`Kong`和`Konga`
+#### compose启动`Kong`和`Konga`
+
 配置如下:
 ```yaml
   version: '3.7'
