@@ -176,7 +176,8 @@ Client请求的流量通过Route指向与之相关的Service，如果配置插�
     })
   })
 ```
-然后在浏览器打开`http://127.0.0.1:3000/authorize?response_type=code&scope=email&client_id=test`
+然后在浏览器打开 
+`http://127.0.0.1:3000/authorize?response_type=code&scope=email&client_id=nSBCJQf7uiMSjwv4ehHB3VdQaxt0MBXY`
 会有下面的页面
 ![授权页面](/uploads/20200621/3.png)
 点击 Authorize 按钮，就会返回 toke
@@ -220,6 +221,7 @@ Client请求的流量通过Route指向与之相关的Service，如果配置插�
 2. `var KONG_API = "https://127.0.0.1:8443"; // 注意这里的KONG_API 需要指定 8443 ssl 的端口，后面会细说`
 3. 如果遇到授权认证异常需要检查route测试,一般检查下面几个参数`Paths`、`Path handling` 设置成`v1`、`Strip Path`设置成`false`、
 
+[kong_oauth_nodejs.js](https://gist.github.com/townmi/3915b3d6f4cc33b399f0641f90e0e3a8)
 
 总结：
 1. 首先创建一个`service`
