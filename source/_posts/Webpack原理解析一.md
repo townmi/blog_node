@@ -86,7 +86,9 @@ categories:
       __webpack_require__.c = installedModules;
 
       // define getter function for harmony exports
+      //  定义 exports 对象导出的属性。
       __webpack_require__.d = function (exports, name, getter) {
+        // 如果 exports （不含原型链上）没有 [name] 属性，定义该属性的 getter。
         if (!__webpack_require__.o(exports, name)) {
           Object.defineProperty(exports, name, { enumerable: true, get: getter });
         }
@@ -126,6 +128,7 @@ categories:
       };
 
       // Object.prototype.hasOwnProperty.call
+      // 包装 Object.prototype.hasOwnProperty 函数。
       __webpack_require__.o = function (object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 
       // __webpack_public_path__
@@ -160,6 +163,18 @@ categories:
 
       });
   });
+```
+我们来看下流程
+```mermaid
+graph TD
+    start((开始))-->load[加载bundle.js]
+    load -->run[执行webpackBootstrap]
+    run-->entry[__webpack_require__入口模块]
+    entry-->do[执行模块]
+    do-->isExitOther{有其他模块}
+    isExitOther-->|yes|gotoLoadOther[__webpack_require__其他模块]
+    gotoLoadOther-->do
+    isExitOther-->|no|jobDone(结束)
 ```
 
 
@@ -197,6 +212,7 @@ categories:
         // add "moreModules" to the modules object,
         // then flag all "chunkIds" as loaded and fire callback
         var moduleId, chunkId, i = 0, resolves = [];
+        // 将 chunk 标记为已加载
         for (; i < chunkIds.length; i++) {
           chunkId = chunkIds[i];
           if (Object.prototype.hasOwnProperty.call(installedChunks, chunkId) && installedChunks[chunkId]) {
@@ -206,15 +222,19 @@ categories:
           // 标记chuck加载完成
           installedChunks[chunkId] = 0;
         }
+        // 把 "moreModules" 加到 webpackBootstrap 中的 modules 闭包变量中。
         for (moduleId in moreModules) {
           if (Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
             // 把chunck中的模块存到总模块对象池中
             modules[moduleId] = moreModules[moduleId];
           }
         }
+        // parentJsonpFunction 是 window["webpackJsonp"] 的原生 push
+        // 将 data 加入全局数组，缓存 chunk 内容
         if (parentJsonpFunction) parentJsonpFunction(data);
 
         while (resolves.length) {
+          // 执行 resolve 后，加载 chunk 的 promise 状态变为 resolved，then 内的函数开始执行。 
           // 以栈的形式把resolves数组中加载chunck的任务完成
           resolves.shift()();
         }
@@ -275,7 +295,7 @@ categories:
 
 
         // JSONP chunk loading for javascript
-
+        // installedChunks 是在 webpackBootstrap 中维护的 chunk 缓存
         var installedChunkData = installedChunks[chunkId];
         // 到已加载的chunck对象池中查找，如果是0，说明加载过了
         if (installedChunkData !== 0) { // 0 means "already installed".
@@ -304,15 +324,18 @@ categories:
             if (__webpack_require__.nc) {
               script.setAttribute("nonce", __webpack_require__.nc);
             }
+            // src 根据 publicPath 和 chunkId 拼接
             script.src = jsonpScriptSrc(chunkId);
 
             // create error before stack unwound to get useful stacktrace later
             var error = new Error();
+            // 加载结束回调函数，处理 script 加载完成、加载超时、加载失败的情况
             onScriptComplete = function (event) {
               // avoid mem leaks in IE.
               script.onerror = script.onload = null;
               clearTimeout(timeout);
               var chunk = installedChunks[chunkId];
+              // 处理 script 加载完成，但 chunk 没有加载完成的情况
               if (chunk !== 0) {
                 if (chunk) {
                   var errorType = event && (event.type === 'load' ? 'missing' : event.type);
@@ -323,6 +346,7 @@ categories:
                   error.request = realSrc;
                   chunk[1](error);
                 }
+                // 统一将没有加载的 chunk 标记为未加载
                 installedChunks[chunkId] = undefined;
               }
             };
@@ -393,11 +417,13 @@ categories:
       __webpack_require__.oe = function (err) { console.error(err); throw err; };
 
       // 在window对象上绑定加载chunck的webpackJsonp
+      // 存储 jsonp 的数组，首次运行为 []
       var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
-      // 
+      // 保存 jsonpArray 的 push 函数，首次运行为 Array.prototype.push
       var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
       // 重写window["webpackJsonp"]的push方法、当chunck脚本加载完成、就会执行webpackJsonpCallback;(jsonp的形式)
       jsonpArray.push = webpackJsonpCallback;
+      // 将 jsonpArray 重置为正常数组，push 重置为 Array.prototype.push
       jsonpArray = jsonpArray.slice();
       for (var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
       var parentJsonpFunction = oldJsonpFunction;
@@ -435,6 +461,8 @@ categories:
 
   }]);
 ```
+我们来看下流程
+![流程](/uploads/20200903/1.jpg)
 
 ### 总结
 我们发现，如果`webpack`打包不分`chunck`的话，其实，所有模块都是在一个js里面的，通过一个`module`保存，并以参数的形式传入`webpackBootstrap`方法

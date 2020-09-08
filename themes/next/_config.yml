@@ -459,7 +459,7 @@ vendors:
 
   # Internal version: 2.1.5
   # See: http://fancyapps.com/fancybox/
-  fancybox: //cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js
+  fancybox: //cdn.bootcdn.net/ajax/libs/fancybox/2.1.6/js/jquery.fancybox.min.js
   fancybox_css: //cdn.bootcdn.net/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css
 
   # Internal version: 1.0.6
