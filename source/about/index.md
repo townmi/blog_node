@@ -4,27 +4,31 @@ date: 2018-03-16 13:52:53
 comments: false
 ---
 
-### 个人资料
+<!-- ### 个人资料
 
 1. 出生年份: 1990年
 2. 性别: 男
-3. 学历: 本科 (材料科学与工程)
+3. 学历: 本科 (材料科学与工程) -->
 
 
-### 技能
-
-#### 前端
+### 前端
 
 #### WEB(精通)
 * Javascript (原生、Jquery、React 、Vue...)
 * HTML(5)、 CSS(3)
+* Webpack
 * Wechat SDK
 
 ##### Android(熟练)
 * Java (MVP 、RxAndroid、 ...)
 * React Native
 
-#### 后台
+### 服务端
+
+#### Java(熟练)
+* Spring
+* Grpc
+* Redis、Mysql 
 
 #### NodeJS(一般)
 * ExpressJS
@@ -38,8 +42,15 @@ comments: false
 * static server
 * proxy 
 
+### 面向API
+* google
+* aliyun
+* wxwork
+* wechat
+* qiniu
 
-### 工作经历
+
+<!-- ### 工作经历
 
 #### 宜信(北京)
 * 工作时间: 2014.7-2016.3
@@ -74,4 +85,4 @@ comments: false
     3. 负责商家接单系统前端开发。包括商家的入驻、商家接单、订单的消费等等。 
     3. 负责公司Android 项目的开发
 * 相关技术: React(Redux)、Vue(Vuex) Java
-* 在职探索: Golang、JAVA的学习
+* 在职探索: Golang、JAVA的学习 -->
